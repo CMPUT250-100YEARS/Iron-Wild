@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Player : AnimatedEntity
-{   
-    public float Speed=5;
+{
+    
+    public float Speed = 5;
     private AudioSource audioSource;
 
     public List<Sprite> InterruptedCycle;
