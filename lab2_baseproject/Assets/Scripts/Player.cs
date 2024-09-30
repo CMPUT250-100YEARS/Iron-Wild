@@ -4,11 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Player : AnimatedEntity
-{   
-    public float Speed=5;
+{
+    
+    public float Speed = 5;
     private AudioSource audioSource;
 
     public List<Sprite> InterruptedCycle;
+
+    public GameObject bulletPrefab;
+    public float fireRate = 0.5f;
+    public float cooldown;
+
+    
 
     void Start()
     {
@@ -33,10 +40,20 @@ public class Player : AnimatedEntity
         if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)){
             transform.position+= Vector3.right*Time.deltaTime*Speed;
         }
+        if (Input.GetKey(KeyCode.Space) && cooldown <= 0.0f)
+        {
+            cooldown = fireRate;
+            GameObject.Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            cooldown -= Time.deltaTime;
+        }
 
     }
 
     void OnTriggerEnter(Collider other){
+        Debug.Log("Atleast it works!");
         Pickup pickup = other.gameObject.GetComponent<Pickup>();
 
         audioSource.Play();

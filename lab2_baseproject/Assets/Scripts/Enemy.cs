@@ -18,6 +18,11 @@ public class Enemy : AnimatedEntity
     void Update()
     {
         AnimationUpdate();
-        transform.position += new Vector3(Random.Range(-1 * RangeX, RangeX), Random.Range(-1 * RangeY, RangeY)) * Time.deltaTime;
+        //transform.position += new Vector3(Random.Range(-1 * RangeX, RangeX), Random.Range(-1 * RangeY, RangeY)) * Time.deltaTime;
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }
