@@ -15,7 +15,8 @@ public class Player : AnimatedEntity
     public float fireRate = 0.5f;
     public float cooldown;
 
-    
+
+
 
     void Start()
     {
@@ -54,12 +55,14 @@ public class Player : AnimatedEntity
 
     void OnTriggerEnter(Collider other){
         Debug.Log("Atleast it works!");
+
         Pickup pickup = other.gameObject.GetComponent<Pickup>();
 
         audioSource.Play();
-        if(pickup!=null){
+        if (pickup != null)
+        {
 
-            Interrupt(InterruptedCycle);  
+            Interrupt(InterruptedCycle);
             if (audioSource != null)
             {
                 audioSource.Play();
@@ -72,6 +75,15 @@ public class Player : AnimatedEntity
         if(enemy!=null){
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-    }
 
+        PuddleScript puddle = other.gameObject.GetComponent<PuddleScript>();
+    
+        if (puddle!= null){
+            Debug.Log("Found Puddle!");
+
+            FindObjectOfType<WaterManager>().IncreaseWater(5f);
+
+        }
+    }
+    
 }
