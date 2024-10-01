@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class AnimatedEntity : MonoBehaviour
 {
-    public List<Sprite> DefaultAnimationCycle;
+    //Sprite List as right and Left for 
+    public List<Sprite> DefaultAnimationCycleRight; //when moving right
+    public List<Sprite> DefaultAnimationCycleLeft; //when moving left
+    public Sprite IdleSprite; //when not moving
     public float Framerate = 12f;//frames per second
     public SpriteRenderer SpriteRenderer;//spriteRenderer
 
@@ -17,41 +20,77 @@ public class AnimatedEntity : MonoBehaviour
     //interrupt animation info
     private bool interruptFlag;
     private List<Sprite> interruptAnimation;
+    private bool isMovingRight; // tracking direction
+    private bool isMoving; //check if object is moving
 
 
     //Set up logic for animation stuff
     protected void AnimationSetup(){
         animationTimerMax = 1.0f/((float)(Framerate));
         index = 0;
+        isMovingRight = true; // default direction
+        isMoving = false; //object not moving initially
     }
 
     //Default animation update
     protected void AnimationUpdate(){
         animationTimer+=Time.deltaTime;
 
-        if(animationTimer>animationTimerMax){
-            animationTimer = 0;
-            index++;
+        if (isMoving) //when object starts moving
+        {
+            if (animationTimer > animationTimerMax)
+            {
+                animationTimer = 0;
+                index++;
 
-            if(!interruptFlag){
-                if(DefaultAnimationCycle.Count==0 || index>=DefaultAnimationCycle.Count){
-                    index=0;
+                // what script to show
+                List<Sprite> currentAnimationCycle;
+                if (isMovingRight) //if object moving right use RightSprite List
+                {
+                    currentAnimationCycle = DefaultAnimationCycleRight;
                 }
-                if(DefaultAnimationCycle.Count>0){
-                    SpriteRenderer.sprite = DefaultAnimationCycle[index];
+                else
+                {
+                    currentAnimationCycle = DefaultAnimationCycleLeft;
                 }
-            }
-            else{
-                if(interruptAnimation==null || index>=interruptAnimation.Count){
-                    index=0;
-                    interruptFlag = false;
-                    interruptAnimation= null;//clear interrupt animation
+
+                if (!interruptFlag)
+                {
+                    if (currentAnimationCycle.Count == 0 || index >= currentAnimationCycle.Count)
+                    {
+                        index = 0;
+                    }
+                    if (currentAnimationCycle.Count > 0)
+                    {
+                        SpriteRenderer.sprite = currentAnimationCycle[index];
+                    }
                 }
-                else{
-                    SpriteRenderer.sprite = interruptAnimation[index];
+                else
+                {
+                    if (interruptAnimation == null || index >= interruptAnimation.Count)
+                    {
+                        index = 0;
+                        interruptFlag = false;
+                        interruptAnimation = null;//clear interrupt animation
+                    }
+                    else
+                    {
+                        SpriteRenderer.sprite = interruptAnimation[index];
+                    }
                 }
             }
         }
+        else //object not moving
+        {
+            SpriteRenderer.sprite = IdleSprite; //show the idel when not moving
+        }
+    }
+
+    public void SetMovementDirection( bool movingRight, bool moving)
+    {
+        //bool values taken about movement and direction
+        isMovingRight = movingRight;
+        isMoving = moving;
     }
 
     //Interrupt animation
