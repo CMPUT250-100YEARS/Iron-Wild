@@ -28,19 +28,32 @@ public class Player : AnimatedEntity
     void Update()
     {
         AnimationUpdate();
-        //Movement controls
+        //Movement controls |start with player not moving
+        bool isMoving = false; 
+        bool isMovingRight = false; 
+
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)){
             transform.position+= Vector3.up*Time.deltaTime*Speed;
+            isMoving = false;
         }
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)){
             transform.position+= Vector3.left*Time.deltaTime*Speed;
+            isMoving = true; //checking
+            isMovingRight = false; //moving Left
         }
         if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)){
             transform.position+= Vector3.down*Time.deltaTime*Speed;
+            isMoving = false;
         }
         if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)){
             transform.position+= Vector3.right*Time.deltaTime*Speed;
+            isMoving = true;
+            isMovingRight = true; //moving right
         }
+        // call SetMovementDirection
+        SetMovementDirection(isMovingRight, isMoving);
+
+        //shooting
         if (Input.GetKey(KeyCode.Space) && cooldown <= 0.0f)
         {
             cooldown = fireRate;
