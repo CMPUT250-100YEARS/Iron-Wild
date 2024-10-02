@@ -65,7 +65,7 @@ public class Player : AnimatedEntity
 
         
 
-        if (Input.GetKey(KeyCode.Space) && cooldown <= 0.0f)
+        if (Input.GetKey(KeyCode.Mouse0) && cooldown <= 0.0f)
         {
             cooldown = fireRate;
             Shoot();

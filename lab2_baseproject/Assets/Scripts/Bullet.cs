@@ -8,18 +8,22 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    public float bulletSpeed = 10f;
-    private float lifeTime = 3f;
+    public float bulletSpeed = 20f;
+    private float lifeTime = 1.5f;
+
+    public float bulletDamage = 33.4f;
 
     private Camera mainCamera;
     private Vector3 mousePointer;
 
     private Rigidbody2D bullet;
 
+
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
 
         bullet = GetComponent<Rigidbody2D>();
 
@@ -50,7 +54,7 @@ public class Bullet : MonoBehaviour
 
         if (enemy != null)
         {
-            enemy.Destroy();
+            enemy.takeDamage(bulletDamage);
             Destroy(gameObject);
         }
 
