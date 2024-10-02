@@ -15666,7 +15666,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9824468a4ebb491cbe1ea058e0fae8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultAnimationCycle: []
+  DefaultAnimationCycleRight: []
+  DefaultAnimationCycleLeft: []
+  IdleSprite: {fileID: 21300000, guid: 6c115d2510a83443ead1a2b72ace5a4a, type: 3}
   Framerate: 12
   SpriteRenderer: {fileID: 847873638}
 --- !u!1001 &1207206997
@@ -15836,11 +15838,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58a5cae6aa7724553bb0ddc74540ecf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultAnimationCycle:
+  DefaultAnimationCycleRight:
   - {fileID: -1945495898108405587, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
   - {fileID: -3268942321619063180, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
   - {fileID: -1428114386582745185, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
   - {fileID: 3977011757696220146, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  DefaultAnimationCycleLeft:
+  - {fileID: 2471237784841236786, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: -2403379810841390452, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: -8618214903832800261, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: -7918536089625718045, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  IdleSprite: {fileID: 1976690480719741105, guid: f6b1a7215d0a7a74595f70d28a140071,
+    type: 3}
   Framerate: 6
   SpriteRenderer: {fileID: 1366631709}
   Speed: 5
