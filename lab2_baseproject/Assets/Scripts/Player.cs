@@ -15,6 +15,12 @@ public class Player : AnimatedEntity
     public float fireRate = 0.5f;
     public float cooldown;
 
+    private Camera mainCamera;
+    private Vector3 mousePointer;
+
+
+    
+
 
 
 
@@ -22,6 +28,8 @@ public class Player : AnimatedEntity
     {
         AnimationSetup();
         audioSource = gameObject.GetComponent<AudioSource>();
+
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -54,14 +62,19 @@ public class Player : AnimatedEntity
         SetMovementDirection(isMovingRight, isMoving);
 
         //shooting
+
+        
+
         if (Input.GetKey(KeyCode.Space) && cooldown <= 0.0f)
         {
             cooldown = fireRate;
-            GameObject.Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            Shoot();
         }
         else
-        {
-            cooldown -= Time.deltaTime;
+        {   
+            if (cooldown >= 0.0f){
+                cooldown -= Time.deltaTime;
+            }
         }
 
     }
@@ -93,10 +106,34 @@ public class Player : AnimatedEntity
     
         if (puddle!= null){
             Debug.Log("Found Puddle!");
-
             FindObjectOfType<WaterManager>().IncreaseWater(5f);
-
         }
     }
-    
+
+    void Shoot()
+    {
+        
+        Debug.Log("Shoot Called!");
+        Transform aimtransform = transform.Find("Aim");
+        if (aimtransform != null)
+        {
+            Debug.Log("first if passed!");
+
+            GameObject aimObject = aimtransform.gameObject;
+
+            mousePointer = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 rotation = mousePointer - transform.position;
+            float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+            aimtransform.rotation = Quaternion.Euler(0, 0, rotZ);
+
+            Transform guntransform = aimtransform.Find("Gun");
+            if (guntransform != null)
+            {
+                GameObject gunObject = guntransform.gameObject;
+                Debug.Log("second if passed!");
+                Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);         
+            }
+            //GameObject.Instantiate(bulletPrefab, guntransform.position, guntransform.rotation, gunObject.transform);
+        }
+    }
 }
