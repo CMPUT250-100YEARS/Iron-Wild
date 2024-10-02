@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 214476465857364118}
   - component: {fileID: 2153536263463474062}
   - component: {fileID: 1681243163663287155}
-  - component: {fileID: 7346188148219653601}
+  - component: {fileID: -6907058029692572657}
   m_Layer: 0
   m_Name: Puddle
   m_TagString: Untagged
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74969342c568248a7bb66fef97921e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &7346188148219653601
+--- !u!61 &-6907058029692572657
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

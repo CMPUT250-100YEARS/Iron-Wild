@@ -79,15 +79,12 @@ public class Player : AnimatedEntity
 
     }
 
-    void OnTriggerEnter(Collider other){
-        Debug.Log("Atleast it works!");
+    void OnTriggerEnter2D(Collider2D other){
+        Debug.Log("Player collider entered with: " + other.gameObject.name);
 
         Pickup pickup = other.gameObject.GetComponent<Pickup>();
-
-        audioSource.Play();
         if (pickup != null)
         {
-
             Interrupt(InterruptedCycle);
             if (audioSource != null)
             {
@@ -96,29 +93,31 @@ public class Player : AnimatedEntity
             pickup.Reset();
         }
 
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
 
+
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if(enemy!=null){
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
+
+
         PuddleScript puddle = other.gameObject.GetComponent<PuddleScript>();
-    
         if (puddle!= null){
-            Debug.Log("Found Puddle!");
+
             FindObjectOfType<WaterManager>().IncreaseWater(5f);
         }
+
+
     }
 
     void Shoot()
     {
         
-        Debug.Log("Shoot Called!");
+        
         Transform aimtransform = transform.Find("Aim");
         if (aimtransform != null)
         {
-            Debug.Log("first if passed!");
-
             GameObject aimObject = aimtransform.gameObject;
 
             mousePointer = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -131,6 +130,8 @@ public class Player : AnimatedEntity
             {
                 GameObject gunObject = guntransform.gameObject;
                 Debug.Log("second if passed!");
+
+                // TODO: Change the  bullet spawned direction gun to aim
                 Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);         
             }
             //GameObject.Instantiate(bulletPrefab, guntransform.position, guntransform.rotation, gunObject.transform);

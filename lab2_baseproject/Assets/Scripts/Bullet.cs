@@ -14,21 +14,20 @@ public class Bullet : MonoBehaviour
     private Camera mainCamera;
     private Vector3 mousePointer;
 
-    private Rigidbody bullet;
+    private Rigidbody2D bullet;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
-        bullet = GetComponent<Rigidbody>();
+        bullet = GetComponent<Rigidbody2D>();
 
         mousePointer = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePointer - transform.position;
 
         
         bullet.velocity = new Vector3(direction.x, direction.y).normalized * bulletSpeed;
-        Debug.Log(bullet.velocity);
 
 
         Destroy(gameObject, lifeTime);
@@ -42,7 +41,9 @@ public class Bullet : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other)
+
+
+    void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Trigger!");
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
