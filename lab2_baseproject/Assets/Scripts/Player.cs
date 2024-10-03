@@ -101,6 +101,14 @@ public class Player : AnimatedEntity
             }
         }
 
+
+        // Temporary, to test Heart system
+        if (Input.GetKeyDown(KeyCode.H)) // For testing, press H to take damage ???
+        {                                           
+            FindObjectOfType<Heart>().TakeDamage();
+        }
+
+
     }
 
     bool IsCollidingWith(Vector3 targetPos)
