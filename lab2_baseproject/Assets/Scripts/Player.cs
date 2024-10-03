@@ -18,10 +18,9 @@ public class Player : AnimatedEntity
     private Camera mainCamera;
     private Vector3 mousePointer;
 
-
+    private Rigidbody2D rb;
+    public LayerMask SolidObjectsLayer; //the foreground
     
-
-
 
 
     void Start()
@@ -30,37 +29,62 @@ public class Player : AnimatedEntity
         audioSource = gameObject.GetComponent<AudioSource>();
 
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         AnimationUpdate();
+
         //Movement controls |start with player not moving
         bool isMoving = false; 
-        bool isMovingRight = false; 
+        bool isMovingRight = false;
+        Vector2 inputDirection = Vector2.zero;
 
+        //check input WASD and store direction
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)){
-            transform.position+= Vector3.up*Time.deltaTime*Speed;
-            isMoving = false;
+
+            //transform.position+= Vector3.up*Time.deltaTime*Speed;
+            inputDirection = Vector2.up;
+            isMoving = true;
         }
+
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)){
-            transform.position+= Vector3.left*Time.deltaTime*Speed;
+            //transform.position+= Vector3.left*Time.deltaTime*Speed;
+            inputDirection = Vector2.left;
             isMoving = true; //checking
             isMovingRight = false; //moving Left
         }
+
         if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)){
-            transform.position+= Vector3.down*Time.deltaTime*Speed;
-            isMoving = false;
+            //transform.position+= Vector3.down*Time.deltaTime*Speed;
+            inputDirection = Vector2.down;
+            isMoving = true;
         }
         if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)){
-            transform.position+= Vector3.right*Time.deltaTime*Speed;
+            //transform.position+= Vector3.right*Time.deltaTime*Speed;
+            inputDirection = Vector2.right;
             isMoving = true;
             isMovingRight = true; //moving right
         }
+
+        //If isMoving ==true, check for collision(foreground) then move
+        if (isMoving)
+        {
+            Vector3 targerPos = rb.position + inputDirection * Time.deltaTime * Speed; //inputDirection Vector2.up/down/...
+            if (!IsCollidingWith(targerPos))
+            {
+                rb.MovePosition(rb.position + inputDirection * Time.deltaTime * Speed);
+            }
+        }
+
         // call SetMovementDirection
         SetMovementDirection(isMovingRight, isMoving);
 
+        
+        
+        
         //shooting
 
         
@@ -77,6 +101,15 @@ public class Player : AnimatedEntity
             }
         }
 
+    }
+
+    bool IsCollidingWith(Vector3 targetPos)
+    {
+        if (Physics2D.OverlapCircle(targetPos, 0.1f, SolidObjectsLayer) != null)
+        {
+            return true; //player colliding with an object in foreground
+        }
+        return false; //no collision - player can move
     }
 
     void OnTriggerEnter2D(Collider2D other){
