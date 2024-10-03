@@ -54,7 +54,7 @@ public class WaterManager : MonoBehaviour
 
     public void IncreaseWater(float amount)
     {
-        Debug.Log("WaterManager!");
+        //Debug.Log("WaterManager!");
         timeLeft += amount;
         timeLeft = Mathf.Clamp(timeLeft, 0, 100); //ensure waterLevel stays between 0 and 100
         waterBar.fillAmount = timeLeft / maxTime;

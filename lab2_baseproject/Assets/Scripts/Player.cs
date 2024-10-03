@@ -108,6 +108,12 @@ public class Player : AnimatedEntity
             FindObjectOfType<Heart>().TakeDamage();
         }
 
+        //// Temporary, to test Food system
+        //if (Input.GetKeyDown(KeyCode.F)) // For testing, press F to take damage ???
+        //{
+        //    FindObjectOfType<FoodImage>().FoundFoods();
+        //}
+
 
     }
 
@@ -145,10 +151,20 @@ public class Player : AnimatedEntity
 
         PuddleScript puddle = other.gameObject.GetComponent<PuddleScript>();
         if (puddle!= null){
-
+            Debug.Log("found puddle!");
             FindObjectOfType<WaterManager>().IncreaseWater(5f);
         }
 
+
+        FoodObject food = other.gameObject.GetComponent<FoodObject>();
+        //FoodImage foodImage = other.gameObject.GetComponent<FoodImage>();
+
+        if (food != null)
+        {
+            FindObjectOfType<FoodImage>().FoundFoods();
+            Destroy(food.gameObject);
+
+        }
 
     }
 
