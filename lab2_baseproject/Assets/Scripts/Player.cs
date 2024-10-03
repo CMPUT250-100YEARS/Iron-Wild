@@ -109,6 +109,14 @@ public class Player : AnimatedEntity
         }
 
 
+        Food food = other.gameObject.GetComponent<Food>();
+
+        if (food != null)
+        {
+            food.MoveFood();
+        }
+
+
     }
 
     void Shoot()
