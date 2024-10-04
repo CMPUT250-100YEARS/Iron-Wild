@@ -20,6 +20,8 @@ public class Player : AnimatedEntity
 
     private Rigidbody2D rb;
     public LayerMask SolidObjectsLayer; //the foreground
+
+    public float foodCount = 0;
     
 
 
@@ -161,8 +163,20 @@ public class Player : AnimatedEntity
 
         if (food != null)
         {
+            foodCount++;
             FindObjectOfType<FoodImage>().FoundFoods();
             Destroy(food.gameObject);
+
+        }
+
+        LevelEndTrigger levelEnd = other.gameObject.GetComponent<LevelEndTrigger>();
+        //FoodImage foodImage = other.gameObject.GetComponent<OnTriggerEnter>();
+
+        if (levelEnd != null)
+        {
+            //FindObjectOfType<LevelEndTrigger>().ShowSpeechBubble();
+            Vector3 playerPosition = this.transform.position; //???
+            FindObjectOfType<LevelEndTrigger>().ShowSpeechBubble(foodCount);
 
         }
 
