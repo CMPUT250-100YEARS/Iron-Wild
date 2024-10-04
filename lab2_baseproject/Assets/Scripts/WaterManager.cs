@@ -35,13 +35,12 @@ public class WaterManager : MonoBehaviour
         {
             timeLeft -= Time.deltaTime;
             waterBar.fillAmount = timeLeft / maxTime;
+        } else
+        {
+            GameOverManager gameOver = FindObjectOfType<GameOverManager>();
+            gameOver.PlayerLost();
+            //Heart heart = FindObjectOfType<Heart>().LoseLife();
         }
-        //} else
-        //{
-        //    //GameOver gameOver = FindObjectOfType<GameOver>();
-        //    //gameOver.PlayerLost();
-        //    //Heart heart = FindObjectOfType<Heart>().LoseLife();
-        //}
 
 
         //if (waterLevel <= 0)
