@@ -33,6 +33,11 @@ public class Player : AnimatedEntity
 
     private Vector2 dashDirection;
 
+    // for sound in FOOD AND WATER
+    //public AudioClip foodSound;
+    public AudioClip waterSound;
+    //public AudioSource playerDead;
+
 
     void Start()
     {
@@ -192,6 +197,11 @@ public class Player : AnimatedEntity
 
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if(enemy!=null){
+
+            //if (playerDead != null)
+            //{
+            //    playerDead.Play();
+            //}
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
             gameOver.PlayerLost();
@@ -203,9 +213,15 @@ public class Player : AnimatedEntity
 
         PuddleScript puddle = other.gameObject.GetComponent<PuddleScript>();
         if (puddle!= null){
+            
             Debug.Log("found puddle!");
             FindObjectOfType<WaterManager>().IncreaseWater(5f);
             Destroy(puddle.gameObject);
+
+            if ((waterSound != null) && (audioSource != null))
+            {
+                audioSource.PlayOneShot(waterSound);
+            }
         }
 
 
