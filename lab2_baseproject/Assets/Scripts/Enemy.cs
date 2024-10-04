@@ -12,6 +12,8 @@ public class Enemy : AnimatedEntity
     private Transform target;
     private float followSpeed = 1.5f;
 
+    public LayerMask SolidObjectsLayer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,11 +37,26 @@ public class Enemy : AnimatedEntity
             direction.Normalize(); // Normalize the direction to get a unit vector
 
             // Move the enemy towards the player
-            transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
+            Vector3 targetPos = transform.position + direction * followSpeed * Time.deltaTime;
+
+            //transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
 
             //transform.position = Vector3.Lerp(transform.position, target.position, followSpeed * Time.deltaTime);
+            if (!IsCollidingWith(targetPos))
+            {
+                transform.position = targetPos;
+            }
         }
         //transform.position += new Vector3(Random.Range(-1 * RangeX, RangeX), Random.Range(-1 * RangeY, RangeY)) * Time.deltaTime;
+    }
+
+    bool IsCollidingWith(Vector3 targetPos)
+    {
+        if (Physics2D.OverlapCircle(targetPos, 0.1f, SolidObjectsLayer) != null)
+        {
+            return true; //player colliding with an object in foreground
+        }
+        return false; //no collision - player can move
     }
 
     public void takeDamage(float damage)
