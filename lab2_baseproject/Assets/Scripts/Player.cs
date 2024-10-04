@@ -22,7 +22,16 @@ public class Player : AnimatedEntity
     public LayerMask SolidObjectsLayer; //the foreground
 
     public float foodCount = 0;
-    
+
+    private bool hasAbility_Dash;
+    private float dashSpeed;
+
+    //public float dashSpeed = 20f; // Speed of the dash
+    public float dashDuration = 0.5f; // Duration of the dash
+    private bool isDashing = false;
+    private float dashTime;
+
+    private Vector2 dashDirection;
 
 
     void Start()
@@ -32,6 +41,9 @@ public class Player : AnimatedEntity
 
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
+
+        hasAbility_Dash = false;
+        dashSpeed = Speed * 4;
     }
 
     // Update is called once per frame
@@ -84,12 +96,10 @@ public class Player : AnimatedEntity
         // call SetMovementDirection
         SetMovementDirection(isMovingRight, isMoving);
 
-        
-        
-        
-        //shooting
+
 
         
+        //shooting
 
         if (Input.GetKey(KeyCode.Mouse0) && cooldown <= 0.0f)
         {
@@ -116,6 +126,27 @@ public class Player : AnimatedEntity
         //    FindObjectOfType<FoodImage>().FoundFoods();
         //}
 
+        //if (hasAbility_Dash && Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Dash();
+        //}
+        if (!isDashing && Input.GetKeyDown(KeyCode.Space) && hasAbility_Dash)
+        {
+            StartDash();
+        }
+
+        if (isDashing)
+        {
+            dashTime -= Time.deltaTime;
+            if (dashTime <= 0)
+            {
+                StopDash();
+            }
+        }
+
+
+
+
 
     }
 
@@ -134,12 +165,14 @@ public class Player : AnimatedEntity
         Pickup pickup = other.gameObject.GetComponent<Pickup>();
         if (pickup != null)
         {
+
+            hasAbility_Dash = true;
             Interrupt(InterruptedCycle);
             if (audioSource != null)
             {
                 audioSource.Play();
             }
-            pickup.Reset();
+            //pickup.Reset();
         }
 
 
@@ -222,4 +255,42 @@ public class Player : AnimatedEntity
     {
         return Speed;
     }
+
+    //void Dash()
+    //{
+    //    transform.position = Vector3.MoveTowards(transform.position, Vector3.right, 5);
+    //}
+
+    private void StartDash()
+    {
+        isDashing = true;
+        dashTime = dashDuration;
+
+        // Get the direction the player is currently moving or facing
+        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
+        // If no input, default to dashing right
+        if (dashDirection == Vector2.zero)
+        {
+            dashDirection = Vector2.right; // Default direction
+        }
+
+        // Calculate the potential target position after dash
+        Vector2 targetPos = rb.position + dashDirection * dashSpeed * dashDuration;
+
+        // Check if the player would collide with a boundary
+        if (!IsCollidingWith(targetPos))
+        {
+            // Apply the dash velocity
+            rb.velocity = dashDirection * dashSpeed;
+        }
+    }
+
+    private void StopDash()
+    {
+        isDashing = false;
+        rb.velocity = Vector2.zero; // Stops movement after the dash ends
+    }
+
+
 }
