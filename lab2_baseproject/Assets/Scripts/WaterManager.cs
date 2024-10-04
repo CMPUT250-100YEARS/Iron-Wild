@@ -36,13 +36,19 @@ public class WaterManager : MonoBehaviour
             timeLeft -= Time.deltaTime;
             waterBar.fillAmount = timeLeft / maxTime;
         }
+        //} else
+        //{
+        //    //GameOver gameOver = FindObjectOfType<GameOver>();
+        //    //gameOver.PlayerLost();
+        //    //Heart heart = FindObjectOfType<Heart>().LoseLife();
+        //}
 
 
-        if (waterLevel <= 0)
-        {
-            //Application.LoadLevel(Application.loadedLevel);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        //if (waterLevel <= 0)
+        //{
+        //    //Application.LoadLevel(Application.loadedLevel);
+        //    //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //}
 
     }
 
