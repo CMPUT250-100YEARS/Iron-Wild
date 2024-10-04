@@ -57,6 +57,13 @@ public class WaterManager : MonoBehaviour
         waterBar.fillAmount = waterLevel / 100f;
     }
 
+
+    //public void SetWater()
+    //{
+    //    waterBar.fillAmount = 0f;
+    //}
+
+
     public void IncreaseWater(float amount)
     {
         //Debug.Log("WaterManager!");

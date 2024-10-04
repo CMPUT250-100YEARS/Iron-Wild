@@ -179,7 +179,11 @@ public class Player : AnimatedEntity
 
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if(enemy!=null){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameOverManager gameOver = FindObjectOfType<GameOverManager>();
+            gameOver.PlayerLost();
+            //WaterManager water = FindObjectOfType<WaterManager>();
+            //water.SetWater();
         }
 
 
