@@ -37,6 +37,8 @@ public class Player : AnimatedEntity
     //public AudioClip foodSound;
     public AudioClip waterSound;
     //public AudioSource playerDead;
+    public AudioClip shootSound;
+
 
 
     void Start()
@@ -278,7 +280,8 @@ public class Player : AnimatedEntity
                 Debug.Log("second if passed!");
 
                 // TODO: Change the  bullet spawned direction gun to aim
-                Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);         
+                Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
+                audioSource.PlayOneShot(shootSound);
             }
             //GameObject.Instantiate(bulletPrefab, guntransform.position, guntransform.rotation, gunObject.transform);
         }
