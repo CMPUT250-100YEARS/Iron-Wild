@@ -208,4 +208,9 @@ public class Player : AnimatedEntity
             //GameObject.Instantiate(bulletPrefab, guntransform.position, guntransform.rotation, gunObject.transform);
         }
     }
+
+    public float getSpeed()
+    {
+        return Speed;
+    }
 }
