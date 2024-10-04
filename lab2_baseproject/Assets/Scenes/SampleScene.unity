@@ -26235,6 +26235,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   foodCount: 0
+  waterSound: {fileID: 8300000, guid: 649b09136f7829b4e999883e68816d33, type: 3}
 --- !u!50 &1366631712
 Rigidbody2D:
   serializedVersion: 4
@@ -26294,13 +26295,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9fb8138ad81f6431e88c5612278a789c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.75
-  m_Pitch: 1
+  m_Volume: 1
+  m_Pitch: 3
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 87
   DopplerLevel: 1
   MinDistance: 1.496243
   MaxDistance: 500
