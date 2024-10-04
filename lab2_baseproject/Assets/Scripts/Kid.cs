@@ -6,7 +6,8 @@ public class Kid : MonoBehaviour
 {
 
     private Player fishmom;
-    public Transform fishmom_transform; // Reference to the parent's Transform
+    private Transform fishmom_transform; // Reference to the parent's Transform
+
     public float followSpeed = 2f;
     public float followDistance = 1.5f;
 
@@ -30,7 +31,7 @@ public class Kid : MonoBehaviour
 
         fishmom = FindObjectOfType<Player>();
         fishmom_transform = fishmom.transform;
-        followSpeed = fishmom.getSpeed() * 0.7f;
+        followSpeed = fishmom.getSpeed() * 0.8f;
 
         runAwaySpeed = fishmom.getSpeed() * 2f;
     }
