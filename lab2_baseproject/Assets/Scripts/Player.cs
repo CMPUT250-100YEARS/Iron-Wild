@@ -155,6 +155,7 @@ public class Player : AnimatedEntity
         if (puddle!= null){
             Debug.Log("found puddle!");
             FindObjectOfType<WaterManager>().IncreaseWater(5f);
+            Destroy(puddle.gameObject);
         }
 
 
@@ -176,7 +177,15 @@ public class Player : AnimatedEntity
         {
             //FindObjectOfType<LevelEndTrigger>().ShowSpeechBubble();
             Vector3 playerPosition = this.transform.position; //???
-            FindObjectOfType<LevelEndTrigger>().ShowSpeechBubble(foodCount);
+
+            if (foodCount < 2)
+            {
+                FindObjectOfType<LevelEndTrigger>().OnLevelComplete("I need more food!");
+            } else
+            {
+                FindObjectOfType<LevelEndTrigger>().OnLevelComplete("Onto the next level!");
+            }
+            //FindObjectOfType<LevelEndTrigger>().ShowSpeechBubble(foodCount);
 
         }
 
