@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Heart : MonoBehaviour
@@ -46,6 +47,7 @@ public class Heart : MonoBehaviour
         }
         else
         {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Debug.Log("Cannot Lose any more Lives!");
         }
     }
