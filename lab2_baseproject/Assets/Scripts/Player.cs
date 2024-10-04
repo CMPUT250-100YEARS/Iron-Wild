@@ -27,7 +27,7 @@ public class Player : AnimatedEntity
     private float dashSpeed;
 
     //public float dashSpeed = 20f; // Speed of the dash
-    public float dashDuration = 0.5f; // Duration of the dash
+    private float dashDuration = 0.1f; // Duration of the dash
     private bool isDashing = false;
     private float dashTime;
 
@@ -52,33 +52,37 @@ public class Player : AnimatedEntity
         AnimationUpdate();
 
         //Movement controls |start with player not moving
-        bool isMoving = false; 
+        bool isMoving = false;
         bool isMovingRight = false;
-        Vector2 inputDirection = Vector2.zero;
+        Vector3 inputDirection = Vector3.zero;
 
         //check input WASD and store direction
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)){
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
 
             //transform.position+= Vector3.up*Time.deltaTime*Speed;
-            inputDirection = Vector2.up;
+            inputDirection = Vector3.up;
             isMoving = true;
         }
 
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)){
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
             //transform.position+= Vector3.left*Time.deltaTime*Speed;
-            inputDirection = Vector2.left;
+            inputDirection = Vector3.left;
             isMoving = true; //checking
             isMovingRight = false; //moving Left
         }
 
-        if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)){
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
             //transform.position+= Vector3.down*Time.deltaTime*Speed;
-            inputDirection = Vector2.down;
+            inputDirection = Vector3.down;
             isMoving = true;
         }
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)){
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
             //transform.position+= Vector3.right*Time.deltaTime*Speed;
-            inputDirection = Vector2.right;
+            inputDirection = Vector3.right;
             isMoving = true;
             isMovingRight = true; //moving right
         }
@@ -86,10 +90,18 @@ public class Player : AnimatedEntity
         //If isMoving ==true, check for collision(foreground) then move
         if (isMoving)
         {
-            Vector3 targerPos = rb.position + inputDirection * Time.deltaTime * Speed; //inputDirection Vector2.up/down/...
-            if (!IsCollidingWith(targerPos))
+            Vector3 targetPos = transform.position + (inputDirection * Time.deltaTime * Speed);
+            //Vector3 targerPos = rb.position + inputDirection * Time.deltaTime * Speed; //inputDirection Vector2.up/down/...
+            if (!IsCollidingWith(targetPos))
             {
-                rb.MovePosition(rb.position + inputDirection * Time.deltaTime * Speed);
+
+                if (isDashing)
+                {
+                    //Debug.Log("isDashing" + isDashing);
+                    //Debug.Log("HEREEEEE!!! speed increased to True");
+                    transform.position += inputDirection * Time.deltaTime * dashSpeed;
+                }
+                else { transform.position += inputDirection * Time.deltaTime * Speed; }
             }
         }
 
@@ -132,7 +144,8 @@ public class Player : AnimatedEntity
         //}
         if (!isDashing && Input.GetKeyDown(KeyCode.Space) && hasAbility_Dash)
         {
-            StartDash();
+            isDashing = true;
+            dashTime = dashDuration;
         }
 
         if (isDashing)
@@ -140,7 +153,7 @@ public class Player : AnimatedEntity
             dashTime -= Time.deltaTime;
             if (dashTime <= 0)
             {
-                StopDash();
+                isDashing = false;
             }
         }
 
@@ -265,36 +278,36 @@ public class Player : AnimatedEntity
     //    transform.position = Vector3.MoveTowards(transform.position, Vector3.right, 5);
     //}
 
-    private void StartDash()
-    {
-        isDashing = true;
-        dashTime = dashDuration;
+//    private void StartDash()
+//    {
+//        isDashing = true;
+//        dashTime = dashDuration;
 
-        // Get the direction the player is currently moving or facing
-        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+//        // Get the direction the player is currently moving or facing
+//        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
-        // If no input, default to dashing right
-        if (dashDirection == Vector2.zero)
-        {
-            dashDirection = Vector2.right; // Default direction
-        }
+//        // If no input, default to dashing right
+//        if (dashDirection == Vector2.zero)
+//        {
+//            dashDirection = Vector2.right; // Default direction
+//        }
 
-        // Calculate the potential target position after dash
-        Vector2 targetPos = rb.position + dashDirection * dashSpeed * dashDuration;
+//        // Calculate the potential target position after dash
+//        Vector2 targetPos = rb.position + dashDirection * dashSpeed * dashDuration;
 
-        // Check if the player would collide with a boundary
-        if (!IsCollidingWith(targetPos))
-        {
-            // Apply the dash velocity
-            rb.velocity = dashDirection * dashSpeed;
-        }
-    }
+//        // Check if the player would collide with a boundary
+//        if (!IsCollidingWith(targetPos))
+//        {
+//            // Apply the dash velocity
+//            rb.velocity = dashDirection * dashSpeed;
+//        }
+//    }
 
-    private void StopDash()
-    {
-        isDashing = false;
-        rb.velocity = Vector2.zero; // Stops movement after the dash ends
-    }
+//    private void StopDash()
+//    {
+//        isDashing = false;
+//        rb.velocity = Vector2.zero; // Stops movement after the dash ends
+//    }
 
 
 }
