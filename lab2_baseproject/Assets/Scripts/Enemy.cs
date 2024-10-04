@@ -12,6 +12,8 @@ public class Enemy : AnimatedEntity
     private Transform target;
     private float followSpeed = 1.5f;
 
+    public LayerMask SolidObjectsLayer;
+    private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,7 @@ public class Enemy : AnimatedEntity
         
         detectionZone = transform.Find("DetectionZone");
         AnimationSetup();
+        rb = GetComponent<Rigidbody2D>(); 
     }
 
     // Update is called once per frame
@@ -35,13 +38,28 @@ public class Enemy : AnimatedEntity
             direction.Normalize(); // Normalize the direction to get a unit vector
 
             // Move the enemy towards the player
-            transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
+            Vector3 targetPosition = transform.position + direction * followSpeed * Time.deltaTime;
+            //transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
 
             //transform.position = Vector3.Lerp(transform.position, target.position, followSpeed * Time.deltaTime);
+            
+            //check if area is SolidObjects
+            if (!IsCollidingWithSolidObjects(targetPosition))
+            {
+                transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
+            }
         }
         //transform.position += new Vector3(Random.Range(-1 * RangeX, RangeX), Random.Range(-1 * RangeY, RangeY)) * Time.deltaTime;
     }
 
+    bool IsCollidingWithSolidObjects(Vector3 targetPos)
+    {
+        if (Physics2D.OverlapCircle(targetPos, 0.1f, SolidObjectsLayer) != null)
+        {
+            return true; //area has a SolidObjectsLayer
+        }
+        return false; 
+    }
     public void takeDamage(float damage)
     {
         EnemyHealth -= damage;
