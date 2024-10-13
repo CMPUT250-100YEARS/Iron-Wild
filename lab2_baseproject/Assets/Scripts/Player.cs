@@ -22,6 +22,7 @@ public class Player : AnimatedEntity
     public LayerMask SolidObjectsLayer; //the foreground
 
     public float foodCount = 0;
+    public Vector3 startPosition;  //???
 
     private bool hasAbility_Dash;
     private float dashSpeed;
@@ -51,6 +52,9 @@ public class Player : AnimatedEntity
 
         hasAbility_Dash = false;
         dashSpeed = Speed * 4;
+
+        foodCount = 0; //???
+        //startPosition = transform.position; // Store the starting position //???
     }
 
     // Update is called once per frame
@@ -327,6 +331,13 @@ public class Player : AnimatedEntity
 //        isDashing = false;
 //        rb.velocity = Vector2.zero; // Stops movement after the dash ends
 //    }
+
+    public void Restart()
+    {
+        // Reset player state
+        foodCount = 0;
+        //startPosition = transform.position;
+    }
 
 
 }
