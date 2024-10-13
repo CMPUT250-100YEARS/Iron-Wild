@@ -71,4 +71,13 @@ public class WaterManager : MonoBehaviour
         timeLeft = Mathf.Clamp(timeLeft, 0, 100); //ensure waterLevel stays between 0 and 100
         waterBar.fillAmount = timeLeft / maxTime;
     }
+
+    public void Restart()
+    {
+        // Reset water state
+        xPos = (Screen.width / 2) - 100;
+        yPos = (Screen.height / 2) - 100;
+
+        timeLeft = maxTime;
+    }
 }
