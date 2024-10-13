@@ -40,6 +40,14 @@ public class Player : AnimatedEntity
     //public AudioSource playerDead;
     public AudioClip shootSound;
 
+    //Sprite list based on mouse direction
+    public List<Sprite> BackSpriteList;
+    public List<Sprite> RightSpriteList;
+    public List<Sprite> LeftSpriteList;
+    public List<Sprite> FrontSpritList;
+
+    private List<Sprite> currentSpriteCycle;
+
 
 
     void Start()
@@ -64,8 +72,36 @@ public class Player : AnimatedEntity
 
         //Movement controls |start with player not moving
         bool isMoving = false;
-        bool isMovingRight = false;
         Vector3 inputDirection = Vector3.zero;
+
+        //Angle between the player and cursor to determine SpriteList
+        mousePointer = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 directionToMouse = mousePointer - transform.position;
+        float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
+
+        //Make angle between 0 and 360 degrees
+        if (angle < 0 ) { angle += 360f; }
+
+        //Determine SpriteList based on angle
+        if (angle > 45f && angle <= 135f)
+        {
+            currentSpriteCycle = BackSpriteList;
+        }
+
+        else if (angle > 135f && angle <= 225f)
+        {
+            currentSpriteCycle = LeftSpriteList;
+        }
+
+        else if (angle > 225f && angle <= 315f)
+        {
+            currentSpriteCycle = FrontSpritList;
+        }
+
+        else if (angle > 315f || angle <= 45f)
+        {
+            currentSpriteCycle = RightSpriteList;
+        }
 
         //check input WASD and store direction
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -80,8 +116,7 @@ public class Player : AnimatedEntity
         {
             //transform.position+= Vector3.left*Time.deltaTime*Speed;
             inputDirection = Vector3.left;
-            isMoving = true; //checking
-            isMovingRight = false; //moving Left
+            isMoving = true; //checking          
         }
 
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
@@ -95,7 +130,6 @@ public class Player : AnimatedEntity
             //transform.position+= Vector3.right*Time.deltaTime*Speed;
             inputDirection = Vector3.right;
             isMoving = true;
-            isMovingRight = true; //moving right
         }
 
         //If isMoving ==true, check for collision(foreground) then move
@@ -117,7 +151,8 @@ public class Player : AnimatedEntity
         }
 
         // call SetMovementDirection
-        SetMovementDirection(isMovingRight, isMoving);
+        SetMovementDirection(isMoving);
+        SetCurrentAnimationCycle(currentSpriteCycle);
 
 
 

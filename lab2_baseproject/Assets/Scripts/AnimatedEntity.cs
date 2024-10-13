@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class AnimatedEntity : MonoBehaviour
 {
-    //Sprite List as right and Left for 
-    public List<Sprite> DefaultAnimationCycleRight; //when moving right
-    public List<Sprite> DefaultAnimationCycleLeft; //when moving left
+    
     public Sprite IdleSprite; //when not moving
     public float Framerate = 12f;//frames per second
     public SpriteRenderer SpriteRenderer;//spriteRenderer
@@ -20,21 +18,27 @@ public class AnimatedEntity : MonoBehaviour
     //interrupt animation info
     private bool interruptFlag;
     private List<Sprite> interruptAnimation;
-    private bool isMovingRight; // tracking direction
     private bool isMoving; //check if object is moving
+
+    private List<Sprite> currentAnimationCycle;
 
 
     //Set up logic for animation stuff
     protected void AnimationSetup(){
         animationTimerMax = 1.0f/((float)(Framerate));
         index = 0;
-        isMovingRight = true; // default direction
         isMoving = false; //object not moving initially
+    }
+
+    //Player or Enemy pass the animationCycle
+    public void SetCurrentAnimationCycle(List<Sprite> animationCycle)
+    {
+        currentAnimationCycle = animationCycle;
     }
 
     //Default animation update
     protected void AnimationUpdate(){
-        animationTimer+=Time.deltaTime;
+        animationTimer += Time.deltaTime;
 
         if (isMoving) //when object starts moving
         {
@@ -43,41 +47,32 @@ public class AnimatedEntity : MonoBehaviour
                 animationTimer = 0;
                 index++;
 
-                // what script to show
-                List<Sprite> currentAnimationCycle;
-                if (isMovingRight) //if object moving right use RightSprite List
+                // check current animation cycle is not empty         
+                if (!interruptFlag && currentAnimationCycle != null) 
                 {
-                    currentAnimationCycle = DefaultAnimationCycleRight;
-                }
-                else
-                {
-                    currentAnimationCycle = DefaultAnimationCycleLeft;
-                }
-
-                if (!interruptFlag)
-                {
-                    if (currentAnimationCycle.Count == 0 || index >= currentAnimationCycle.Count)
+                    if (currentAnimationCycle.Count == 0 || index >= currentAnimationCycle.Count) 
                     {
-                        index = 0;
+                        index = 0; //start back to the beginning 
                     }
+
                     if (currentAnimationCycle.Count > 0)
                     {
-                        SpriteRenderer.sprite = currentAnimationCycle[index];
+                        SpriteRenderer.sprite = currentAnimationCycle[index]; //update the sprite
                     }
                 }
-                else
+                else if (interruptFlag) //interupt animation
                 {
                     if (interruptAnimation == null || index >= interruptAnimation.Count)
                     {
                         index = 0;
                         interruptFlag = false;
-                        interruptAnimation = null;//clear interrupt animation
+                        interruptAnimation = null;
                     }
                     else
                     {
-                        SpriteRenderer.sprite = interruptAnimation[index];
+                        SpriteRenderer.sprite = interruptAnimation[index]; //update interrupt sprite
                     }
-                }
+                }                                           
             }
         }
         else //object not moving
@@ -86,10 +81,9 @@ public class AnimatedEntity : MonoBehaviour
         }
     }
 
-    public void SetMovementDirection( bool movingRight, bool moving)
+    public void SetMovementDirection(bool moving)
     {
-        //bool values taken about movement and direction
-        isMovingRight = movingRight;
+        //bool values taken about movement
         isMoving = moving;
     }
 

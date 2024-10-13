@@ -25297,7 +25297,8 @@ SpriteRenderer:
   m_SortingLayerID: -855278151
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6c115d2510a83443ead1a2b72ace5a4a, type: 3}
+  m_Sprite: {fileID: 1976690480719741105, guid: f6b1a7215d0a7a74595f70d28a140071,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -25317,7 +25318,7 @@ Transform:
   m_GameObject: {fileID: 847873637}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.9, y: 13.2, z: 0}
-  m_LocalScale: {x: 0.123199664, y: 0.123199664, z: 0.24639933}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1382333783}
   m_Father: {fileID: 0}
@@ -25336,18 +25337,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.052702427, y: 0}
+  m_Offset: {x: 0.05, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 19.2, y: 19.2}
+    oldSize: {x: 1, y: 2}
     newSize: {x: 19.2, y: 19.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.305405, y: 19.2}
+  m_Size: {x: 0.9, y: 1.2}
   m_EdgeRadius: 0
 --- !u!114 &847873641
 MonoBehaviour:
@@ -25361,14 +25362,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9824468a4ebb491cbe1ea058e0fae8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultAnimationCycleRight: []
-  DefaultAnimationCycleLeft: []
-  IdleSprite: {fileID: 21300000, guid: 6c115d2510a83443ead1a2b72ace5a4a, type: 3}
+  IdleSprite: {fileID: 1976690480719741105, guid: f6b1a7215d0a7a74595f70d28a140071,
+    type: 3}
   Framerate: 12
   SpriteRenderer: {fileID: 847873638}
   SolidObjectsLayer:
     serializedVersion: 2
     m_Bits: 256
+  BackSpriteList:
+  - {fileID: 6042456677541188859, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: 3495659527658872099, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: -2345986187146996999, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: 6757948315657208348, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  RightSpriteList:
+  - {fileID: -1945495898108405587, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: -3268942321619063180, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: -1428114386582745185, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: 3977011757696220146, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  LeftSpriteList:
+  - {fileID: 2471237784841236786, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: -2403379810841390452, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: -8618214903832800261, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: -7918536089625718045, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  FrontSpritList:
+  - {fileID: 1976690480719741105, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: 7669009766056204481, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: 4930585490228199060, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  - {fileID: -2760536601800124, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  InterruptedCycle: []
 --- !u!1 &885232480
 GameObject:
   m_ObjectHideFlags: 0
@@ -26208,17 +26229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58a5cae6aa7724553bb0ddc74540ecf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultAnimationCycleRight:
-  - {fileID: -5031729600220057047, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
-  - {fileID: 6121894582863503804, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
-  - {fileID: -2091530524331742989, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
-  - {fileID: -8131123776521306156, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
-  DefaultAnimationCycleLeft:
-  - {fileID: -2150119572517520262, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
-  - {fileID: -4259859036570809318, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
-  - {fileID: -4371465520489428051, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
-  - {fileID: 352522964592397208, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
-  IdleSprite: {fileID: 5819545800357673559, guid: f7dd23608c9e045f39e9658be6f3a374,
+  IdleSprite: {fileID: 6796656825888281025, guid: f7dd23608c9e045f39e9658be6f3a374,
     type: 3}
   Framerate: 6
   SpriteRenderer: {fileID: 1366631709}
@@ -26234,6 +26245,27 @@ MonoBehaviour:
     m_Bits: 256
   foodCount: 0
   waterSound: {fileID: 8300000, guid: 649b09136f7829b4e999883e68816d33, type: 3}
+  shootSound: {fileID: 0}
+  BackSpriteList:
+  - {fileID: -7175654633569329918, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  - {fileID: 847368544200324870, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  - {fileID: -4183563849979860293, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  - {fileID: 2233164421848989121, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  RightSpriteList:
+  - {fileID: -5031729600220057047, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  - {fileID: 6121894582863503804, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  - {fileID: -2091530524331742989, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  - {fileID: -8131123776521306156, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  LeftSpriteList:
+  - {fileID: -2150119572517520262, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  - {fileID: -4259859036570809318, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  - {fileID: -4371465520489428051, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  - {fileID: 352522964592397208, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  FrontSpritList:
+  - {fileID: 6796656825888281025, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  - {fileID: 3785447477596882813, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  - {fileID: 5819545800357673559, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  - {fileID: 1310127531551869918, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
 --- !u!50 &1366631712
 Rigidbody2D:
   serializedVersion: 4
@@ -26424,7 +26456,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 100
+  m_Radius: 6.64
 --- !u!114 &1382333785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27069,9 +27101,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1691847867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36481df14f6014a8e8e18e05a07a41af, type: 3}
+  m_Script: {fileID: 11500000, guid: af00395c11a5b451a94904ee17754ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterBar: {fileID: 0}
+  waterLevel: 100
+  timePassed: 0
+  decreaseTime: 300
+  speed: 0.001
+  xPos: 0
+  yPos: 0
+  maxTime: 50
+  timeLeft: 0
+  timesUpText: {fileID: 0}
 --- !u!4 &1691847869
 Transform:
   m_ObjectHideFlags: 0
@@ -27116,7 +27158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf89e49c252145a68cf796c40be6247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishmom_transform: {fileID: 0}
   followSpeed: 2
   followDistance: 1.5
   runAwaySpeed: 4
