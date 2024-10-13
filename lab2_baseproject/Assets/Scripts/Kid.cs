@@ -10,14 +10,13 @@ public class Kid : MonoBehaviour
 
     public float followSpeed = 2f;
     public float followDistance = 1.5f;
-
+    public float runOverDistance = 1.0f;
 
     public float runAwaySpeed = 4f;
     public float runAwayTime = 2f; // How long the kid runs away
 
     private bool isRunningAway = false;
     private float runAwayTimer = 0f;
-
 
     private SpriteRenderer spriteRenderer;
     
@@ -50,7 +49,26 @@ public class Kid : MonoBehaviour
                     Vector2 direction = (fishmom_transform.position - transform.position).normalized;
                     transform.position = Vector2.MoveTowards(transform.position, fishmom_transform.position, followSpeed * Time.deltaTime);
                 }
-            }
+
+                else
+                {
+                    if (distanceToParent < runOverDistance) //Kid moves to avoid being run over by fishmom
+                    {
+                        transform.position = Vector2.MoveTowards(transform.position, -fishmom_transform.position, followSpeed * Time.deltaTime);
+                    }
+                }
+
+                // change layer kid is on based on who is higher up on screen
+                float kidYpos = transform.position.y;
+                float momYpos = fishmom_transform.position.y;
+                if (kidYpos > momYpos)
+                {
+                    spriteRenderer.sortingOrder = 0;
+                } else
+                {
+                    spriteRenderer.sortingOrder = 2;
+                }
+            } 
             else
             {
                 if (runAwayTimer < runAwayTime) { RunAway(); runAwayTimer += Time.deltaTime; }
@@ -83,12 +101,10 @@ public class Kid : MonoBehaviour
     void RunAway()
     {
         Debug.Log("Kid's running away");
-      
+
         Vector2 direction = (transform.position - fishmom_transform.position).normalized;
         direction += (Random.insideUnitCircle * 0.5f);
         transform.position = Vector2.MoveTowards(transform.position, transform.position + (Vector3)direction, runAwaySpeed * Time.deltaTime);
-
-        
     }
 
 

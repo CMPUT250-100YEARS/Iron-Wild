@@ -5612,6 +5612,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 1237165571}
+  restartButton: {fileID: 0}
+  isGameOver: 0
+  player: {fileID: 0}
+  water: {fileID: 0}
 --- !u!224 &258243576
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26168,7 +26172,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -855278151
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 6796656825888281025, guid: f7dd23608c9e045f39e9658be6f3a374,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26233,7 +26237,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   foodCount: 0
+  startPosition: {x: 0, y: 0, z: 0}
   waterSound: {fileID: 8300000, guid: 649b09136f7829b4e999883e68816d33, type: 3}
+  shootSound: {fileID: 0}
 --- !u!50 &1366631712
 Rigidbody2D:
   serializedVersion: 4
@@ -27116,9 +27122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf89e49c252145a68cf796c40be6247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishmom_transform: {fileID: 0}
   followSpeed: 2
   followDistance: 1.5
+  runOverDistance: 1
   runAwaySpeed: 4
   runAwayTime: 2
 --- !u!212 &1772768961
@@ -27159,7 +27165,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -855278151
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -728971528980319036, guid: f6b1a7215d0a7a74595f70d28a140071,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
