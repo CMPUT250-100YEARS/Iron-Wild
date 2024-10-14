@@ -108,34 +108,34 @@ public class Player : AnimatedEntity
         {
 
             //transform.position+= Vector3.up*Time.deltaTime*Speed;
-            inputDirection = Vector3.up;
+            inputDirection += Vector3.up;
             isMoving = true;
         }
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             //transform.position+= Vector3.left*Time.deltaTime*Speed;
-            inputDirection = Vector3.left;
+            inputDirection += Vector3.left;
             isMoving = true; //checking          
         }
 
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             //transform.position+= Vector3.down*Time.deltaTime*Speed;
-            inputDirection = Vector3.down;
+            inputDirection += Vector3.down;
             isMoving = true;
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             //transform.position+= Vector3.right*Time.deltaTime*Speed;
-            inputDirection = Vector3.right;
+            inputDirection += Vector3.right;
             isMoving = true;
         }
 
         //If isMoving ==true, check for collision(foreground) then move
         if (isMoving)
         {
-            Vector3 targetPos = transform.position + (inputDirection * Time.deltaTime * Speed);
+            Vector3 targetPos = transform.position + (inputDirection.normalized * Time.deltaTime * Speed);
             //Vector3 targerPos = rb.position + inputDirection * Time.deltaTime * Speed; //inputDirection Vector2.up/down/...
             if (!IsCollidingWith(targetPos))
             {
@@ -144,9 +144,9 @@ public class Player : AnimatedEntity
                 {
                     //Debug.Log("isDashing" + isDashing);
                     //Debug.Log("HEREEEEE!!! speed increased to True");
-                    transform.position += inputDirection * Time.deltaTime * dashSpeed;
+                    transform.position += inputDirection.normalized * Time.deltaTime * dashSpeed;
                 }
-                else { transform.position += inputDirection * Time.deltaTime * Speed; }
+                else { transform.position += inputDirection.normalized * Time.deltaTime * Speed; }
             }
         }
 
