@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 1237165571}
-  restartButton: {fileID: 0}
+  restartButton: {fileID: 975963537}
   isGameOver: 0
   player: {fileID: 0}
   water: {fileID: 0}
@@ -3149,7 +3149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af00395c11a5b451a94904ee17754ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterBar: {fileID: 0}
+  waterBar: {fileID: 114521659}
   waterLevel: 100
   timePassed: 0
   decreaseTime: 300
