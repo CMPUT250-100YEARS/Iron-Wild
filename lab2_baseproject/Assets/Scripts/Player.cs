@@ -46,6 +46,13 @@ public class Player : AnimatedEntity
     public List<Sprite> LeftSpriteList;
     public List<Sprite> FrontSpritList;
 
+    //IDLE SPRITE*********************************************
+    public List<Sprite> IdleBackSprite;
+    public List<Sprite> IdleRightSprite;
+    public List<Sprite> IdleLeftSprite;
+    public List<Sprite> IdleFrontSprite;
+
+
     private List<Sprite> currentSpriteCycle;
 
 
@@ -97,26 +104,6 @@ public class Player : AnimatedEntity
         //Make angle between 0 and 360 degrees
         if (angle < 0 ) { angle += 360f; }
 
-        //Determine SpriteList based on angle
-        if (angle > 45f && angle <= 135f)
-        {
-            currentSpriteCycle = BackSpriteList;
-        }
-
-        else if (angle > 135f && angle <= 225f)
-        {
-            currentSpriteCycle = LeftSpriteList;
-        }
-
-        else if (angle > 225f && angle <= 315f)
-        {
-            currentSpriteCycle = FrontSpritList;
-        }
-
-        else if (angle > 315f || angle <= 45f)
-        {
-            currentSpriteCycle = RightSpriteList;
-        }
 
         //check input WASD and store direction
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -165,7 +152,35 @@ public class Player : AnimatedEntity
             }
         }
 
-        // call SetMovementDirection
+        //Determine SpriteList based on angle
+        //************************************************************************88
+        if (angle > 45f && angle <= 135f)
+        {
+            currentSpriteCycle = BackSpriteList; //when Moving
+            if (!isMoving) { currentSpriteCycle = IdleBackSprite; } //***************when not moving
+        }
+
+        else if (angle > 135f && angle <= 225f)
+        {
+            currentSpriteCycle = LeftSpriteList;
+            if (!isMoving) { currentSpriteCycle = IdleLeftSprite; } //***************when not moving
+        }
+
+        else if (angle > 225f && angle <= 315f)
+        {
+            currentSpriteCycle = FrontSpritList;
+            if (!isMoving) { currentSpriteCycle = IdleFrontSprite; } //***************when not moving
+        }
+
+        else if (angle > 315f || angle <= 45f)
+        {
+            currentSpriteCycle = RightSpriteList;
+            if (!isMoving) { currentSpriteCycle = IdleRightSprite; } //***************when not moving
+        }
+
+        //*****************************************************************************************
+
+        // call SetMovementDirection and SetCurrentAnimationCycle
         SetMovementDirection(isMoving);
         SetCurrentAnimationCycle(currentSpriteCycle);
 
