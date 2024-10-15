@@ -7,15 +7,15 @@ using UnityEngine.UI;
 public class Heart : MonoBehaviour
 {
     public int maxLives = 2;
-    public int currentLives;
+    public int currentLives; //??? rid static
     public Image[] heartImages;  // Array of heart images
     //public GameObject gameOverPanel; // Reference to the Game Over Ui Panel (optional)
 
     // Start is called before the first frame update
     void Start()
     {
-        currentLives = maxLives;
-        UpdateHearts();
+        //currentLives = PlayerPrefs.GetInt("numHearts");
+        //UpdateHearts();
 
         //// Optionally, disable the Game Over panel at the start
         //if (gameOverPanel != null)
@@ -32,6 +32,13 @@ public class Heart : MonoBehaviour
 
     }
 
+    public void InitializeHearts()
+    {
+        currentLives = PlayerPrefs.GetInt("numHearts");
+        Debug.Log("#3hearts" + PlayerPrefs.GetInt("numHearts"));
+    }
+
+
     // Call this method to reduce a life
     public void LoseLife()
     {
@@ -39,15 +46,21 @@ public class Heart : MonoBehaviour
         {
             Debug.Log("Lose a Life!");
             currentLives--;
+            PlayerPrefs.SetInt("numHearts", currentLives);
+            PlayerPrefs.Save();
             UpdateHearts();
+            Debug.Log("#4hearts" + PlayerPrefs.GetInt("numHearts"));
 
-            //if (currentLives <= 0){
-            //    GameOver();
+            //// check if game over
+            //if (currentLives <= 0)
+            //{
+            //    GameOverManager gameOver = FindObjectOfType<GameOverManager>();
+            //    gameOver.PlayerLost();
             //}
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Debug.Log("Cannot Lose any more Lives!");
         }
     }
@@ -60,6 +73,7 @@ public class Heart : MonoBehaviour
         {
             heartImages[i].enabled = (i < currentLives); // Enable or disable heart images
         }
+        Debug.Log("#7hearts" + currentLives); //???
     }
 
     // Method to handle game over logic

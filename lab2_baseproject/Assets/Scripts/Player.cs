@@ -62,7 +62,22 @@ public class Player : AnimatedEntity
         dashSpeed = Speed * 4;
 
         foodCount = 0; //???
-        //startPosition = transform.position; // Store the starting position //???
+
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "SampleScene")
+        {
+            PlayerPrefs.SetInt("numHearts", 2);  // set num hearts initially
+            PlayerPrefs.Save();
+            Debug.Log("#2hearts" + PlayerPrefs.GetInt("numHearts"));
+        }
+        else //???
+        {//???
+            Debug.Log("#6hearts" + PlayerPrefs.GetInt("numHearts")); //???
+        }//???
+        Heart heartScript = FindObjectOfType<Heart>(); //???
+        heartScript.InitializeHearts(); //???
+        FindObjectOfType<Heart>().UpdateHearts(); //???
     }
 
     // Update is called once per frame
@@ -218,6 +233,12 @@ public class Player : AnimatedEntity
         return false; //no collision - player can move
     }
 
+    public IEnumerator LevelChangeWait(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene("CITY");
+    }
+
     void OnTriggerEnter2D(Collider2D other){
         Debug.Log("Player collider entered with: " + other.gameObject.name);
 
@@ -291,6 +312,14 @@ public class Player : AnimatedEntity
             } else
             {
                 FindObjectOfType<LevelEndTrigger>().OnLevelComplete("Onto the next level!");
+                Debug.Log("#1hearts" + PlayerPrefs.GetInt("numHearts"));
+                StartCoroutine(LevelChangeWait(3f));
+                //SceneManager.LoadScene("CITY");
+
+                //Heart heartScript = FindObjectOfType<Heart>();
+                //heartScript.InitializeHearts();
+                //PlayerPrefs.SetInt("numHearts", numHearts);
+                //PlayerPrefs.Save();
             }
             //FindObjectOfType<LevelEndTrigger>().ShowSpeechBubble(foodCount);
 
