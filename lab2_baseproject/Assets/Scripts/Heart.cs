@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Heart : MonoBehaviour
 {
-    public int maxLives = 2;
+    public int maxLives = 6;
     public int currentLives; //??? rid static
     public Image[] heartImages;  // Array of heart images
     //public GameObject gameOverPanel; // Reference to the Game Over Ui Panel (optional)
