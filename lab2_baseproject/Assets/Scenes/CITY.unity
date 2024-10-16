@@ -232,7 +232,7 @@ PrefabInstance:
     - target: {fileID: 8633223322690808465, guid: 09b7bc037d0efcc4a9879d13763db601,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8633223322690808465, guid: 09b7bc037d0efcc4a9879d13763db601,
         type: 3}
@@ -34447,7 +34447,7 @@ PrefabInstance:
     - target: {fileID: 6751691700740736750, guid: 5cec1b5830905eb4a995890daa3ad76f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6751691700740736750, guid: 5cec1b5830905eb4a995890daa3ad76f,
         type: 3}
@@ -34618,6 +34618,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeartCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7208297324079262938, guid: 2c2622ee82f05469e8a41f896edbc080,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c2622ee82f05469e8a41f896edbc080, type: 3}
 --- !u!1001 &1391204190
@@ -34775,7 +34780,7 @@ PrefabInstance:
     - target: {fileID: 8447123474801615868, guid: 57a92a4ffae65884c96abc7ee8c893c2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8447123474801615868, guid: 57a92a4ffae65884c96abc7ee8c893c2,
         type: 3}
@@ -35120,7 +35125,7 @@ PrefabInstance:
     - target: {fileID: 9138061375363810463, guid: 61befbbe452cd46498ef72633976a530,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9138061375363810463, guid: 61befbbe452cd46498ef72633976a530,
         type: 3}
