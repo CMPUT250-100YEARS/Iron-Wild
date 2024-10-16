@@ -11,8 +11,9 @@ public class Player : AnimatedEntity
 
     public List<Sprite> InterruptedCycle;
 
+
     public GameObject bulletPrefab;
-    public float fireRate = 0.5f;
+    private float fireRate = 0.2f;
     public float cooldown;
 
     private Camera mainCamera;
@@ -54,6 +55,9 @@ public class Player : AnimatedEntity
 
 
     private List<Sprite> currentSpriteCycle;
+    private Animator shootAnimator;
+    private Transform aimTransform;
+
 
 
 
@@ -61,6 +65,10 @@ public class Player : AnimatedEntity
     {
         AnimationSetup();
         audioSource = gameObject.GetComponent<AudioSource>();
+
+        aimTransform = transform.Find("Aim");
+        Transform weaponend = aimTransform.Find("weaponend");
+        shootAnimator = weaponend.GetComponent<Animator>();
 
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
@@ -375,26 +383,22 @@ public class Player : AnimatedEntity
 
     void Shoot()
     {
-        
-        
-        Transform aimtransform = transform.Find("Aim");
-        if (aimtransform != null)
+        if (aimTransform != null)
         {
-            GameObject aimObject = aimtransform.gameObject;
+            GameObject aimObject = aimTransform.gameObject;
 
             mousePointer = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             Vector3 rotation = mousePointer - transform.position;
             float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-            aimtransform.rotation = Quaternion.Euler(0, 0, rotZ);
+            aimTransform.rotation = Quaternion.Euler(0, 0, rotZ);
 
-            Transform guntransform = aimtransform.Find("Gun");
+            Transform guntransform = aimTransform.Find("Gun");
             if (guntransform != null)
             {
+                shootAnimator.SetTrigger("Shoot");
                 GameObject gunObject = guntransform.gameObject;
-                Debug.Log("second if passed!");
-
-                // TODO: Change the  bullet spawned direction gun to aim
                 Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
+                
                 audioSource.PlayOneShot(shootSound);
             }
             //GameObject.Instantiate(bulletPrefab, guntransform.position, guntransform.rotation, gunObject.transform);
