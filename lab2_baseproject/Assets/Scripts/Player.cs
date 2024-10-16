@@ -107,6 +107,9 @@ public class Player : AnimatedEntity
         //Make angle between 0 and 360 degrees
         if (angle < 0 ) { angle += 360f; }
 
+        //******************************************8
+        AimGun(angle);
+
 
         //check input WASD and store direction
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -157,7 +160,6 @@ public class Player : AnimatedEntity
         }
 
         //Determine SpriteList based on angle
-        //************************************************************************88
         if (angle > 45f && angle <= 135f)
         {
             currentSpriteCycle = BackSpriteList; //when Moving
@@ -182,8 +184,7 @@ public class Player : AnimatedEntity
             if (!isMoving) { currentSpriteCycle = IdleRightSprite; } //***************when not moving
         }
 
-        //*****************************************************************************************
-
+        
         // call SetMovementDirection and SetCurrentAnimationCycle
         SetMovementDirection(isMoving);
         SetCurrentAnimationCycle(currentSpriteCycle);
@@ -241,6 +242,31 @@ public class Player : AnimatedEntity
 
 
 
+    }
+
+    void AimGun(float angle)
+    {
+        Transform aimtransform = transform.Find("Aim");
+        if (aimtransform != null)
+        {
+            mousePointer = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 rotation = mousePointer - transform.position;
+            float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+            aimtransform.rotation = Quaternion.Euler(0, 0, rotZ);
+
+            float distanceFromPlayer = 1f;
+            Vector3 gunPosition = new Vector3(Mathf.Cos(rotZ * Mathf.Deg2Rad), Mathf.Sin(rotZ * Mathf.Deg2Rad), 0) * distanceFromPlayer;
+
+            aimtransform.localPosition = gunPosition;
+            //if (angle <= 90f || angle >= 270f)
+            //{
+            //    aimtransform.localPosition = new Vector3(1f, 1f, 0);
+            //}
+            //else
+            //{
+            //    aimtransform.localPosition = new Vector3(-1f, 0, 0);
+            //}
+        }
     }
 
     bool IsCollidingWith(Vector3 targetPos)
