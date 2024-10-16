@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 public class WaterManager : MonoBehaviour
 {
     public Image waterBar;
-    public float waterLevel = 100f;
+    public float waterLevel = 100f; 
+    //public float waterLevel = 200f; //???oct7
     public float timePassed = 0f;
     public float decreaseTime = 300f;
     public float speed = 0.001f;
     public float xPos;
     public float yPos;
 
+    //public float maxTime = 200f; //???oct7 
     public float maxTime = 50f;
     public float timeLeft;
     public GameObject timesUpText;
@@ -21,11 +23,29 @@ public class WaterManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Debug.Log("WaterManager Start timeLeft! " + timeLeft); //???oct7
+
         xPos = (Screen.width / 2) - 100;
         yPos = (Screen.height / 2) - 100;
 
-        timeLeft = maxTime;
+        Scene currentScene = SceneManager.GetActiveScene(); //???oct7
+        if (currentScene.name == "SampleScene") //???oct7
+        {
+            timeLeft = maxTime; //???oct7 
+        }
+        else //???oct7
+        {
+            if (PlayerPrefs.GetFloat("waterLeft") <= 0) //???oct5 
+            {
+                timeLeft = maxTime;
+            }
+            else //???oct5 
+            {
+                timeLeft = PlayerPrefs.GetFloat("waterLeft"); //???oct5 
+            }
+        }
 
+        Debug.Log("WaterManager Start timeLeft! " + timeLeft); //???oct7
     }
 
     // Update is called once per frame
@@ -33,11 +53,13 @@ public class WaterManager : MonoBehaviour
     {
         if (timeLeft > 0)
         {
-            timeLeft -= Time.deltaTime;
-            waterBar.fillAmount = timeLeft / maxTime;
+
+            timeLeft -= Time.deltaTime; 
+            waterBar.fillAmount = timeLeft / maxTime; 
+            PlayerPrefs.SetFloat("waterLeft", timeLeft); //???oct5 Save WaterLeft if moving to next level
         } else
         {
-            Debug.Log("WaterManager Update timeLeft <=0 !"); //???oct
+            //Debug.Log("WaterManager timeLeft! " + timeLeft); //???oct7
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
             gameOver.PlayerLost("SampleScene"); //???oct
             //Heart heart = FindObjectOfType<Heart>().LoseLife();
@@ -75,11 +97,10 @@ public class WaterManager : MonoBehaviour
 
     public void Restart()
     {
-        Debug.Log("WaterManager Restart!"); //???oct
         // Reset water state
         xPos = (Screen.width / 2) - 100;
         yPos = (Screen.height / 2) - 100;
 
-        timeLeft = maxTime;
+        PlayerPrefs.SetFloat("waterLeft", timeLeft); //???oct5
     }
 }

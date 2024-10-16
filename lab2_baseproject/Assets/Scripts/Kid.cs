@@ -21,6 +21,11 @@ public class Kid : MonoBehaviour
 
 
     private SpriteRenderer spriteRenderer;
+
+    //private void Awake() //???oct7
+    //{
+    //    DontDestroyOnLoad(gameObject);//???oct7
+    //}
     
 
 
@@ -121,6 +126,13 @@ public class Kid : MonoBehaviour
     {
         spriteRenderer.enabled = false;
     }
+
+    //public void Restart() //????
+    //{
+    //    spriteRenderer.enabled = false; //????
+    //}
+
+
 
 }
 

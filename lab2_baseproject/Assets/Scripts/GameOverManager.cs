@@ -55,6 +55,9 @@ public class GameOverManager : MonoBehaviour
         player.Restart(); // call the Restart method on the Player script
         water.Restart(); // call the Restart method on the WaterManager script//???oct3
 
+        //Kid kid = FindObjectOfType<Kid>(); //????
+        //kid.Restart(); //????
+
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name); //???oct
         SceneManager.LoadScene("SampleScene"); //???oct
         //SceneManager.LoadScene(0); //???oct

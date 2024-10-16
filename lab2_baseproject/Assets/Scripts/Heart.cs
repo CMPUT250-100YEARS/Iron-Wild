@@ -31,15 +31,15 @@ public class Heart : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("numHearts") <= 0) //???oct
         {
-            Debug.Log("#13hearts before" + PlayerPrefs.GetInt("numHearts")); //???oct
+            //Debug.Log("#13hearts before" + PlayerPrefs.GetInt("numHearts")); //???oct
             PlayerPrefs.SetInt("numHearts", maxLives); //???oct
-            Debug.Log("#13hearts after" + PlayerPrefs.GetInt("numHearts")); //???oct
+            //Debug.Log("#13hearts after" + PlayerPrefs.GetInt("numHearts")); //???oct
             GameOverManager gameOver = FindObjectOfType<GameOverManager>(); //???oct
-            Debug.Log("#13hearts get gameover object" + PlayerPrefs.GetInt("numHearts")); //???oct
+            //Debug.Log("#13hearts get gameover object" + PlayerPrefs.GetInt("numHearts")); //???oct
             string sceneName = "SampleScene"; //???oct2
             gameOver.PlayerLost(sceneName); //???oct2
             //gameOver.PlayerLost("SampleScene"); //???oct2
-            Debug.Log("#13hearts call player lost" + PlayerPrefs.GetInt("numHearts")); //???oct
+            //Debug.Log("#13hearts call player lost" + PlayerPrefs.GetInt("numHearts")); //???oct
         }
 
     }
