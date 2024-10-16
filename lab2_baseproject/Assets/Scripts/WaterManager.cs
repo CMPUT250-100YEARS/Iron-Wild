@@ -37,8 +37,9 @@ public class WaterManager : MonoBehaviour
             waterBar.fillAmount = timeLeft / maxTime;
         } else
         {
+            Debug.Log("WaterManager Update timeLeft <=0 !"); //???oct
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
-            gameOver.PlayerLost();
+            gameOver.PlayerLost("SampleScene"); //???oct
             //Heart heart = FindObjectOfType<Heart>().LoseLife();
         }
 
@@ -74,6 +75,7 @@ public class WaterManager : MonoBehaviour
 
     public void Restart()
     {
+        Debug.Log("WaterManager Restart!"); //???oct
         // Reset water state
         xPos = (Screen.width / 2) - 100;
         yPos = (Screen.height / 2) - 100;

@@ -29,6 +29,18 @@ public class Heart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerPrefs.GetInt("numHearts") <= 0) //???oct
+        {
+            Debug.Log("#13hearts before" + PlayerPrefs.GetInt("numHearts")); //???oct
+            PlayerPrefs.SetInt("numHearts", maxLives); //???oct
+            Debug.Log("#13hearts after" + PlayerPrefs.GetInt("numHearts")); //???oct
+            GameOverManager gameOver = FindObjectOfType<GameOverManager>(); //???oct
+            Debug.Log("#13hearts get gameover object" + PlayerPrefs.GetInt("numHearts")); //???oct
+            string sceneName = "SampleScene"; //???oct2
+            gameOver.PlayerLost(sceneName); //???oct2
+            //gameOver.PlayerLost("SampleScene"); //???oct2
+            Debug.Log("#13hearts call player lost" + PlayerPrefs.GetInt("numHearts")); //???oct
+        }
 
     }
 
@@ -72,6 +84,7 @@ public class Heart : MonoBehaviour
         for (int i = 0; i < heartImages.Length; i++)
         {
             heartImages[i].enabled = (i < currentLives); // Enable or disable heart images
+            Debug.Log("Update Hearts!" + i); //???oct
         }
         Debug.Log("#7hearts" + currentLives); //???
     }

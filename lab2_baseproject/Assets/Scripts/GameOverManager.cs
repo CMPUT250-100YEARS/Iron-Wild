@@ -21,6 +21,7 @@ public class GameOverManager : MonoBehaviour
 
         gameOverPanel.SetActive(false);
 
+        restartButton.gameObject.SetActive(false); //???oct
         restartButton.onClick.AddListener(RestartGame);
     }
 
@@ -35,24 +36,35 @@ public class GameOverManager : MonoBehaviour
 
     public void GameOverFunct()
     {
+
+        Debug.Log("GameOver GameOverFunc " + PlayerPrefs.GetInt("numHearts")); //???oct
         isGameOver = true;
-        Time.timeScale = 0f; // Pause the game
+        //Time.timeScale = 0f; // Pause the game: freezes player and water after ran out of water
         gameOverPanel.SetActive(true);
+        restartButton.gameObject.SetActive(true); //???oct
     }
 
     public void RestartGame()  // restart button directly calls this
     {
+
+        Debug.Log("RestartGame " + PlayerPrefs.GetInt("numHearts")); //???oct
         isGameOver = false;
-        Time.timeScale = 1f; // Resume the game
+        //Time.timeScale = 1f; // Resume the game
+        gameOverPanel.SetActive(false); //???oct
 
         player.Restart(); // call the Restart method on the Player script
-        water.Restart(); // call the Restart method on the WaterManager script
+        water.Restart(); // call the Restart method on the WaterManager script//???oct3
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name); //???oct
+        SceneManager.LoadScene("SampleScene"); //???oct
+        //SceneManager.LoadScene(0); //???oct
+
     }
 
-    public void PlayerLost()
+    //public void PlayerLost() //???oct
+    public void PlayerLost(string sceneName) //???oct
     {
+        Debug.Log("GameOver PlayerLosthearts " + PlayerPrefs.GetInt("numHearts")); //???oct
         GameOverManager gameManager = FindObjectOfType<GameOverManager>();
         gameManager.GameOverFunct();
         AudioManager audioManager = FindObjectOfType<AudioManager>();

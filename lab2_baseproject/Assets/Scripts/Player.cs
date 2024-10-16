@@ -70,12 +70,15 @@ public class Player : AnimatedEntity
 
         foodCount = 0; //???
 
+        //PlayerPrefs.SetInt("numHearts", 2); // set num hearts initially //???oct2
+        //PlayerPrefs.Save(); //???oct2
+
 
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name == "SampleScene")
         {
-            PlayerPrefs.SetInt("numHearts", 2);  // set num hearts initially
-            PlayerPrefs.Save();
+            PlayerPrefs.SetInt("numHearts", 2);  // set num hearts initially 
+            PlayerPrefs.Save(); 
             Debug.Log("#2hearts" + PlayerPrefs.GetInt("numHearts"));
         }
         else //???
@@ -108,7 +111,7 @@ public class Player : AnimatedEntity
         //check input WASD and store direction
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-
+            //Debug.Log("Player Update up-arrow" + PlayerPrefs.GetInt("numHearts")); //???oct2
             //transform.position+= Vector3.up*Time.deltaTime*Speed;
             inputDirection += Vector3.up;
             isMoving = true;
@@ -137,6 +140,7 @@ public class Player : AnimatedEntity
         //If isMoving ==true, check for collision(foreground) then move
         if (isMoving)
         {
+            //Debug.Log("Player Update isMoving" + PlayerPrefs.GetInt("numHearts")); //???oct2
             Vector3 targetPos = transform.position + (inputDirection.normalized * Time.deltaTime * Speed);
             //Vector3 targerPos = rb.position + inputDirection * Time.deltaTime * Speed; //inputDirection Vector2.up/down/...
             if (!IsCollidingWith(targetPos))
@@ -250,8 +254,8 @@ public class Player : AnimatedEntity
 
     public IEnumerator LevelChangeWait(float time)
     {
-        yield return new WaitForSeconds(time);
-        SceneManager.LoadScene("CITY");
+        yield return new WaitForSeconds(time); 
+        SceneManager.LoadScene("CITY"); 
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -281,7 +285,8 @@ public class Player : AnimatedEntity
             //}
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
-            gameOver.PlayerLost();
+            //gameOver.PlayerLost(); //???oct
+            gameOver.PlayerLost("SampleScene"); //???oct
             //WaterManager water = FindObjectOfType<WaterManager>();
             //water.SetWater();
         }
@@ -416,6 +421,9 @@ public class Player : AnimatedEntity
         // Reset player state
         foodCount = 0;
         //startPosition = transform.position;
+
+        //PlayerPrefs.SetInt("numHearts", 2); // set num hearts initially //???oct2
+        //PlayerPrefs.Save(); //???oct2
     }
 
 
