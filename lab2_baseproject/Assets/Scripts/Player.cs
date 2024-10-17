@@ -58,7 +58,7 @@ public class Player : AnimatedEntity
     private Animator shootAnimator;
     private Transform aimTransform;
 
-
+    public bool endDialogue;
 
 
     void Start()
@@ -118,34 +118,36 @@ public class Player : AnimatedEntity
         //******************************************8
         AimGun(angle);
 
+        if (!endDialogue)
+        {
+            //check input WASD and store direction
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
+                //Debug.Log("Player Update up-arrow" + PlayerPrefs.GetInt("numHearts")); //???oct2
+                //transform.position+= Vector3.up*Time.deltaTime*Speed;
+                inputDirection += Vector3.up;
+                isMoving = true;
+            }
 
-        //check input WASD and store direction
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            //Debug.Log("Player Update up-arrow" + PlayerPrefs.GetInt("numHearts")); //???oct2
-            //transform.position+= Vector3.up*Time.deltaTime*Speed;
-            inputDirection += Vector3.up;
-            isMoving = true;
-        }
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                //transform.position+= Vector3.left*Time.deltaTime*Speed;
+                inputDirection += Vector3.left;
+                isMoving = true; //checking          
+            }
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            //transform.position+= Vector3.left*Time.deltaTime*Speed;
-            inputDirection += Vector3.left;
-            isMoving = true; //checking          
-        }
-
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            //transform.position+= Vector3.down*Time.deltaTime*Speed;
-            inputDirection += Vector3.down;
-            isMoving = true;
-        }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            //transform.position+= Vector3.right*Time.deltaTime*Speed;
-            inputDirection += Vector3.right;
-            isMoving = true;
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                //transform.position+= Vector3.down*Time.deltaTime*Speed;
+                inputDirection += Vector3.down;
+                isMoving = true;
+            }
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                //transform.position+= Vector3.right*Time.deltaTime*Speed;
+                inputDirection += Vector3.right;
+                isMoving = true;
+            }
         }
 
         //If isMoving ==true, check for collision(foreground) then move
@@ -289,7 +291,9 @@ public class Player : AnimatedEntity
     public IEnumerator LevelChangeWait(float time)
     {
         yield return new WaitForSeconds(time); 
-        SceneManager.LoadScene("CITY"); 
+        SceneManager.LoadScene("CITY");
+        //Time.timeScale = 1f;
+        endDialogue = false;
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -365,6 +369,7 @@ public class Player : AnimatedEntity
                 FindObjectOfType<LevelEndTrigger>().OnLevelComplete("I need more food!");
             } else
             {
+                endDialogue = true;
                 FindObjectOfType<LevelEndTrigger>().OnLevelComplete("Onto the next level!");
                 Debug.Log("#1hearts" + PlayerPrefs.GetInt("numHearts"));
                 StartCoroutine(LevelChangeWait(3f));
