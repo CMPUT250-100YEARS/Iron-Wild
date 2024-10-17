@@ -1,7 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
+[System.Serializable]
+public struct CinematicStep
+{
+    public Vector3 location;
+    public string statement;
+    public float timeAtLocation;
+}
 
 public class Player : AnimatedEntity
 {
@@ -59,6 +68,14 @@ public class Player : AnimatedEntity
     private Transform aimTransform;
 
     public bool endDialogue;
+
+    //cutscene stuff
+    public bool cinematicControlled = true;
+    public List<CinematicStep> cinematicSteps;
+    private int _cinematicIndex;
+    public GameObject uiCanvas;
+    public Text text;
+    private float _cutsceneTimer = 0;
 
 
     void Start()
@@ -118,35 +135,77 @@ public class Player : AnimatedEntity
         //******************************************8
         AimGun(angle);
 
-        if (!endDialogue)
+        //What to do if the player is being controlled by a cinemtic
+        if (cinematicControlled)
         {
-            //check input WASD and store direction
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            if (_cinematicIndex < cinematicSteps.Count)
             {
-                //Debug.Log("Player Update up-arrow" + PlayerPrefs.GetInt("numHearts")); //???oct2
-                //transform.position+= Vector3.up*Time.deltaTime*Speed;
-                inputDirection += Vector3.up;
-                isMoving = true;
-            }
+                //Move player to first cinematicSteps location if not there yet
+                if ((transform.position - cinematicSteps[_cinematicIndex].location).magnitude > 0.005f)
+                {
+                    transform.position += (cinematicSteps[_cinematicIndex].location - transform.position).normalized * Time.deltaTime * Speed;
+                }
+                else
+                {
+                    //Set player location to avoid float issues
+                    transform.position = cinematicSteps[_cinematicIndex].location;
+                    if (_cutsceneTimer >= cinematicSteps[_cinematicIndex].timeAtLocation)
+                    {
+                        _cinematicIndex += 1;//Move on to next step if there is one
+                        _cutsceneTimer = 0;
+                        uiCanvas.SetActive(false);
+                    }
+                    else
+                    {
+                        //Display text during timer if there is any
+                        if (cinematicSteps[_cinematicIndex].statement != "")
+                        {
+                            uiCanvas.SetActive(true);
+                            text.text = cinematicSteps[_cinematicIndex].statement;
+                        }
 
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            {
-                //transform.position+= Vector3.left*Time.deltaTime*Speed;
-                inputDirection += Vector3.left;
-                isMoving = true; //checking          
+                        _cutsceneTimer += Time.deltaTime;
+                    }
+                }
             }
+            else
+            {
+                // Return control to the player at the end of this
+                cinematicControlled = false;
+            }
+        }
+        else
+        {
+            if (!endDialogue)
+            {
+                //check input WASD and store direction
+                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+                {
+                    //Debug.Log("Player Update up-arrow" + PlayerPrefs.GetInt("numHearts")); //???oct2
+                    //transform.position+= Vector3.up*Time.deltaTime*Speed;
+                    inputDirection += Vector3.up;
+                    isMoving = true;
+                }
 
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-            {
-                //transform.position+= Vector3.down*Time.deltaTime*Speed;
-                inputDirection += Vector3.down;
-                isMoving = true;
-            }
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            {
-                //transform.position+= Vector3.right*Time.deltaTime*Speed;
-                inputDirection += Vector3.right;
-                isMoving = true;
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                {
+                    //transform.position+= Vector3.left*Time.deltaTime*Speed;
+                    inputDirection += Vector3.left;
+                    isMoving = true; //checking          
+                }
+
+                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+                {
+                    //transform.position+= Vector3.down*Time.deltaTime*Speed;
+                    inputDirection += Vector3.down;
+                    isMoving = true;
+                }
+                if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                {
+                    //transform.position+= Vector3.right*Time.deltaTime*Speed;
+                    inputDirection += Vector3.right;
+                    isMoving = true;
+                }
             }
         }
 
