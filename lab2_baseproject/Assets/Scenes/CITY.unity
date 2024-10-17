@@ -886,6 +886,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5223320077589499489, guid: 659f7512d2ea34a4cb57fdeb63661883,
+        type: 3}
+      propertyPath: maxTime
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5223320077589499490, guid: 659f7512d2ea34a4cb57fdeb63661883,
         type: 3}
       propertyPath: m_Name
@@ -2639,6 +2644,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7423328147255320553, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7423328147255320555, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
         type: 3}
       propertyPath: m_Name
@@ -2998,6 +3008,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WaterManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 811939983637722150, guid: a44304063e5c241458b87954308bf6dd,
+        type: 3}
+      propertyPath: maxTime
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 811939983637722150, guid: a44304063e5c241458b87954308bf6dd,
         type: 3}
