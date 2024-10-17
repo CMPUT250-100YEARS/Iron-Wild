@@ -26,7 +26,8 @@ public class LevelEndTrigger : MonoBehaviour
     {
         speechBubble.SetActive(true);
         speechText.text = "";
-        speechBubble.transform.position += new Vector3(50f, 50f, 0);
+        //speechBubble.transform.position += new Vector3(50f, 50f, 0);
+        speechBubble.transform.position += new Vector3(100f, 100f, 0);
 
         foreach (char letter in message)
         {
