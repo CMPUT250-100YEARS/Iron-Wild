@@ -39,7 +39,7 @@ public class GameOverManager : MonoBehaviour
 
         Debug.Log("GameOver GameOverFunc " + PlayerPrefs.GetInt("numHearts")); //???oct
         isGameOver = true;
-        //Time.timeScale = 0f; // Pause the game: freezes player and water after ran out of water
+        Time.timeScale = 0f; // Pause the game: freezes player and water after ran out of water
         gameOverPanel.SetActive(true);
         restartButton.gameObject.SetActive(true); //???oct
     }
@@ -49,7 +49,7 @@ public class GameOverManager : MonoBehaviour
 
         Debug.Log("RestartGame " + PlayerPrefs.GetInt("numHearts")); //???oct
         isGameOver = false;
-        //Time.timeScale = 1f; // Resume the game
+        Time.timeScale = 1f; // Resume the game
         gameOverPanel.SetActive(false); //???oct
 
         player.Restart(); // call the Restart method on the Player script

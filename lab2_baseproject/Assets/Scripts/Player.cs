@@ -448,6 +448,7 @@ public class Player : AnimatedEntity
 
     public void Restart()
     {
+        Debug.Log("Player Restart!"); //oct17
         // Reset player state
         foodCount = 0;
         //startPosition = transform.position;
