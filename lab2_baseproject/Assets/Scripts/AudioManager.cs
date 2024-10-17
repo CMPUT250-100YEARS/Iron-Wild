@@ -10,10 +10,10 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //if (audioSource != null) //???oct
-        //{
-        //    audioSource.Play(); //???oct
-        //}
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
 
     // Update is called once per frame
@@ -24,10 +24,10 @@ public class AudioManager : MonoBehaviour
 
     public void GameOver()
     {
-        //if (audioSource != null)// && (audioSource2 != null)) //???oct
-        //{
-        //    audioSource.Stop(); //???oct
-            //audioSource2.Play();
-        //}
+        if (audioSource != null)// && (audioSource2 != null)) 
+        {
+            audioSource.Stop(); 
+            //audioSource2.Play(); 
+        }
     }
 }
