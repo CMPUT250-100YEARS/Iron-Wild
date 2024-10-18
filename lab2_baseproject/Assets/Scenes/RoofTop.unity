@@ -53304,6 +53304,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1920993492}
+  isHovering: 0
+  canAttack: 0
+  hasBeenWarned: 0
+  warningCirclePrefab: {fileID: 7904901807216243883, guid: dd0cea7d7da0b47c8971ff21b165036e,
+    type: 3}
 --- !u!212 &1717420668
 SpriteRenderer:
   m_ObjectHideFlags: 0
