@@ -421,7 +421,7 @@ public class Player : AnimatedEntity
     public IEnumerator LevelChangeWait(float time)
     {
         yield return new WaitForSeconds(time); 
-        SceneManager.LoadScene("CITY");
+        SceneManager.LoadScene("RoofTop");
         //Time.timeScale = 1f;
         endDialogue = false;
     }
@@ -494,13 +494,13 @@ public class Player : AnimatedEntity
             //FindObjectOfType<LevelEndTrigger>().ShowSpeechBubble();
             Vector3 playerPosition = this.transform.position; //???
 
-            if (foodCount < 2)
-            {
-                FindObjectOfType<LevelEndTrigger>().OnLevelComplete("I need more food!");
-            } else
-            {
+            //if (foodCount < 2)
+            //{
+            //    FindObjectOfType<LevelEndTrigger>().OnLevelComplete("I need more food!");
+            //} else
+            //{
                 endDialogue = true;
-                FindObjectOfType<LevelEndTrigger>().OnLevelComplete("Onto the next level!");
+                FindObjectOfType<LevelEndTrigger>().OnLevelComplete("Onto the rooftop!");
                 Debug.Log("#1hearts" + PlayerPrefs.GetInt("numHearts"));
                 StartCoroutine(LevelChangeWait(3f));
                 //SceneManager.LoadScene("CITY");
@@ -509,7 +509,7 @@ public class Player : AnimatedEntity
                 //heartScript.InitializeHearts();
                 //PlayerPrefs.SetInt("numHearts", numHearts);
                 //PlayerPrefs.Save();
-            }
+            //}
             //FindObjectOfType<LevelEndTrigger>().ShowSpeechBubble(foodCount);
 
         }
