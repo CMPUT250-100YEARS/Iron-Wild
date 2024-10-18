@@ -110,7 +110,7 @@ public class Player : AnimatedEntity
 
 
         Scene currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name == "SampleScene")
+        if (currentScene.name == "CITY")
         {
             PlayerPrefs.SetInt("numHearts", 6);  // set num hearts initially 
             PlayerPrefs.Save(); 
