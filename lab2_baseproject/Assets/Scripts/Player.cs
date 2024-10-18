@@ -359,10 +359,10 @@ public class Player : AnimatedEntity
 
 
         // Temporary, to test Heart system
-        if (Input.GetKeyDown(KeyCode.H)) // For testing, press H to take damage ???
-        {                                           
-            FindObjectOfType<Heart>().TakeDamage();
-        }
+        //if (Input.GetKeyDown(KeyCode.H)) // For testing, press H to take damage ???
+        //{                                           
+        //    FindObjectOfType<Heart>().TakeDamage();
+        //}
 
         //if (hasAbility_Dash && Input.GetKeyDown(KeyCode.Space))
         //{
@@ -453,8 +453,10 @@ public class Player : AnimatedEntity
             //}
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
+            FindObjectOfType<Heart>().TakeDamage();
             //gameOver.PlayerLost(); //???oct
-            gameOver.PlayerLost("SampleScene"); //???oct
+            //gameOver.PlayerLost("SampleScene"); //???oct
+
             //WaterManager water = FindObjectOfType<WaterManager>();
             //water.SetWater();
         }
