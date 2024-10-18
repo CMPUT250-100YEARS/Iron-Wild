@@ -15,7 +15,7 @@ public struct CinematicStep
 public class Player : AnimatedEntity
 {
     
-    public float Speed = 5;
+    public float Speed = 5;  // 5
     private AudioSource audioSource;
 
     public List<Sprite> InterruptedCycle;
@@ -77,10 +77,20 @@ public class Player : AnimatedEntity
     public Text text;
     private float _cutsceneTimer = 0;
 
+    // START ADDED
+    public float cutsceneSpeed = 2f;
+    //public Sprite idleUp, idleRight, idleDown, idleLeft;
+    //public List<Sprite> upWalkCycle, rightWalkCycle, downWalkCycle, leftWalkCycle;
+    private Vector3 _priorPosition;
+    private int _direction = -1;//0 is up, 1 is right, 2 is down, 3 is left
+    private float minDiff = 0.00001f;
+    // END ADDED
+
 
     void Start()
     {
         AnimationSetup();
+        _priorPosition = transform.position;  // ADDED
         audioSource = gameObject.GetComponent<AudioSource>();
 
         aimTransform = transform.Find("Aim");
@@ -167,6 +177,70 @@ public class Player : AnimatedEntity
                         _cutsceneTimer += Time.deltaTime;
                     }
                 }
+                
+                if ((transform.position.y - _priorPosition.y) > minDiff)
+                {
+                    //Moving Up
+                    if (_direction != 0)
+                    {
+                        _direction = 0;
+                        currentSpriteCycle = BackSpriteList;
+                    }
+                }
+                if ((_priorPosition.y - transform.position.y) > minDiff)
+                {
+                    //Moving Down
+                    if (_direction != 2)
+                    {
+                        _direction = 2;
+                        currentSpriteCycle = FrontSpritList;
+                    }
+                }
+
+                if ((transform.position.x - _priorPosition.x) > minDiff)
+                {
+                    //Moving right
+                    if (_direction != 1)
+                    {
+                        _direction = 1;
+                        currentSpriteCycle = RightSpriteList;
+                    }
+                }
+                if ((_priorPosition.x - transform.position.x) > minDiff)
+                {
+                    //Moving left
+                    if (_direction != 3)
+                    {
+                        _direction = 3;
+                        currentSpriteCycle = LeftSpriteList;
+                    }
+                }
+
+
+                // animation handling
+                if ((_priorPosition - transform.position).magnitude > minDiff)
+                {
+                    AnimationUpdate();
+                }
+                else 
+                {
+                    if (_direction == 0)
+                    {
+                        currentSpriteCycle = IdleBackSprite;
+                    }
+                    else if (_direction == 1)
+                    {
+                        currentSpriteCycle = IdleRightSprite;
+                    }
+                    else if (_direction == 2)
+                    {
+                        currentSpriteCycle = IdleFrontSprite;
+                    }
+                    else if (_direction == 3)
+                    {
+                        currentSpriteCycle = IdleLeftSprite;
+                    }
+                }
             }
             else
             {
@@ -176,8 +250,10 @@ public class Player : AnimatedEntity
         }
         else
         {
+            // movemenet if not cinematic controlled
             if (!endDialogue)
             {
+                isMoving = false;
                 //check input WASD and store direction
                 if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
                 {
@@ -206,61 +282,67 @@ public class Player : AnimatedEntity
                     inputDirection += Vector3.right;
                     isMoving = true;
                 }
-            }
-        }
 
-        //If isMoving ==true, check for collision(foreground) then move
-        if (isMoving)
-        {
-            //Debug.Log("Player Update isMoving" + PlayerPrefs.GetInt("numHearts")); //???oct2
-            Vector3 targetPos = transform.position + (inputDirection.normalized * Time.deltaTime * Speed);
-            //Vector3 targerPos = rb.position + inputDirection * Time.deltaTime * Speed; //inputDirection Vector2.up/down/...
-            if (!IsCollidingWith(targetPos))
-            {
-
-                if (isDashing)
+                //If isMoving ==true, check for collision(foreground) then move
+                if (isMoving)
                 {
-                    //Debug.Log("isDashing" + isDashing);
-                    //Debug.Log("HEREEEEE!!! speed increased to True");
-                    transform.position += inputDirection.normalized * Time.deltaTime * dashSpeed;
+                    //Debug.Log("Player Update isMoving" + PlayerPrefs.GetInt("numHearts")); //???oct2
+                    Vector3 targetPos = transform.position + (inputDirection.normalized * Time.deltaTime * Speed);
+                    //Vector3 targerPos = rb.position + inputDirection * Time.deltaTime * Speed; //inputDirection Vector2.up/down/...
+                    if (!IsCollidingWith(targetPos))
+                    {
+
+                        if (isDashing)
+                        {
+                            //Debug.Log("isDashing" + isDashing);
+                            //Debug.Log("HEREEEEE!!! speed increased to True");
+                            transform.position += inputDirection.normalized * Time.deltaTime * dashSpeed;
+                        }
+                        else { transform.position += inputDirection.normalized * Time.deltaTime * Speed; }
+                    }
                 }
-                else { transform.position += inputDirection.normalized * Time.deltaTime * Speed; }
+
+                //Determine SpriteList based on angle
+                if (angle > 45f && angle <= 135f)
+                {
+                    currentSpriteCycle = BackSpriteList; //when Moving
+                    if (!isMoving) { currentSpriteCycle = IdleBackSprite; } //***************when not moving
+                    }
+
+                else if (angle > 135f && angle <= 225f)
+                {
+                    currentSpriteCycle = LeftSpriteList;
+                    if (!isMoving) { currentSpriteCycle = IdleLeftSprite; } //***************when not moving
+                }
+
+                else if (angle > 225f && angle <= 315f)
+                {
+                    currentSpriteCycle = FrontSpritList;
+                    if (!isMoving) { currentSpriteCycle = IdleFrontSprite; } //***************when not moving
+                }
+
+                else if (angle > 315f || angle <= 45f)
+                {
+                    currentSpriteCycle = RightSpriteList;
+                    if (!isMoving) { currentSpriteCycle = IdleRightSprite; } //***************when not moving
+                }
+                //call SetMovementDirection and SetCurrentAnimationCycle
+                SetMovementDirection(isMoving);  //???
+                SetCurrentAnimationCycle(currentSpriteCycle);  //???
+                //AnimationUpdate();
             }
         }
 
-        //Determine SpriteList based on angle
-        if (angle > 45f && angle <= 135f)
-        {
-            currentSpriteCycle = BackSpriteList; //when Moving
-            if (!isMoving) { currentSpriteCycle = IdleBackSprite; } //***************when not moving
-        }
+        //Grab the priorPosition
+        _priorPosition = transform.position;
 
-        else if (angle > 135f && angle <= 225f)
-        {
-            currentSpriteCycle = LeftSpriteList;
-            if (!isMoving) { currentSpriteCycle = IdleLeftSprite; } //***************when not moving
-        }
-
-        else if (angle > 225f && angle <= 315f)
-        {
-            currentSpriteCycle = FrontSpritList;
-            if (!isMoving) { currentSpriteCycle = IdleFrontSprite; } //***************when not moving
-        }
-
-        else if (angle > 315f || angle <= 45f)
-        {
-            currentSpriteCycle = RightSpriteList;
-            if (!isMoving) { currentSpriteCycle = IdleRightSprite; } //***************when not moving
-        }
-
-        
-        // call SetMovementDirection and SetCurrentAnimationCycle
+        //call SetMovementDirection and SetCurrentAnimationCycle
         SetMovementDirection(isMoving);
         SetCurrentAnimationCycle(currentSpriteCycle);
 
 
 
-        
+
         //shooting
 
         if (Input.GetKey(KeyCode.Mouse0) && cooldown <= 0.0f)
@@ -282,12 +364,6 @@ public class Player : AnimatedEntity
             FindObjectOfType<Heart>().TakeDamage();
         }
 
-        //// Temporary, to test Food system
-        //if (Input.GetKeyDown(KeyCode.F)) // For testing, press F to take damage ???
-        //{
-        //    FindObjectOfType<FoodImage>().FoundFoods();
-        //}
-
         //if (hasAbility_Dash && Input.GetKeyDown(KeyCode.Space))
         //{
         //    Dash();
@@ -306,11 +382,6 @@ public class Player : AnimatedEntity
                 isDashing = false;
             }
         }
-
-
-
-
-
     }
 
     void AimGun(float angle)
