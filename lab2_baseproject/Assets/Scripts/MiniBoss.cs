@@ -16,17 +16,23 @@ public class MiniBoss : MonoBehaviour
     private float hoverDuration = 15f;
 
     private float warningTimer;
-    private float warningDuration;
+    private float warningDuration = 4f;
 
-    private bool isHovering;
-    private bool canAttack;
-    private bool hasBeenWarned;
+    public bool isHovering;
+    public bool canAttack;
+    public bool hasBeenWarned;
 
     private bool isHoveringToPos1;
-    //private bool isHoveringToPos2;
+    private bool playerInWarningCircle;
 
+    private Vector3 warningCircleCenter;
 
+    private float pulseSpeed = .1f; // Speed of the pulsing effect
+    private float maxScale = .4f; // Maximum scale of the circle
+    private float minScale = .3f;   // Minimum scale of the circle
 
+    public GameObject warningCirclePrefab; // Assign a prefab with a SpriteRenderer (circle sprite)
+    private GameObject warningCircleInstance;
 
     private void Start()
     {
@@ -36,6 +42,9 @@ public class MiniBoss : MonoBehaviour
         isHoveringToPos1 = true;
         hoverTimer = hoverDuration;
 
+        warningCircleInstance = null;
+
+
     }
 
     private void Update()
@@ -43,23 +52,39 @@ public class MiniBoss : MonoBehaviour
         
         if (canAttack && hasBeenWarned)
         {
-            //attack
-            transform.position += diveSpeed * Time.deltaTime * (player.position - transform.position).normalized;
-            if ((player.position - transform.position).magnitude < 0.2f)
+            if (CheckIfPlayerInCircle())
             {
-                canAttack = false;
-                hoverTimer = hoverDuration;
+                transform.position += diveSpeed * Time.deltaTime * (player.position - transform.position).normalized;
+                if ((player.position - transform.position).magnitude < 0.2f)
+                {
+                    Destroy(warningCircleInstance);
+                    canAttack = false;
+                    hoverTimer = hoverDuration;
+                    isHovering = true;
+                }
             }
+            else
+            {
+                transform.position += diveSpeed * Time.deltaTime * (warningCircleCenter - transform.position).normalized;
+                if ((warningCircleCenter - transform.position).magnitude < 0.2f)
+                {
+                    Destroy(warningCircleInstance);
+                    canAttack = false;
+                    hoverTimer = hoverDuration;
+                    isHovering = true;
+                }
+            }
+            //attack
+            
+            
+            
 
         }
-        
-        else
+
+        if (isHovering)
         {
-            //hover
-            if (hoverTimer > 0f) //&& something
+            if (hoverTimer > 0f) 
             {
-                // hover
-                
                 Vector2 hoverPosition1 = new Vector2(player.position.x - xOffset, player.position.y + hoverHeight);
                 Vector2 hoverPosition2 = new Vector2(player.position.x + xOffset, player.position.y + hoverHeight);
 
@@ -70,7 +95,6 @@ public class MiniBoss : MonoBehaviour
                     {
                         isHoveringToPos1 = false;  // Start moving to hoverPosition2
                     }
-
                 }
                 else 
                 {
@@ -79,34 +103,79 @@ public class MiniBoss : MonoBehaviour
                     {
                         isHoveringToPos1 = true;  // Start moving to hoverPosition1
                     }
-
                 }
                 hoverTimer -= Time.deltaTime;
+                if (hoverTimer < warningDuration + 1f)
+                {
+                    Debug.Log("Call to ShowWarningCircle");
+                    ShowWarningCircle();
+                }
             }
             else
             {
                 canAttack = true;
-                Warn();
             }
+
             
         }
 
+        if (warningCircleInstance != null)
+        {
+            warningTimer += Time.deltaTime;
+
+            // Pulsating effect
+            float scale = Mathf.PingPong(Time.time * pulseSpeed, maxScale - minScale) + minScale;
+            warningCircleInstance.transform.localScale = new Vector3(scale, scale, 1f);
+
+            // Destroy the circle after the warning duration
+            if (warningTimer >= warningDuration)
+            {
+                hasBeenWarned = true;
+                warningTimer = 0f;
+            }
+        }
+
+
 
     }
 
-    //void DiveAttack()
-    //{
-
-    //}
-
-    //void HoverAbove()
-    //{
-
-    //}
-
-    void Warn()
+    void ShowWarningCircle()
     {
-        Debug.Log("Warning to implement");
-        hasBeenWarned = true;
+        // Spawn the warning circle at the player's position
+        if (warningCircleInstance == null)
+        {
+            warningCircleInstance = Instantiate(warningCirclePrefab, player.position, Quaternion.identity);
+            warningCircleCenter = warningCircleInstance.transform.position;
+        }
+
     }
+
+    bool CheckIfPlayerInCircle()
+    {
+        // Calculate the distance between the player and the warning circle center
+        float distanceToPlayer = Vector2.Distance(player.position, warningCircleCenter);
+        SpriteRenderer spriteRenderer = warningCircleInstance.GetComponent<SpriteRenderer>();
+        //float warningRadius = spriteRenderer.bounds.extents.x;
+        float warningRadius = 9.5f;
+        // Compare the distance to the circle's radius (considering the maxScale as the circle's size)
+        float actualWarningRadius = warningRadius * maxScale;
+
+        if (distanceToPlayer <= actualWarningRadius)
+        {
+            
+            Debug.Log("Player is inside the warning circle!");
+            // Apply damage or any other effect
+            return true;
+        }
+        else
+        {
+            
+            Debug.Log("Player is outside the warning circle.");
+            return false;
+        }
+    }
+
+
+
+
 }
