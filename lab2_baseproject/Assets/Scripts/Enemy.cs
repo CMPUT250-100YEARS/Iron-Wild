@@ -10,7 +10,7 @@ public class Enemy : AnimatedEntity
 
     private Transform detectionZone;
     private Transform target;
-    private float followSpeed = 1.5f;
+    private float followSpeed = 2f;
 
     public LayerMask SolidObjectsLayer;
 
