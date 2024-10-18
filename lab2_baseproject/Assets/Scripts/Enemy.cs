@@ -20,7 +20,7 @@ public class Enemy : AnimatedEntity
     public List<Sprite> LeftSpriteList;
     public List<Sprite> FrontSpritList;
 
-    
+
     public List<Sprite> InterruptedCycle;
     private List<Sprite> currentSpriteCycle;
     bool isMoving = false;
@@ -29,11 +29,11 @@ public class Enemy : AnimatedEntity
     // Start is called before the first frame update
     void Start()
     {
-        
+
         detectionZone = transform.Find("DetectionZone");
         AnimationSetup();
         target = null;
-        
+
     }
 
     // Update is called once per frame
@@ -89,7 +89,7 @@ public class Enemy : AnimatedEntity
             {
                 isMoving = true;
                 transform.position = targetPos;
-                
+
             }
             else
             {
@@ -123,7 +123,7 @@ public class Enemy : AnimatedEntity
     {
         Debug.Log("Now I follow!");
         target = other.transform;
-        
+
     }
 
     public void OnDetectionTriggerExit(Collider2D other)
