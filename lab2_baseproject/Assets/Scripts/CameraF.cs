@@ -13,8 +13,17 @@ public class CameraF : MonoBehaviour
     public Transform topRightBoundary;
     public Transform bottomLeftBoundary;
 
-    
     private float minX, maxX, minY, maxY;
+
+    //zoom ***********n
+    public float zoomOutSize = 10f;
+    public float normalSize = 5f;
+    public float zoomSpeed = 1f;
+
+    private bool shouldZoomOut = false;
+    
+    
+    //*****************u
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +34,8 @@ public class CameraF : MonoBehaviour
         maxX = topRightBoundary.position.x; //(28.9,24.5)
         minY = bottomLeftBoundary.position.y;
         maxY = topRightBoundary.position.y;
+
+        Camera.main.orthographicSize = normalSize;
     }
 
     // Update is called once per frame
@@ -51,5 +62,22 @@ public class CameraF : MonoBehaviour
         {
             Debug.LogWarning("Target is not assigned in the Inspector!");
         }
+
+        //********n
+        if (shouldZoomOut)
+        {
+            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, zoomOutSize, Time.deltaTime * zoomSpeed);
+        }
+        else
+        {
+            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, normalSize, Time.deltaTime * zoomSpeed);
+        }
+        //**************u
     }
+    //***********n
+    public void TriggerZoomOut(bool zoomOut)
+    {
+        shouldZoomOut = zoomOut;
+    }
+    //****************u
 }
