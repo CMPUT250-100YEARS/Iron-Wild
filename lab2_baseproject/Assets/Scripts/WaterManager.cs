@@ -14,7 +14,7 @@ public class WaterManager : MonoBehaviour
     public float xPos;
     public float yPos;
 
-    public float maxTime = 50f; //oct17
+    public float maxTime = 300f; //oct17
     //public float maxTime = 100f; //oct17
     public float timeLeft;
     public GameObject timesUpText;
@@ -46,7 +46,7 @@ public class WaterManager : MonoBehaviour
 
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
 
-            string sceneName = "SampleScene"; //???oct17
+            string sceneName = "CITY"; //???oct17
             gameOver.PlayerLost(sceneName); //???oct17
 
             //gameOver.PlayerLost("SampleScene"); //???oct17

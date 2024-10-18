@@ -56,7 +56,7 @@ public class GameOverManager : MonoBehaviour
         water.Restart(); // call the Restart method on the WaterManager script//???oct3
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name); //???oct
-        SceneManager.LoadScene("SampleScene"); //???oct
+        SceneManager.LoadScene("CITY"); //???oct
         //SceneManager.LoadScene(0); //???oct
 
     }
