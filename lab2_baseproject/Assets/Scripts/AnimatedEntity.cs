@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AnimatedEntity : MonoBehaviour
 {
-    public List<Sprite> DefaultAnimationCycle;
+    
+    public Sprite IdleSprite; //when not moving
     public float Framerate = 12f;//frames per second
     public SpriteRenderer SpriteRenderer;//spriteRenderer
 
@@ -17,41 +18,93 @@ public class AnimatedEntity : MonoBehaviour
     //interrupt animation info
     private bool interruptFlag;
     private List<Sprite> interruptAnimation;
+    private bool isEntityMoving; //check if object is moving
+
+    private List<Sprite> currentAnimationCycle;
 
 
     //Set up logic for animation stuff
     protected void AnimationSetup(){
         animationTimerMax = 1.0f/((float)(Framerate));
         index = 0;
+        isEntityMoving = false; //object not moving initially
+    }
+
+    //Player or Enemy pass the animationCycle
+    public void SetCurrentAnimationCycle(List<Sprite> animationCycle)
+    {
+        currentAnimationCycle = animationCycle;
     }
 
     //Default animation update
     protected void AnimationUpdate(){
-        animationTimer+=Time.deltaTime;
+        animationTimer += Time.deltaTime;
 
-        if(animationTimer>animationTimerMax){
-            animationTimer = 0;
-            index++;
+        if (isEntityMoving) //when object starts moving
+        {
+            if (animationTimer > animationTimerMax)
+            {
+                animationTimer = 0;
+                index++;
 
-            if(!interruptFlag){
-                if(DefaultAnimationCycle.Count==0 || index>=DefaultAnimationCycle.Count){
-                    index=0;
+                // check current animation cycle is not empty         
+                if (!interruptFlag && currentAnimationCycle != null)
+                {
+                    if (currentAnimationCycle.Count == 0 || index >= currentAnimationCycle.Count)
+                    {
+                        index = 0; //start back to the beginning 
+                    }
+
+                    if (currentAnimationCycle.Count > 0)
+                    {
+                        SpriteRenderer.sprite = currentAnimationCycle[index]; //update the sprite
+                    }
                 }
-                if(DefaultAnimationCycle.Count>0){
-                    SpriteRenderer.sprite = DefaultAnimationCycle[index];
-                }
-            }
-            else{
-                if(interruptAnimation==null || index>=interruptAnimation.Count){
-                    index=0;
-                    interruptFlag = false;
-                    interruptAnimation= null;//clear interrupt animation
-                }
-                else{
-                    SpriteRenderer.sprite = interruptAnimation[index];
+                else if (interruptFlag) //interupt animation
+                {
+                    if (interruptAnimation == null || index >= interruptAnimation.Count)
+                    {
+                        index = 0;
+                        interruptFlag = false;
+                        interruptAnimation = null;
+                    }
+                    else
+                    {
+                        SpriteRenderer.sprite = interruptAnimation[index]; //update interrupt sprite
+                    }
                 }
             }
         }
+        else //object not moving
+        {
+            //***************************************************************************************
+            //SpriteRenderer.sprite = IdleSprite; //show the idel when not moving
+            if (animationTimer > animationTimerMax)
+            {
+                animationTimer = 0;
+                index++;
+
+                // check current animation cycle is not empty         
+                if (currentAnimationCycle != null)
+                {
+                    if (currentAnimationCycle.Count == 0 || index >= currentAnimationCycle.Count)
+                    {
+                        index = 0; //start back to the beginning 
+                    }
+
+                    if (currentAnimationCycle.Count > 0)
+                    {
+                        SpriteRenderer.sprite = currentAnimationCycle[index]; //update the sprite
+                    }
+                }
+            }
+        }
+    }
+
+    public void SetMovementDirection(bool moving)
+    {
+        //bool values taken about movement
+        isEntityMoving = moving;
     }
 
     //Interrupt animation
