@@ -58,6 +58,7 @@ public class MiniBoss : MonoBehaviour
                 if ((player.position - transform.position).magnitude < 0.2f)
                 {
                     Destroy(warningCircleInstance);
+                    FindObjectOfType<Heart>().TakeDamage();
                     canAttack = false;
                     hoverTimer = hoverDuration;
                     isHovering = true;
