@@ -102,6 +102,7 @@ public class Heart : MonoBehaviour
     //    Debug.Log("Game Over! All lives lost.");
     //}
 
+
     public void TakeDamage()
     {
         LoseLife();

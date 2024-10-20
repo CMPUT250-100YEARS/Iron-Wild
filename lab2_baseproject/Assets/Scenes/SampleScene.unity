@@ -2810,6 +2810,11 @@ PrefabInstance:
       propertyPath: waterBar
       value: 
       objectReference: {fileID: 114521659}
+    - target: {fileID: 811939983637722150, guid: a44304063e5c241458b87954308bf6dd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 811939983637722151, guid: a44304063e5c241458b87954308bf6dd,
         type: 3}
       propertyPath: m_RootOrder
