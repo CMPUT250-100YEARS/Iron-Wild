@@ -32,6 +32,8 @@ public class Player : AnimatedEntity
     public LayerMask SolidObjectsLayer; //the foreground
 
     public float foodCount = 0;
+    public string currScene; //???oct20
+    public string currDialog; //???oct20
     public Vector3 startPosition;  //???
 
     private bool hasAbility_Dash;
@@ -103,26 +105,32 @@ public class Player : AnimatedEntity
         hasAbility_Dash = false;
         dashSpeed = Speed * 4;
 
-        foodCount = 0; //???
+        foodCount = 0;
 
-        //PlayerPrefs.SetInt("numHearts", 2); // set num hearts initially //???oct2
-        //PlayerPrefs.Save(); //???oct2
+        //PlayerPrefs.SetInt("numHearts", 2); // set num hearts initially
+        //PlayerPrefs.Save();
 
 
         Scene currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name == "CITY")
+        if (currentScene.name == "SampleScene")
         {
             PlayerPrefs.SetInt("numHearts", 6);  // set num hearts initially 
             PlayerPrefs.Save(); 
             Debug.Log("#2hearts" + PlayerPrefs.GetInt("numHearts"));
         }
-        else //???
-        {//???
-            Debug.Log("#6hearts" + PlayerPrefs.GetInt("numHearts")); //???
-        }//???
-        Heart heartScript = FindObjectOfType<Heart>(); //???
-        heartScript.InitializeHearts(); //???
-        FindObjectOfType<Heart>().UpdateHearts(); //???
+        else
+        {
+            Debug.Log("#6hearts" + PlayerPrefs.GetInt("numHearts"));
+        }
+
+
+        //int maxLives = 6;  //???oct20 BAD RESETS TO 6 HEARTS GOING ONTO CITY SCENE
+        //PlayerPrefs.SetInt("numHearts", maxLives); //???oct20
+        //PlayerPrefs.Save(); //???oct20
+
+        Heart heartScript = FindObjectOfType<Heart>();
+        heartScript.InitializeHearts();
+        FindObjectOfType<Heart>().UpdateHearts();
     }
 
     // Update is called once per frame
@@ -257,7 +265,7 @@ public class Player : AnimatedEntity
                 //check input WASD and store direction
                 if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
                 {
-                    //Debug.Log("Player Update up-arrow" + PlayerPrefs.GetInt("numHearts")); //???oct2
+                    //Debug.Log("Player Update up-arrow" + PlayerPrefs.GetInt("numHearts"));
                     //transform.position+= Vector3.up*Time.deltaTime*Speed;
                     inputDirection += Vector3.up;
                     isMoving = true;
@@ -286,7 +294,7 @@ public class Player : AnimatedEntity
                 //If isMoving ==true, check for collision(foreground) then move
                 if (isMoving)
                 {
-                    //Debug.Log("Player Update isMoving" + PlayerPrefs.GetInt("numHearts")); //???oct2
+                    //Debug.Log("Player Update isMoving" + PlayerPrefs.GetInt("numHearts"));
                     Vector3 targetPos = transform.position + (inputDirection.normalized * Time.deltaTime * Speed);
                     //Vector3 targerPos = rb.position + inputDirection * Time.deltaTime * Speed; //inputDirection Vector2.up/down/...
                     if (!IsCollidingWith(targetPos))
@@ -327,8 +335,8 @@ public class Player : AnimatedEntity
                     if (!isMoving) { currentSpriteCycle = IdleRightSprite; } //***************when not moving
                 }
                 //call SetMovementDirection and SetCurrentAnimationCycle
-                SetMovementDirection(isMoving);  //???
-                SetCurrentAnimationCycle(currentSpriteCycle);  //???
+                SetMovementDirection(isMoving);
+                SetCurrentAnimationCycle(currentSpriteCycle);
                 //AnimationUpdate();
             }
         }
@@ -420,8 +428,25 @@ public class Player : AnimatedEntity
 
     public IEnumerator LevelChangeWait(float time)
     {
-        yield return new WaitForSeconds(time); 
-        SceneManager.LoadScene("RoofTop");
+        yield return new WaitForSeconds(time);
+
+
+        currScene = SceneManager.GetActiveScene().name; //???oct20
+        //Debug.Log("LevelChangeWait curr scene " + currScene);  //???oct20
+        if (currScene == "SampleScene")  //???oct20
+        {
+            Debug.Log("LevelChangeWait Load CITY scene");  //???oct20
+            SceneManager.LoadScene("CITY");  //???oct20
+        }
+        else // if (currScene == "CITY") //???oct20
+        {
+            Debug.Log("LevelChangeWait Load RoofTop scene" );  //???oct20
+            SceneManager.LoadScene("RoofTop");  //???oct20
+        }
+
+
+        //SceneManager.LoadScene("RoofTop"); //???oct20
+
         //Time.timeScale = 1f;
         endDialogue = false;
     }
@@ -454,8 +479,8 @@ public class Player : AnimatedEntity
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
             FindObjectOfType<Heart>().TakeDamage();
-            //gameOver.PlayerLost(); //???oct
-            //gameOver.PlayerLost("SampleScene"); //???oct
+            //gameOver.PlayerLost();
+            //gameOver.PlayerLost("SampleScene");
 
             //WaterManager water = FindObjectOfType<WaterManager>();
             //water.SetWater();
@@ -467,7 +492,7 @@ public class Player : AnimatedEntity
         if (puddle!= null){
             
             Debug.Log("found puddle!");
-            FindObjectOfType<WaterManager>().IncreaseWater(5f);
+            FindObjectOfType<WaterManager>().IncreaseWater(20f); //???
             Destroy(puddle.gameObject);
 
             if ((waterSound != null) && (audioSource != null))
@@ -502,15 +527,35 @@ public class Player : AnimatedEntity
             //} else
             //{
                 endDialogue = true;
-                FindObjectOfType<LevelEndTrigger>().OnLevelComplete("Onto the rooftop!");
-                Debug.Log("#1hearts" + PlayerPrefs.GetInt("numHearts"));
-                StartCoroutine(LevelChangeWait(3f));
-                //SceneManager.LoadScene("CITY");
 
-                //Heart heartScript = FindObjectOfType<Heart>();
-                //heartScript.InitializeHearts();
-                //PlayerPrefs.SetInt("numHearts", numHearts);
-                //PlayerPrefs.Save();
+
+
+            currScene = SceneManager.GetActiveScene().name; //???oct20
+                                                            //Debug.Log("LevelChangeWait curr scene " + currScene);  //???oct20
+            if (currScene == "SampleScene")  //???oct20
+            {
+                //Debug.Log("currDialog CITY ");  //???oct20
+                currDialog = "ONTO THE CITY";  //???oct20
+            }
+            else // if (currScene == "CITY") //???oct20
+            {
+                //Debug.Log("currDialog ROOFTOP");  //???oct20
+                currDialog = "ONTO THE ROOFTOP";  //???oct20
+            }
+            FindObjectOfType<LevelEndTrigger>().OnLevelComplete(currDialog); //???oct20
+
+            //FindObjectOfType<LevelEndTrigger>().OnLevelComplete("Onto the rooftop!"); //???oct20
+
+
+
+            Debug.Log("#1hearts" + PlayerPrefs.GetInt("numHearts"));
+            StartCoroutine(LevelChangeWait(3f));
+            //SceneManager.LoadScene("CITY");
+
+            //Heart heartScript = FindObjectOfType<Heart>();
+            //heartScript.InitializeHearts();
+            //PlayerPrefs.SetInt("numHearts", numHearts);
+            //PlayerPrefs.Save();
             //}
             //FindObjectOfType<LevelEndTrigger>().ShowSpeechBubble(foodCount);
 
@@ -590,8 +635,8 @@ public class Player : AnimatedEntity
         foodCount = 0;
         //startPosition = transform.position;
 
-        //PlayerPrefs.SetInt("numHearts", 2); // set num hearts initially //???oct2
-        //PlayerPrefs.Save(); //???oct2
+        //PlayerPrefs.SetInt("numHearts", 2); // set num hearts initially
+        //PlayerPrefs.Save();
     }
 
 
