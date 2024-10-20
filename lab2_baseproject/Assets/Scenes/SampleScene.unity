@@ -2388,6 +2388,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 2ef0906473d8947ffa274809c73222fd, type: 3}
     - target: {fileID: 8447123474801615869, guid: 57a92a4ffae65884c96abc7ee8c893c2,
         type: 3}
+      propertyPath: cinematicControlled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447123474801615869, guid: 57a92a4ffae65884c96abc7ee8c893c2,
+        type: 3}
       propertyPath: IdleBackSprite.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2798,7 +2803,7 @@ PrefabInstance:
     - target: {fileID: 811939983637722150, guid: a44304063e5c241458b87954308bf6dd,
         type: 3}
       propertyPath: maxTime
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 811939983637722150, guid: a44304063e5c241458b87954308bf6dd,
         type: 3}
@@ -3324,7 +3329,7 @@ PrefabInstance:
     - target: {fileID: 5223320077589499489, guid: 659f7512d2ea34a4cb57fdeb63661883,
         type: 3}
       propertyPath: maxTime
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5223320077589499490, guid: 659f7512d2ea34a4cb57fdeb63661883,
         type: 3}
