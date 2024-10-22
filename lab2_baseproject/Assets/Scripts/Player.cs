@@ -32,9 +32,12 @@ public class Player : AnimatedEntity
     public LayerMask SolidObjectsLayer; //the foreground
 
     public float foodCount = 0;
-    public string currScene; //???oct20
-    public string currDialog; //???oct20
-    public Vector3 startPosition;  //???
+    public string currScene;
+    public string currDialog;
+    public Vector3 startPosition;
+
+    bool isFacingLeft;
+    private SpriteRenderer gunSpriteRenderer;
 
     private bool hasAbility_Dash;
     private float dashSpeed;
@@ -107,9 +110,6 @@ public class Player : AnimatedEntity
 
         foodCount = 0;
 
-        //PlayerPrefs.SetInt("numHearts", 2); // set num hearts initially
-        //PlayerPrefs.Save();
-
 
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name == "SampleScene")
@@ -122,11 +122,6 @@ public class Player : AnimatedEntity
         {
             Debug.Log("#6hearts" + PlayerPrefs.GetInt("numHearts"));
         }
-
-
-        //int maxLives = 6;  //???oct20 BAD RESETS TO 6 HEARTS GOING ONTO CITY SCENE
-        //PlayerPrefs.SetInt("numHearts", maxLives); //???oct20
-        //PlayerPrefs.Save(); //???oct20
 
         Heart heartScript = FindObjectOfType<Heart>();
         heartScript.InitializeHearts();
@@ -366,12 +361,6 @@ public class Player : AnimatedEntity
         }
 
 
-        // Temporary, to test Heart system
-        //if (Input.GetKeyDown(KeyCode.H)) // For testing, press H to take damage ???
-        //{                                           
-        //    FindObjectOfType<Heart>().TakeDamage();
-        //}
-
         //if (hasAbility_Dash && Input.GetKeyDown(KeyCode.Space))
         //{
         //    Dash();
@@ -406,6 +395,29 @@ public class Player : AnimatedEntity
             Vector3 gunPosition = new Vector3(Mathf.Cos(rotZ * Mathf.Deg2Rad), Mathf.Sin(rotZ * Mathf.Deg2Rad), 0) * distanceFromPlayer;
 
             aimtransform.localPosition = gunPosition;
+
+            isFacingLeft = mousePointer.x < transform.position.x;
+
+            Transform gunTransform = transform.Find("Aim/Gun");  // access gun
+
+            if (gunTransform != null)
+            {
+                gunSpriteRenderer = gunTransform.GetComponent<SpriteRenderer>();
+            }
+
+            // flip gun image depending where mouse cursor is
+            if (gunSpriteRenderer != null)
+            {
+                if (isFacingLeft)
+                {
+                    gunSpriteRenderer.flipY = true;
+                }
+                else
+                {
+                    gunSpriteRenderer.flipY = false;
+                }
+            }
+
             //if (angle <= 90f || angle >= 270f)
             //{
             //    aimtransform.localPosition = new Vector3(1f, 1f, 0);
@@ -431,21 +443,18 @@ public class Player : AnimatedEntity
         yield return new WaitForSeconds(time);
 
 
-        currScene = SceneManager.GetActiveScene().name; //???oct20
-        //Debug.Log("LevelChangeWait curr scene " + currScene);  //???oct20
-        if (currScene == "SampleScene")  //???oct20
-        {
-            Debug.Log("LevelChangeWait Load CITY scene");  //???oct20
-            SceneManager.LoadScene("CITY");  //???oct20
-        }
-        else // if (currScene == "CITY") //???oct20
-        {
-            Debug.Log("LevelChangeWait Load RoofTop scene" );  //???oct20
-            SceneManager.LoadScene("RoofTop");  //???oct20
-        }
+        currScene = SceneManager.GetActiveScene().name;
 
-
-        //SceneManager.LoadScene("RoofTop"); //???oct20
+        if (currScene == "SampleScene")
+        {
+            Debug.Log("LevelChangeWait Load CITY scene");
+            SceneManager.LoadScene("CITY");
+        }
+        else // if (currScene == "CITY")
+        {
+            Debug.Log("LevelChangeWait Load RoofTop scene" );
+            SceneManager.LoadScene("RoofTop");
+        }
 
         //Time.timeScale = 1f;
         endDialogue = false;
@@ -476,14 +485,9 @@ public class Player : AnimatedEntity
             //{
             //    playerDead.Play();
             //}
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
             FindObjectOfType<Heart>().TakeDamage();
-            //gameOver.PlayerLost();
-            //gameOver.PlayerLost("SampleScene");
-
-            //WaterManager water = FindObjectOfType<WaterManager>();
-            //water.SetWater();
         }
 
 
@@ -503,7 +507,6 @@ public class Player : AnimatedEntity
 
 
         FoodObject food = other.gameObject.GetComponent<FoodObject>();
-        //FoodImage foodImage = other.gameObject.GetComponent<FoodImage>();
 
         if (food != null)
         {
@@ -514,12 +517,10 @@ public class Player : AnimatedEntity
         }
 
         LevelEndTrigger levelEnd = other.gameObject.GetComponent<LevelEndTrigger>();
-        //FoodImage foodImage = other.gameObject.GetComponent<OnTriggerEnter>();
 
         if (levelEnd != null)
         {
-            //FindObjectOfType<LevelEndTrigger>().ShowSpeechBubble();
-            Vector3 playerPosition = this.transform.position; //???
+            Vector3 playerPosition = this.transform.position;
 
             //if (foodCount < 2)
             //{
@@ -530,25 +531,18 @@ public class Player : AnimatedEntity
 
 
 
-            currScene = SceneManager.GetActiveScene().name; //???oct20
-                                                            //Debug.Log("LevelChangeWait curr scene " + currScene);  //???oct20
-            if (currScene == "SampleScene")  //???oct20
+            currScene = SceneManager.GetActiveScene().name;
+                                                           
+            if (currScene == "SampleScene")
             {
-                //Debug.Log("currDialog CITY ");  //???oct20
-                currDialog = "ONTO THE CITY";  //???oct20
+                currDialog = "ONTO THE CITY";
             }
-            else // if (currScene == "CITY") //???oct20
+            else // if (currScene == "CITY")
             {
-                //Debug.Log("currDialog ROOFTOP");  //???oct20
-                currDialog = "ONTO THE ROOFTOP";  //???oct20
+                currDialog = "ONTO THE ROOFTOP";
             }
-            FindObjectOfType<LevelEndTrigger>().OnLevelComplete(currDialog); //???oct20
+            FindObjectOfType<LevelEndTrigger>().OnLevelComplete(currDialog);
 
-            //FindObjectOfType<LevelEndTrigger>().OnLevelComplete("Onto the rooftop!"); //???oct20
-
-
-
-            Debug.Log("#1hearts" + PlayerPrefs.GetInt("numHearts"));
             StartCoroutine(LevelChangeWait(3f));
             //SceneManager.LoadScene("CITY");
 
