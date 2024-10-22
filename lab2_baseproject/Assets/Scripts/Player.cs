@@ -580,7 +580,7 @@ public class Player : AnimatedEntity
                 shootAnimator.SetTrigger("Shoot");
                 GameObject gunObject = guntransform.gameObject;
                 Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
-                
+                CineMCamShake.Instance.ShakeCamera(5f, .1f);
                 audioSource.PlayOneShot(shootSound);
             }
             //GameObject.Instantiate(bulletPrefab, guntransform.position, guntransform.rotation, gunObject.transform);
