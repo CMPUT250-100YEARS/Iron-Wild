@@ -50,6 +50,6 @@ MonoBehaviour:
   speed: 0.001
   xPos: 0
   yPos: 0
-  maxTime: 50
+  maxTime: 100
   timeLeft: 0
   timesUpText: {fileID: 0}
