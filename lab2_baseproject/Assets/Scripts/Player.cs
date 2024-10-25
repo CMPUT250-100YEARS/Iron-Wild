@@ -38,6 +38,9 @@ public class Player : AnimatedEntity
 
     bool isFacingLeft;
     private SpriteRenderer gunSpriteRenderer;
+    Transform weaponend;
+    bool PrevShootRight = false;
+    bool PrevShootLeft = false;
 
     private bool hasAbility_Dash;
     private float dashSpeed;
@@ -99,7 +102,8 @@ public class Player : AnimatedEntity
         audioSource = gameObject.GetComponent<AudioSource>();
 
         aimTransform = transform.Find("Aim");
-        Transform weaponend = aimTransform.Find("weaponend");
+        weaponend = aimTransform.Find("weaponend");
+        //Transform weaponend = aimTransform.Find("weaponend");
         shootAnimator = weaponend.GetComponent<Animator>();
 
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -567,15 +571,60 @@ public class Player : AnimatedEntity
             Vector3 rotation = mousePointer - transform.position;
             float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
             aimTransform.rotation = Quaternion.Euler(0, 0, rotZ);
-
             Transform guntransform = aimTransform.Find("Gun");
+
+            Vector3 guntransformGun;
+            Vector3 bulletOffset = new Vector3(0, 0.2f, 0);     // Align bullets with gun
+            Vector3 weaponEndOffset = new Vector3(0, -0.3f, 0); // Align weapon end with gun
+
             if (guntransform != null)
             {
-                shootAnimator.SetTrigger("Shoot");
                 GameObject gunObject = guntransform.gameObject;
-                Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
-                CineMCamShake.Instance.ShakeCamera(5f, .1f);
-                audioSource.PlayOneShot(shootSound);
+
+                if (isFacingLeft)
+                {
+                    guntransformGun = guntransform.position + bulletOffset; // Position the stream of bullets
+                    weaponend.localPosition += weaponEndOffset; // Position the weapon end
+                    shootAnimator.SetTrigger("Shoot");
+                    //GameObject gunObject = guntransform.gameObject;
+                    //Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
+                    Instantiate(bulletPrefab, guntransformGun, Quaternion.identity);
+
+                    // TEMP COMMENTED OUT
+                    //CineMCamShake.Instance.ShakeCamera(5f, .1f);
+                    //audioSource.PlayOneShot(shootSound);
+
+                    // If did not switch gun direction, then reset weapon end for next time
+                    if (PrevShootLeft)
+                    {
+                        weaponend.localPosition -= weaponEndOffset;
+
+                        //guntransformGun -= bulletOffset; //???oct 24 t e m p
+                    }
+
+                    PrevShootLeft = true;
+                    PrevShootRight = false;
+                }
+                else // Player is facing right
+                {
+                    // If switched gun direction, then reposition weapon end
+                    if (PrevShootLeft)
+                    {
+                        weaponend.localPosition -= weaponEndOffset;
+                        shootAnimator.SetTrigger("Shoot");
+                        Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
+
+                        PrevShootRight = true;
+                        PrevShootLeft = false;
+
+                    }
+                    else
+                    {
+                        shootAnimator.SetTrigger("Shoot");
+                        Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
+                    }
+                }
+
             }
             //GameObject.Instantiate(bulletPrefab, guntransform.position, guntransform.rotation, gunObject.transform);
         }
