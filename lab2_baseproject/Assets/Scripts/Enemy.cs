@@ -11,14 +11,17 @@ public class Enemy : AnimatedEntity
     private Transform detectionZone;
     private Transform target;
     private float followSpeed = 2f;
+    public float avoidanceRadius = 1.5f; // radius to avoid other enemy
 
     public LayerMask SolidObjectsLayer;
+    public LayerMask EnemyLayer;
 
     //Sprite list based on direction
     public List<Sprite> BackSpriteList;
     public List<Sprite> RightSpriteList;
     public List<Sprite> LeftSpriteList;
-    public List<Sprite> FrontSpritList;
+    public List<Sprite> FrontSpriteList;
+    public List<Sprite> IdleSpriteList;
 
 
     public List<Sprite> InterruptedCycle;
@@ -68,7 +71,7 @@ public class Enemy : AnimatedEntity
 
             else if (angle > 225f && angle <= 315f)
             {
-                currentSpriteCycle = FrontSpritList;
+                currentSpriteCycle = FrontSpriteList;
             }
 
             else if (angle > 315f || angle <= 45f)
@@ -85,6 +88,8 @@ public class Enemy : AnimatedEntity
             //transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
 
             //transform.position = Vector3.Lerp(transform.position, target.position, followSpeed * Time.deltaTime);
+            //AvoidOtherEnemies(ref targetPos);
+
             if (!IsCollidingWith(targetPos))
             {
                 isMoving = true;
@@ -94,6 +99,7 @@ public class Enemy : AnimatedEntity
             else
             {
                 isMoving = false;
+                currentSpriteCycle = IdleSpriteList;
             }
 
             SetMovementDirection(isMoving);
@@ -101,6 +107,20 @@ public class Enemy : AnimatedEntity
         }
         //transform.position += new Vector3(Random.Range(-1 * RangeX, RangeX), Random.Range(-1 * RangeY, RangeY)) * Time.deltaTime;
     }
+
+    //void AvoidOtherEnemies(ref Vector3 targetPos)
+    //{
+    //    Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, avoidanceRadius, EnemyLayer);
+    //    foreach(Collider2D collider in colliders)
+    //    { 
+    //        if (collider.gameObject != gameObject)
+    //        {
+    //            Vector3 awayDirection = (transform.position - collider.transform.position).normalized;
+    //            float distance = Vector3.Distance(transform.position, collider.transform.position);
+    //            targetPos += awayDirection * (avoidanceRadius - distance) * 1f;
+    //        }
+    //    }    
+    //}
 
     bool IsCollidingWith(Vector3 targetPos)
     {
