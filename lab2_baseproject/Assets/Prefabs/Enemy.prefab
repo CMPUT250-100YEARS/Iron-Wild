@@ -101,9 +101,13 @@ MonoBehaviour:
     type: 3}
   Framerate: 12
   SpriteRenderer: {fileID: 2326124504846993983}
+  avoidanceRadius: 5
   SolidObjectsLayer:
     serializedVersion: 2
     m_Bits: 256
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   BackSpriteList:
   - {fileID: 6042456677541188859, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
   - {fileID: 3495659527658872099, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
@@ -119,11 +123,13 @@ MonoBehaviour:
   - {fileID: -2403379810841390452, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
   - {fileID: -8618214903832800261, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
   - {fileID: -7918536089625718045, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
-  FrontSpritList:
+  FrontSpriteList:
   - {fileID: 1976690480719741105, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
   - {fileID: 7669009766056204481, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
   - {fileID: 4930585490228199060, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
   - {fileID: -2760536601800124, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  IdleSpriteList:
+  - {fileID: 1976690480719741105, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
   InterruptedCycle: []
 --- !u!61 &2326124504846993969
 BoxCollider2D:
