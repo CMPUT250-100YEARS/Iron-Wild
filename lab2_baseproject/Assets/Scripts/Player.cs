@@ -14,7 +14,7 @@ public struct CinematicStep
 
 public class Player : AnimatedEntity
 {
-    
+
     public float Speed = 5;  // 5
     private AudioSource audioSource;
 
@@ -94,6 +94,12 @@ public class Player : AnimatedEntity
     private float minDiff = 0.00001f;
     // END ADDED
 
+    public bool tutorialPuddle = false;
+    public bool tutorialFood = false;
+    public bool tutorialMutation = false;
+    public string text_message;
+    public bool showText = true;
+
 
     void Start()
     {
@@ -119,7 +125,7 @@ public class Player : AnimatedEntity
         if (currentScene.name == "SampleScene")
         {
             PlayerPrefs.SetInt("numHearts", 6);  // set num hearts initially 
-            PlayerPrefs.Save(); 
+            PlayerPrefs.Save();
             Debug.Log("#2hearts" + PlayerPrefs.GetInt("numHearts"));
         }
         else
@@ -130,6 +136,11 @@ public class Player : AnimatedEntity
         Heart heartScript = FindObjectOfType<Heart>();
         heartScript.InitializeHearts();
         FindObjectOfType<Heart>().UpdateHearts();
+
+        uiCanvas.SetActive(true);
+        text_message = "Move around using the arrow keys";
+        StartCoroutine(AnimateSpeech(text_message));
+        StartCoroutine(Pause(5f));
     }
 
     // Update is called once per frame
@@ -147,7 +158,7 @@ public class Player : AnimatedEntity
         float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
 
         //Make angle between 0 and 360 degrees
-        if (angle < 0 ) { angle += 360f; }
+        if (angle < 0) { angle += 360f; }
 
         //******************************************8
         AimGun(angle);
@@ -184,7 +195,7 @@ public class Player : AnimatedEntity
                         _cutsceneTimer += Time.deltaTime;
                     }
                 }
-                
+
                 if ((transform.position.y - _priorPosition.y) > minDiff)
                 {
                     //Moving Up
@@ -229,7 +240,7 @@ public class Player : AnimatedEntity
                 {
                     AnimationUpdate();
                 }
-                else 
+                else
                 {
                     if (_direction == 0)
                     {
@@ -314,7 +325,7 @@ public class Player : AnimatedEntity
                 {
                     currentSpriteCycle = BackSpriteList; //when Moving
                     if (!isMoving) { currentSpriteCycle = IdleBackSprite; } //***************when not moving
-                    }
+                }
 
                 else if (angle > 135f && angle <= 225f)
                 {
@@ -358,8 +369,9 @@ public class Player : AnimatedEntity
             Shoot();
         }
         else
-        {   
-            if (cooldown >= 0.0f){
+        {
+            if (cooldown >= 0.0f)
+            {
                 cooldown -= Time.deltaTime;
             }
         }
@@ -382,6 +394,11 @@ public class Player : AnimatedEntity
             {
                 isDashing = false;
             }
+        }
+
+        if (!showText)  // tutorial text
+        {
+            uiCanvas.SetActive(false);
         }
     }
 
@@ -442,6 +459,19 @@ public class Player : AnimatedEntity
         return false; //no collision - player can move
     }
 
+    public IEnumerator Pause(float time)
+    {
+        yield return new WaitForSeconds(time);
+        text_message = "I need to find water so my water level doesn't run out";
+        StartCoroutine(AnimateSpeech(text_message));
+    }
+
+    public IEnumerator Pause2(float time)
+    {
+        yield return new WaitForSeconds(time);
+        showText = false;
+    }
+
     public IEnumerator LevelChangeWait(float time)
     {
         yield return new WaitForSeconds(time);
@@ -456,7 +486,7 @@ public class Player : AnimatedEntity
         }
         else // if (currScene == "CITY")
         {
-            Debug.Log("LevelChangeWait Load RoofTop scene" );
+            Debug.Log("LevelChangeWait Load RoofTop scene");
             SceneManager.LoadScene("RoofTop");
         }
 
@@ -464,7 +494,26 @@ public class Player : AnimatedEntity
         endDialogue = false;
     }
 
-    void OnTriggerEnter2D(Collider2D other){
+
+    public IEnumerator AnimateSpeech(string message)
+    {
+        uiCanvas.SetActive(true);
+        text.text = "";
+        //speechBubble.transform.position += new Vector3(50f, 50f, 0);
+        //uiCanvas.transform.position += new Vector3(100f, 100f, 0);
+
+        foreach (char letter in message)
+        {
+            text.text += letter;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        //yield return new WaitForSeconds(2f);
+    }
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
         Debug.Log("Player collider entered with: " + other.gameObject.name);
 
         Pickup pickup = other.gameObject.GetComponent<Pickup>();
@@ -477,28 +526,42 @@ public class Player : AnimatedEntity
             {
                 audioSource.Play();
             }
+
+            if (!tutorialMutation)
+            {
+                tutorialMutation = true;
+                showText = true;
+                //Debug.Log("found tutorial puddle!");
+                //uiCanvas.SetActive(true);
+                text_message = "Watch out for enemies. Aim and shoot with your mouse. Be careful, otherwise you may lose a heart!";
+                StartCoroutine(AnimateSpeech(text_message));
+                StartCoroutine(Pause2(10f));
+            }
             //pickup.Reset();
         }
 
 
 
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        if(enemy!=null){
+        if (enemy != null)
+        {
 
             //if (playerDead != null)
             //{
             //    playerDead.Play();
             //}
-            
+
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
             FindObjectOfType<Heart>().TakeDamage();
         }
 
 
 
+
         PuddleScript puddle = other.gameObject.GetComponent<PuddleScript>();
-        if (puddle!= null){
-            
+        if (puddle != null)
+        {
+
             Debug.Log("found puddle!");
             FindObjectOfType<WaterManager>().IncreaseWater(20f); //???
             Destroy(puddle.gameObject);
@@ -506,6 +569,16 @@ public class Player : AnimatedEntity
             if ((waterSound != null) && (audioSource != null))
             {
                 audioSource.PlayOneShot(waterSound);
+            }
+
+            if (!tutorialPuddle)
+            {
+                tutorialPuddle = true;
+                showText = true;
+                //Debug.Log("found tutorial puddle!");
+                //uiCanvas.SetActive(true);
+                text_message = "Now it's time to find food";
+                StartCoroutine(AnimateSpeech(text_message));
             }
         }
 
@@ -518,6 +591,15 @@ public class Player : AnimatedEntity
             FindObjectOfType<FoodImage>().FoundFoods();
             Destroy(food.gameObject);
 
+            if (!tutorialFood)
+            {
+                tutorialFood = true;
+                showText = true;
+                //Debug.Log("found tutorial puddle!");
+                //uiCanvas.SetActive(true);
+                text_message = "Mutations can make you run faster";
+                StartCoroutine(AnimateSpeech(text_message));
+            }
         }
 
         LevelEndTrigger levelEnd = other.gameObject.GetComponent<LevelEndTrigger>();
@@ -531,12 +613,12 @@ public class Player : AnimatedEntity
             //    FindObjectOfType<LevelEndTrigger>().OnLevelComplete("I need more food!");
             //} else
             //{
-                endDialogue = true;
+            endDialogue = true;
 
 
 
             currScene = SceneManager.GetActiveScene().name;
-                                                           
+
             if (currScene == "SampleScene")
             {
                 currDialog = "ONTO THE CITY";
@@ -640,36 +722,36 @@ public class Player : AnimatedEntity
     //    transform.position = Vector3.MoveTowards(transform.position, Vector3.right, 5);
     //}
 
-//    private void StartDash()
-//    {
-//        isDashing = true;
-//        dashTime = dashDuration;
+    //    private void StartDash()
+    //    {
+    //        isDashing = true;
+    //        dashTime = dashDuration;
 
-//        // Get the direction the player is currently moving or facing
-//        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+    //        // Get the direction the player is currently moving or facing
+    //        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
-//        // If no input, default to dashing right
-//        if (dashDirection == Vector2.zero)
-//        {
-//            dashDirection = Vector2.right; // Default direction
-//        }
+    //        // If no input, default to dashing right
+    //        if (dashDirection == Vector2.zero)
+    //        {
+    //            dashDirection = Vector2.right; // Default direction
+    //        }
 
-//        // Calculate the potential target position after dash
-//        Vector2 targetPos = rb.position + dashDirection * dashSpeed * dashDuration;
+    //        // Calculate the potential target position after dash
+    //        Vector2 targetPos = rb.position + dashDirection * dashSpeed * dashDuration;
 
-//        // Check if the player would collide with a boundary
-//        if (!IsCollidingWith(targetPos))
-//        {
-//            // Apply the dash velocity
-//            rb.velocity = dashDirection * dashSpeed;
-//        }
-//    }
+    //        // Check if the player would collide with a boundary
+    //        if (!IsCollidingWith(targetPos))
+    //        {
+    //            // Apply the dash velocity
+    //            rb.velocity = dashDirection * dashSpeed;
+    //        }
+    //    }
 
-//    private void StopDash()
-//    {
-//        isDashing = false;
-//        rb.velocity = Vector2.zero; // Stops movement after the dash ends
-//    }
+    //    private void StopDash()
+    //    {
+    //        isDashing = false;
+    //        rb.velocity = Vector2.zero; // Stops movement after the dash ends
+    //    }
 
     public void Restart()
     {
