@@ -102,6 +102,8 @@ MonoBehaviour:
   Framerate: 12
   SpriteRenderer: {fileID: 2326124504846993983}
   avoidanceRadius: 5
+  bulletEnemyPrefab: {fileID: 4628185361730926903, guid: daad0c88166ef034c94feca56e3e93b0,
+    type: 3}
   SolidObjectsLayer:
     serializedVersion: 2
     m_Bits: 256

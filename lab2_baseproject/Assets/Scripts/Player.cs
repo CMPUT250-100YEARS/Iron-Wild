@@ -22,7 +22,7 @@ public class Player : AnimatedEntity
 
 
     public GameObject bulletPrefab;
-    private float fireRate = 0.2f;
+    private float fireRate = 0.4f;
     public float cooldown;
 
     private Camera mainCamera;

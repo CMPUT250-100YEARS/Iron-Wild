@@ -241,12 +241,13 @@ MonoBehaviour:
   - {fileID: 6796656825888281025, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
   bulletPrefab: {fileID: 4628185361730926903, guid: 06ab7979b43764bbf88332e1f33df0aa,
     type: 3}
-  fireRate: 0.5
   cooldown: 0
   SolidObjectsLayer:
     serializedVersion: 2
     m_Bits: 256
   foodCount: 0
+  currScene: 
+  currDialog: 
   startPosition: {x: 0, y: 0, z: 0}
   waterSound: {fileID: 8300000, guid: 649b09136f7829b4e999883e68816d33, type: 3}
   shootSound: {fileID: 8300000, guid: 2ef0906473d8947ffa274809c73222fd, type: 3}
@@ -274,6 +275,17 @@ MonoBehaviour:
   IdleRightSprite: []
   IdleLeftSprite: []
   IdleFrontSprite: []
+  endDialogue: 0
+  cinematicControlled: 1
+  cinematicSteps: []
+  uiCanvas: {fileID: 0}
+  text: {fileID: 0}
+  cutsceneSpeed: 2
+  tutorialPuddle: 0
+  tutorialFood: 0
+  tutorialMutation: 0
+  text_message: 
+  showText: 1
 --- !u!82 &8447123474801615808
 AudioSource:
   m_ObjectHideFlags: 0

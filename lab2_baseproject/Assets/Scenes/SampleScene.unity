@@ -842,6 +842,11 @@ PrefabInstance:
       propertyPath: avoidanceRadius
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2326124504846993969, guid: 2db59557b053b164fa47c2f06c1b01ce,
+        type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2326124504846993980, guid: 2db59557b053b164fa47c2f06c1b01ce,
         type: 3}
       propertyPath: m_Name
@@ -911,6 +916,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayerID
       value: -1060018105
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326124505376862465, guid: 2db59557b053b164fa47c2f06c1b01ce,
+        type: 3}
+      propertyPath: m_Radius
+      value: 6.64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2db59557b053b164fa47c2f06c1b01ce, type: 3}
