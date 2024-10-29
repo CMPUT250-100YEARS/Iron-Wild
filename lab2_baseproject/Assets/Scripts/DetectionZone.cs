@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ public class DetectionZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -28,7 +29,7 @@ public class DetectionZone : MonoBehaviour
         if (player != null)
         {
             Debug.Log("Sending Info to parent!");
-            parent.OnDetectionTriggerEnter(other);   
+            parent.OnDetectionTriggerEnter(other);
         }
 
     }
@@ -44,3 +45,4 @@ public class DetectionZone : MonoBehaviour
         }
     }
 }
+

@@ -14,7 +14,7 @@ public struct CinematicStep
 
 public class Player : AnimatedEntity
 {
-    
+
     public float Speed = 5;  // 5
     private AudioSource audioSource;
 
@@ -32,7 +32,15 @@ public class Player : AnimatedEntity
     public LayerMask SolidObjectsLayer; //the foreground
 
     public float foodCount = 0;
-    public Vector3 startPosition;  //???
+    public string currScene;
+    public string currDialog;
+    public Vector3 startPosition;
+
+    bool isFacingLeft;
+    private SpriteRenderer gunSpriteRenderer;
+    Transform weaponend;
+    bool PrevShootRight = false;
+    bool PrevShootLeft = false;
 
     private bool hasAbility_Dash;
     private float dashSpeed;
@@ -86,6 +94,12 @@ public class Player : AnimatedEntity
     private float minDiff = 0.00001f;
     // END ADDED
 
+    public bool tutorialPuddle = false;
+    public bool tutorialFood = false;
+    public bool tutorialMutation = false;
+    public string text_message;
+    public bool showText = true;
+
 
     void Start()
     {
@@ -94,7 +108,8 @@ public class Player : AnimatedEntity
         audioSource = gameObject.GetComponent<AudioSource>();
 
         aimTransform = transform.Find("Aim");
-        Transform weaponend = aimTransform.Find("weaponend");
+        weaponend = aimTransform.Find("weaponend");
+        //Transform weaponend = aimTransform.Find("weaponend");
         shootAnimator = weaponend.GetComponent<Animator>();
 
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -103,26 +118,29 @@ public class Player : AnimatedEntity
         hasAbility_Dash = false;
         dashSpeed = Speed * 4;
 
-        foodCount = 0; //???
-
-        //PlayerPrefs.SetInt("numHearts", 2); // set num hearts initially //???oct2
-        //PlayerPrefs.Save(); //???oct2
+        foodCount = 0;
 
 
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name == "SampleScene")
         {
             PlayerPrefs.SetInt("numHearts", 6);  // set num hearts initially 
-            PlayerPrefs.Save(); 
+            PlayerPrefs.Save();
             Debug.Log("#2hearts" + PlayerPrefs.GetInt("numHearts"));
         }
-        else //???
-        {//???
-            Debug.Log("#6hearts" + PlayerPrefs.GetInt("numHearts")); //???
-        }//???
-        Heart heartScript = FindObjectOfType<Heart>(); //???
-        heartScript.InitializeHearts(); //???
-        FindObjectOfType<Heart>().UpdateHearts(); //???
+        else
+        {
+            Debug.Log("#6hearts" + PlayerPrefs.GetInt("numHearts"));
+        }
+
+        Heart heartScript = FindObjectOfType<Heart>();
+        heartScript.InitializeHearts();
+        FindObjectOfType<Heart>().UpdateHearts();
+
+        uiCanvas.SetActive(true);
+        text_message = "Move around using the arrow keys";
+        StartCoroutine(AnimateSpeech(text_message));
+        StartCoroutine(Pause(5f));
     }
 
     // Update is called once per frame
@@ -140,7 +158,7 @@ public class Player : AnimatedEntity
         float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
 
         //Make angle between 0 and 360 degrees
-        if (angle < 0 ) { angle += 360f; }
+        if (angle < 0) { angle += 360f; }
 
         //******************************************8
         AimGun(angle);
@@ -177,7 +195,7 @@ public class Player : AnimatedEntity
                         _cutsceneTimer += Time.deltaTime;
                     }
                 }
-                
+
                 if ((transform.position.y - _priorPosition.y) > minDiff)
                 {
                     //Moving Up
@@ -222,7 +240,7 @@ public class Player : AnimatedEntity
                 {
                     AnimationUpdate();
                 }
-                else 
+                else
                 {
                     if (_direction == 0)
                     {
@@ -257,7 +275,7 @@ public class Player : AnimatedEntity
                 //check input WASD and store direction
                 if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
                 {
-                    //Debug.Log("Player Update up-arrow" + PlayerPrefs.GetInt("numHearts")); //???oct2
+                    //Debug.Log("Player Update up-arrow" + PlayerPrefs.GetInt("numHearts"));
                     //transform.position+= Vector3.up*Time.deltaTime*Speed;
                     inputDirection += Vector3.up;
                     isMoving = true;
@@ -286,7 +304,7 @@ public class Player : AnimatedEntity
                 //If isMoving ==true, check for collision(foreground) then move
                 if (isMoving)
                 {
-                    //Debug.Log("Player Update isMoving" + PlayerPrefs.GetInt("numHearts")); //???oct2
+                    //Debug.Log("Player Update isMoving" + PlayerPrefs.GetInt("numHearts"));
                     Vector3 targetPos = transform.position + (inputDirection.normalized * Time.deltaTime * Speed);
                     //Vector3 targerPos = rb.position + inputDirection * Time.deltaTime * Speed; //inputDirection Vector2.up/down/...
                     if (!IsCollidingWith(targetPos))
@@ -307,7 +325,7 @@ public class Player : AnimatedEntity
                 {
                     currentSpriteCycle = BackSpriteList; //when Moving
                     if (!isMoving) { currentSpriteCycle = IdleBackSprite; } //***************when not moving
-                    }
+                }
 
                 else if (angle > 135f && angle <= 225f)
                 {
@@ -327,8 +345,8 @@ public class Player : AnimatedEntity
                     if (!isMoving) { currentSpriteCycle = IdleRightSprite; } //***************when not moving
                 }
                 //call SetMovementDirection and SetCurrentAnimationCycle
-                SetMovementDirection(isMoving);  //???
-                SetCurrentAnimationCycle(currentSpriteCycle);  //???
+                SetMovementDirection(isMoving);
+                SetCurrentAnimationCycle(currentSpriteCycle);
                 //AnimationUpdate();
             }
         }
@@ -351,18 +369,13 @@ public class Player : AnimatedEntity
             Shoot();
         }
         else
-        {   
-            if (cooldown >= 0.0f){
+        {
+            if (cooldown >= 0.0f)
+            {
                 cooldown -= Time.deltaTime;
             }
         }
 
-
-        // Temporary, to test Heart system
-        if (Input.GetKeyDown(KeyCode.H)) // For testing, press H to take damage ???
-        {                                           
-            FindObjectOfType<Heart>().TakeDamage();
-        }
 
         //if (hasAbility_Dash && Input.GetKeyDown(KeyCode.Space))
         //{
@@ -382,6 +395,11 @@ public class Player : AnimatedEntity
                 isDashing = false;
             }
         }
+
+        if (!showText)  // tutorial text
+        {
+            uiCanvas.SetActive(false);
+        }
     }
 
     void AimGun(float angle)
@@ -398,6 +416,29 @@ public class Player : AnimatedEntity
             Vector3 gunPosition = new Vector3(Mathf.Cos(rotZ * Mathf.Deg2Rad), Mathf.Sin(rotZ * Mathf.Deg2Rad), 0) * distanceFromPlayer;
 
             aimtransform.localPosition = gunPosition;
+
+            isFacingLeft = mousePointer.x < transform.position.x;
+
+            Transform gunTransform = transform.Find("Aim/Gun");  // access gun
+
+            if (gunTransform != null)
+            {
+                gunSpriteRenderer = gunTransform.GetComponent<SpriteRenderer>();
+            }
+
+            // flip gun image depending where mouse cursor is
+            if (gunSpriteRenderer != null)
+            {
+                if (isFacingLeft)
+                {
+                    gunSpriteRenderer.flipY = true;
+                }
+                else
+                {
+                    gunSpriteRenderer.flipY = false;
+                }
+            }
+
             //if (angle <= 90f || angle >= 270f)
             //{
             //    aimtransform.localPosition = new Vector3(1f, 1f, 0);
@@ -418,15 +459,61 @@ public class Player : AnimatedEntity
         return false; //no collision - player can move
     }
 
+    public IEnumerator Pause(float time)
+    {
+        yield return new WaitForSeconds(time);
+        text_message = "I need to find water so my water level doesn't run out";
+        StartCoroutine(AnimateSpeech(text_message));
+    }
+
+    public IEnumerator Pause2(float time)
+    {
+        yield return new WaitForSeconds(time);
+        showText = false;
+    }
+
     public IEnumerator LevelChangeWait(float time)
     {
-        yield return new WaitForSeconds(time); 
-        SceneManager.LoadScene("CITY");
+        yield return new WaitForSeconds(time);
+
+
+        currScene = SceneManager.GetActiveScene().name;
+
+        if (currScene == "SampleScene")
+        {
+            Debug.Log("LevelChangeWait Load CITY scene");
+            SceneManager.LoadScene("CITY");
+        }
+        else // if (currScene == "CITY")
+        {
+            Debug.Log("LevelChangeWait Load RoofTop scene");
+            SceneManager.LoadScene("RoofTop");
+        }
+
         //Time.timeScale = 1f;
         endDialogue = false;
     }
 
-    void OnTriggerEnter2D(Collider2D other){
+
+    public IEnumerator AnimateSpeech(string message)
+    {
+        uiCanvas.SetActive(true);
+        text.text = "";
+        //speechBubble.transform.position += new Vector3(50f, 50f, 0);
+        //uiCanvas.transform.position += new Vector3(100f, 100f, 0);
+
+        foreach (char letter in message)
+        {
+            text.text += letter;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        //yield return new WaitForSeconds(2f);
+    }
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
         Debug.Log("Player collider entered with: " + other.gameObject.name);
 
         Pickup pickup = other.gameObject.GetComponent<Pickup>();
@@ -439,44 +526,64 @@ public class Player : AnimatedEntity
             {
                 audioSource.Play();
             }
+
+            if (!tutorialMutation)
+            {
+                tutorialMutation = true;
+                showText = true;
+                //Debug.Log("found tutorial puddle!");
+                //uiCanvas.SetActive(true);
+                text_message = "Watch out for enemies. Aim and shoot with your mouse. Be careful, otherwise you may lose a heart!";
+                StartCoroutine(AnimateSpeech(text_message));
+                StartCoroutine(Pause2(10f));
+            }
             //pickup.Reset();
         }
 
 
 
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        if(enemy!=null){
+        if (enemy != null)
+        {
 
             //if (playerDead != null)
             //{
             //    playerDead.Play();
             //}
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
-            //gameOver.PlayerLost(); //???oct
-            gameOver.PlayerLost("SampleScene"); //???oct
-            //WaterManager water = FindObjectOfType<WaterManager>();
-            //water.SetWater();
+            FindObjectOfType<Heart>().TakeDamage();
         }
 
 
 
+
         PuddleScript puddle = other.gameObject.GetComponent<PuddleScript>();
-        if (puddle!= null){
-            
+        if (puddle != null)
+        {
+
             Debug.Log("found puddle!");
-            FindObjectOfType<WaterManager>().IncreaseWater(5f);
+            FindObjectOfType<WaterManager>().IncreaseWater(20f); //???
             Destroy(puddle.gameObject);
 
             if ((waterSound != null) && (audioSource != null))
             {
                 audioSource.PlayOneShot(waterSound);
             }
+
+            if (!tutorialPuddle)
+            {
+                tutorialPuddle = true;
+                showText = true;
+                //Debug.Log("found tutorial puddle!");
+                //uiCanvas.SetActive(true);
+                text_message = "Now it's time to find food";
+                StartCoroutine(AnimateSpeech(text_message));
+            }
         }
 
 
         FoodObject food = other.gameObject.GetComponent<FoodObject>();
-        //FoodImage foodImage = other.gameObject.GetComponent<FoodImage>();
 
         if (food != null)
         {
@@ -484,32 +591,52 @@ public class Player : AnimatedEntity
             FindObjectOfType<FoodImage>().FoundFoods();
             Destroy(food.gameObject);
 
+            if (!tutorialFood)
+            {
+                tutorialFood = true;
+                showText = true;
+                //Debug.Log("found tutorial puddle!");
+                //uiCanvas.SetActive(true);
+                text_message = "Mutations can make you run faster";
+                StartCoroutine(AnimateSpeech(text_message));
+            }
         }
 
         LevelEndTrigger levelEnd = other.gameObject.GetComponent<LevelEndTrigger>();
-        //FoodImage foodImage = other.gameObject.GetComponent<OnTriggerEnter>();
 
         if (levelEnd != null)
         {
-            //FindObjectOfType<LevelEndTrigger>().ShowSpeechBubble();
-            Vector3 playerPosition = this.transform.position; //???
+            Vector3 playerPosition = this.transform.position;
 
-            if (foodCount < 2)
-            {
-                FindObjectOfType<LevelEndTrigger>().OnLevelComplete("I need more food!");
-            } else
-            {
-                endDialogue = true;
-                FindObjectOfType<LevelEndTrigger>().OnLevelComplete("Onto the next level!");
-                Debug.Log("#1hearts" + PlayerPrefs.GetInt("numHearts"));
-                StartCoroutine(LevelChangeWait(3f));
-                //SceneManager.LoadScene("CITY");
+            //if (foodCount < 2)
+            //{
+            //    FindObjectOfType<LevelEndTrigger>().OnLevelComplete("I need more food!");
+            //} else
+            //{
+            endDialogue = true;
 
-                //Heart heartScript = FindObjectOfType<Heart>();
-                //heartScript.InitializeHearts();
-                //PlayerPrefs.SetInt("numHearts", numHearts);
-                //PlayerPrefs.Save();
+
+
+            currScene = SceneManager.GetActiveScene().name;
+
+            if (currScene == "SampleScene")
+            {
+                currDialog = "ONTO THE CITY";
             }
+            else // if (currScene == "CITY")
+            {
+                currDialog = "ONTO THE ROOFTOP";
+            }
+            FindObjectOfType<LevelEndTrigger>().OnLevelComplete(currDialog);
+
+            StartCoroutine(LevelChangeWait(3f));
+            //SceneManager.LoadScene("CITY");
+
+            //Heart heartScript = FindObjectOfType<Heart>();
+            //heartScript.InitializeHearts();
+            //PlayerPrefs.SetInt("numHearts", numHearts);
+            //PlayerPrefs.Save();
+            //}
             //FindObjectOfType<LevelEndTrigger>().ShowSpeechBubble(foodCount);
 
         }
@@ -526,15 +653,60 @@ public class Player : AnimatedEntity
             Vector3 rotation = mousePointer - transform.position;
             float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
             aimTransform.rotation = Quaternion.Euler(0, 0, rotZ);
-
             Transform guntransform = aimTransform.Find("Gun");
+
+            Vector3 guntransformGun;
+            Vector3 bulletOffset = new Vector3(0, 0.2f, 0);     // Align bullets with gun
+            Vector3 weaponEndOffset = new Vector3(0, -0.3f, 0); // Align weapon end with gun
+
             if (guntransform != null)
             {
-                shootAnimator.SetTrigger("Shoot");
                 GameObject gunObject = guntransform.gameObject;
-                Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
-                
-                audioSource.PlayOneShot(shootSound);
+
+                if (isFacingLeft)
+                {
+                    guntransformGun = guntransform.position + bulletOffset; // Position the stream of bullets
+                    weaponend.localPosition += weaponEndOffset; // Position the weapon end
+                    shootAnimator.SetTrigger("Shoot");
+                    //GameObject gunObject = guntransform.gameObject;
+                    //Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
+                    Instantiate(bulletPrefab, guntransformGun, Quaternion.identity);
+
+                    // TEMP COMMENTED OUT
+                    //CineMCamShake.Instance.ShakeCamera(5f, .1f);
+                    //audioSource.PlayOneShot(shootSound);
+
+                    // If did not switch gun direction, then reset weapon end for next time
+                    if (PrevShootLeft)
+                    {
+                        weaponend.localPosition -= weaponEndOffset;
+
+                        //guntransformGun -= bulletOffset; //???oct 24 t e m p
+                    }
+
+                    PrevShootLeft = true;
+                    PrevShootRight = false;
+                }
+                else // Player is facing right
+                {
+                    // If switched gun direction, then reposition weapon end
+                    if (PrevShootLeft)
+                    {
+                        weaponend.localPosition -= weaponEndOffset;
+                        shootAnimator.SetTrigger("Shoot");
+                        Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
+
+                        PrevShootRight = true;
+                        PrevShootLeft = false;
+
+                    }
+                    else
+                    {
+                        shootAnimator.SetTrigger("Shoot");
+                        Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
+                    }
+                }
+
             }
             //GameObject.Instantiate(bulletPrefab, guntransform.position, guntransform.rotation, gunObject.transform);
         }
@@ -550,36 +722,36 @@ public class Player : AnimatedEntity
     //    transform.position = Vector3.MoveTowards(transform.position, Vector3.right, 5);
     //}
 
-//    private void StartDash()
-//    {
-//        isDashing = true;
-//        dashTime = dashDuration;
+    //    private void StartDash()
+    //    {
+    //        isDashing = true;
+    //        dashTime = dashDuration;
 
-//        // Get the direction the player is currently moving or facing
-//        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+    //        // Get the direction the player is currently moving or facing
+    //        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
-//        // If no input, default to dashing right
-//        if (dashDirection == Vector2.zero)
-//        {
-//            dashDirection = Vector2.right; // Default direction
-//        }
+    //        // If no input, default to dashing right
+    //        if (dashDirection == Vector2.zero)
+    //        {
+    //            dashDirection = Vector2.right; // Default direction
+    //        }
 
-//        // Calculate the potential target position after dash
-//        Vector2 targetPos = rb.position + dashDirection * dashSpeed * dashDuration;
+    //        // Calculate the potential target position after dash
+    //        Vector2 targetPos = rb.position + dashDirection * dashSpeed * dashDuration;
 
-//        // Check if the player would collide with a boundary
-//        if (!IsCollidingWith(targetPos))
-//        {
-//            // Apply the dash velocity
-//            rb.velocity = dashDirection * dashSpeed;
-//        }
-//    }
+    //        // Check if the player would collide with a boundary
+    //        if (!IsCollidingWith(targetPos))
+    //        {
+    //            // Apply the dash velocity
+    //            rb.velocity = dashDirection * dashSpeed;
+    //        }
+    //    }
 
-//    private void StopDash()
-//    {
-//        isDashing = false;
-//        rb.velocity = Vector2.zero; // Stops movement after the dash ends
-//    }
+    //    private void StopDash()
+    //    {
+    //        isDashing = false;
+    //        rb.velocity = Vector2.zero; // Stops movement after the dash ends
+    //    }
 
     public void Restart()
     {
@@ -588,8 +760,8 @@ public class Player : AnimatedEntity
         foodCount = 0;
         //startPosition = transform.position;
 
-        //PlayerPrefs.SetInt("numHearts", 2); // set num hearts initially //???oct2
-        //PlayerPrefs.Save(); //???oct2
+        //PlayerPrefs.SetInt("numHearts", 2); // set num hearts initially
+        //PlayerPrefs.Save();
     }
 
 

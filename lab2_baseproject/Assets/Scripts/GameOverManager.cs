@@ -21,7 +21,7 @@ public class GameOverManager : MonoBehaviour
 
         gameOverPanel.SetActive(false);
 
-        restartButton.gameObject.SetActive(false); //???oct
+        restartButton.gameObject.SetActive(false);
         restartButton.onClick.AddListener(RestartGame);
     }
 
@@ -37,34 +37,34 @@ public class GameOverManager : MonoBehaviour
     public void GameOverFunct()
     {
 
-        Debug.Log("GameOver GameOverFunc " + PlayerPrefs.GetInt("numHearts")); //???oct
+        Debug.Log("GameOver GameOverFunc " + PlayerPrefs.GetInt("numHearts"));
         isGameOver = true;
         Time.timeScale = 0f; // Pause the game: freezes player and water after ran out of water
         gameOverPanel.SetActive(true);
-        restartButton.gameObject.SetActive(true); //???oct
+        restartButton.gameObject.SetActive(true);
     }
 
     public void RestartGame()  // restart button directly calls this
     {
 
-        Debug.Log("RestartGame " + PlayerPrefs.GetInt("numHearts")); //???oct
+        Debug.Log("RestartGame " + PlayerPrefs.GetInt("numHearts"));
         isGameOver = false;
         Time.timeScale = 1f; // Resume the game
-        gameOverPanel.SetActive(false); //???oct
+        gameOverPanel.SetActive(false);
 
         player.Restart(); // call the Restart method on the Player script
-        water.Restart(); // call the Restart method on the WaterManager script//???oct3
+        water.Restart(); // call the Restart method on the WaterManager script
 
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name); //???oct
-        SceneManager.LoadScene("SampleScene"); //???oct
-        //SceneManager.LoadScene(0); //???oct
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("SampleScene");
+        //SceneManager.LoadScene(0);
 
     }
 
-    //public void PlayerLost() //???oct
-    public void PlayerLost(string sceneName) //???oct
+    //public void PlayerLost()
+    public void PlayerLost(string sceneName)
     {
-        Debug.Log("GameOver PlayerLosthearts " + PlayerPrefs.GetInt("numHearts")); //???oct
+        Debug.Log("GameOver PlayerLosthearts " + PlayerPrefs.GetInt("numHearts"));
         GameOverManager gameManager = FindObjectOfType<GameOverManager>();
         gameManager.GameOverFunct();
         AudioManager audioManager = FindObjectOfType<AudioManager>();

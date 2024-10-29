@@ -14,20 +14,21 @@ public class WaterManager : MonoBehaviour
     public float xPos;
     public float yPos;
 
-    public float maxTime = 50f; //oct17
-    //public float maxTime = 100f; //oct17
+    public float maxTime = 100f;
+    //public float maxTime = 50f;
     public float timeLeft;
     public GameObject timesUpText;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("WaterManager Start maxTime !" + maxTime); //???oct17
+        Debug.Log("WaterManager Start maxTime !" + maxTime);
         xPos = (Screen.width / 2) - 100;
         yPos = (Screen.height / 2) - 100;
 
-        timeLeft = maxTime; //oct17
-        Debug.Log("WaterManager Start timeLeft !" + timeLeft); //???oct17
+        timeLeft = maxTime;
+        Debug.Log("WaterManager Start timeLeft !" + timeLeft);
+
 
     }
 
@@ -37,19 +38,19 @@ public class WaterManager : MonoBehaviour
         if (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
-            waterBar.fillAmount = timeLeft / maxTime; //oct17
+            waterBar.fillAmount = timeLeft / maxTime;
         } else
         {
-            Debug.Log("WaterManager Update timeLeft <=0 !"); //???oct
+            Debug.Log("WaterManager Update timeLeft <=0 !");
 
-            timeLeft = maxTime; //???oct17 ELSE LOOPS FOREVER
+            timeLeft = maxTime; //Prevents Infinite Loop
 
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
 
-            string sceneName = "SampleScene"; //???oct17
-            gameOver.PlayerLost(sceneName); //???oct17
+            string sceneName = "SampleScene";
+            gameOver.PlayerLost(sceneName);
 
-            //gameOver.PlayerLost("SampleScene"); //???oct17
+            //gameOver.PlayerLost("SampleScene");
             //Heart heart = FindObjectOfType<Heart>().LoseLife();
         }
 
@@ -77,27 +78,30 @@ public class WaterManager : MonoBehaviour
 
     public void IncreaseWater(float amount)
     {
-        Debug.Log("WaterManager before IncreaseWater timeLeft !" + timeLeft); //???oct17
+        Debug.Log("WaterManager before IncreaseWater timeLeft !" + timeLeft);
         timeLeft += amount;
 
-        if (timeLeft > 100) //???oct17
+        if (timeLeft > 100)
         {
-            timeLeft = 100; //???oct17
+            timeLeft = 100;
         }
 
         timeLeft = Mathf.Clamp(timeLeft, 0, 100); //ensure waterLevel stays between 0 and 100
-        //waterBar.fillAmount = timeLeft / 50; //oct17 MUST HARDCODE???
-        waterBar.fillAmount = timeLeft / maxTime; //oct17
-        Debug.Log("WaterManager after IncreaseWater timeLeft !" + timeLeft); //???oct17
+     
+        waterBar.fillAmount = timeLeft / maxTime;
+
+        Debug.Log("WaterManager after IncreaseWater timeLeft !" + timeLeft);
     }
 
     public void Restart()
     {
-        Debug.Log("WaterManager Restart!"); //???oct
+        Debug.Log("WaterManager Restart!");
         // Reset water state
         xPos = (Screen.width / 2) - 100;
         yPos = (Screen.height / 2) - 100;
 
-        timeLeft = maxTime; //oct17
+        timeLeft = maxTime;
     }
+
+
 }
