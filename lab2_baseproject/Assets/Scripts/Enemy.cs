@@ -5,13 +5,16 @@ using UnityEngine;
 public class Enemy : AnimatedEntity
 {
 
-    private float RangeX = 4, RangeY = 4;
+    //private float RangeX = 4, RangeY = 4;
     private float EnemyHealth = 100.0f;
 
     private Transform detectionZone;
     private Transform target;
-    private float followSpeed = 2f;
+    private float followSpeed = 3.5f;
     public float avoidanceRadius = 1.5f; // radius to avoid other enemy
+
+    public GameObject bulletEnemyPrefab;
+    public Transform enemyBulletPos;
 
     public LayerMask SolidObjectsLayer;
     public LayerMask EnemyLayer;
@@ -23,20 +26,78 @@ public class Enemy : AnimatedEntity
     public List<Sprite> FrontSpriteList;
     public List<Sprite> IdleSpriteList;
 
+    public Material flashMaterial; //Colour for the enemy to flash when taking damage
+    private Material originalMaterial;
+    private SpriteRenderer flashSpriteRenderer;
+    private Coroutine flashroutine;
+
 
     public List<Sprite> InterruptedCycle;
     private List<Sprite> currentSpriteCycle;
     bool isMoving = false;
 
+    private Vector3 direction; // Store the current direction
+    private float updateInterval = 0.75f; // Update direction every interval
+
 
     // Start is called before the first frame update
     void Start()
     {
-
         detectionZone = transform.Find("DetectionZone");
         AnimationSetup();
         target = null;
+        StartCoroutine(UpdateDirection()); // Start the direction update coroutine
 
+        //Set up the sprite renderer for flash effects
+        flashSpriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = flashSpriteRenderer.material;
+    }
+
+    //Finds the distance between the player and the enemy
+    int getDistance()
+    {
+        float dist = Vector3.Distance(target.position, transform.position);
+        //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
+        if (dist < 3.2f) return 1;
+        else if (dist < 6f) return 2;
+        else if (dist < 10f) return 3;
+        else return 4;
+    }
+
+    // Coroutine to update direction every interval
+    private IEnumerator UpdateDirection()
+    {
+        while (true)
+        {
+            int range = 5;
+
+            if (target != null)
+            {
+                Vector3 new_direction = target.position - transform.position;
+
+                range = getDistance();
+                if (range == 1)
+                {
+                    new_direction = -new_direction; // Enemy runs from player
+                }
+                else if (range == 2)
+                {
+                    int randomValue = Random.Range(1, 7);
+                    if (randomValue == 1) new_direction = -new_direction;
+                    else if (randomValue <= 3) new_direction = new Vector3(-new_direction.y, new_direction.x, 0);
+                    else if (randomValue <= 5) new_direction = new Vector3(new_direction.y, -new_direction.x, 0);
+                }
+                // Long range or random value of 6: no further updates needed
+
+                new_direction.Normalize(); // Normalize the direction to get a unit vector
+                direction = new_direction;
+            }
+
+            yield return new WaitForSeconds(Random.Range(updateInterval*0.5f, updateInterval*1.2f)); // Wait for about 1 interval before updating again
+            
+            //Fire a bullet at each step
+            if (range <= 3) Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
@@ -51,8 +112,6 @@ public class Enemy : AnimatedEntity
         else if (target != null)
         {
             isMoving = true;
-            Vector3 direction = target.position - transform.position;
-            direction.Normalize(); // Normalize the direction to get a unit vector
 
             //angle of enemy compared to player
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -98,8 +157,9 @@ public class Enemy : AnimatedEntity
             }
             else
             {
-                isMoving = false;
-                currentSpriteCycle = IdleSpriteList;
+                //isMoving = false;
+                //currentSpriteCycle = IdleSpriteList;
+                direction = -direction;
             }
 
             SetMovementDirection(isMoving);
@@ -135,6 +195,7 @@ public class Enemy : AnimatedEntity
     {
         EnemyHealth -= damage;
         Debug.Log("Enemy Health is now " + EnemyHealth);
+        EnemyFlash();
 
         if (EnemyHealth <= 0) { Destroy(gameObject); }
     }
@@ -150,6 +211,27 @@ public class Enemy : AnimatedEntity
     {
         target = null;
         Debug.Log("Now I stop!");
+    }
+
+
+    public void EnemyFlash()
+    {
+        //Call the flash, if it is not currently playing
+        if (flashroutine != null)
+        {
+            StopCoroutine(flashroutine);
+        }
+
+        flashroutine = StartCoroutine(hitFlash());
+    }
+
+    public IEnumerator hitFlash()
+    {
+        //Flash when taking damage
+        flashSpriteRenderer.material = flashMaterial;
+        yield return new WaitForSeconds(0.12f);
+        flashSpriteRenderer.material = originalMaterial;
+        flashroutine = null;
     }
 
 }

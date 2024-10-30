@@ -55930,6 +55930,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558029058}
   m_CullTransparentMesh: 0
+--- !u!4 &597252519 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2326124505376862478, guid: 2db59557b053b164fa47c2f06c1b01ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 1130950740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &597653431
 GameObject:
   m_ObjectHideFlags: 0
@@ -63089,6 +63095,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2326124504846993968, guid: 2db59557b053b164fa47c2f06c1b01ce,
         type: 3}
+      propertyPath: enemyBulletPos
+      value: 
+      objectReference: {fileID: 1186010858}
+    - target: {fileID: 2326124504846993968, guid: 2db59557b053b164fa47c2f06c1b01ce,
+        type: 3}
       propertyPath: avoidanceRadius
       value: 3
       objectReference: {fileID: 0}
@@ -63280,6 +63291,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2326124504846993968, guid: 2db59557b053b164fa47c2f06c1b01ce,
+        type: 3}
+      propertyPath: enemyBulletPos
+      value: 
+      objectReference: {fileID: 597252519}
     - target: {fileID: 2326124504846993980, guid: 2db59557b053b164fa47c2f06c1b01ce,
         type: 3}
       propertyPath: m_Name
@@ -63352,6 +63368,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2db59557b053b164fa47c2f06c1b01ce, type: 3}
+--- !u!4 &1186010858 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2326124505376862478, guid: 2db59557b053b164fa47c2f06c1b01ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 680607356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1207206997
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -102,6 +102,9 @@ MonoBehaviour:
   Framerate: 12
   SpriteRenderer: {fileID: 2326124504846993983}
   avoidanceRadius: 5
+  bulletEnemyPrefab: {fileID: 4628185361730926903, guid: cb2b12640f2013a409c692a6c89313e7,
+    type: 3}
+  enemyBulletPos: {fileID: 0}
   SolidObjectsLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -130,6 +133,7 @@ MonoBehaviour:
   - {fileID: -2760536601800124, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
   IdleSpriteList:
   - {fileID: 1976690480719741105, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  flashMaterial: {fileID: 2100000, guid: 64d9d7fc5859b8d49832a396a07b258d, type: 2}
   InterruptedCycle: []
 --- !u!61 &2326124504846993969
 BoxCollider2D:
