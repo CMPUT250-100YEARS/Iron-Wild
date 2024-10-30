@@ -57,12 +57,11 @@ public class Enemy : AnimatedEntity
     int getDistance()
     {
         float dist = Vector3.Distance(target.position, transform.position);
-        //Returns 1 if the enemy is in close range, 2 if in medium range, 3 or 4 if in long range, 5 if outside of range.
+        //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
         if (dist < 3.2f) return 1;
         else if (dist < 6f) return 2;
-        else if (dist < 8f) return 3;
-        else if (dist < 10f) return 4;
-        else return 5;
+        else if (dist < 10f) return 3;
+        else return 4;
     }
 
     // Coroutine to update direction every interval
@@ -72,34 +71,31 @@ public class Enemy : AnimatedEntity
         {
             int range = 5;
 
-            for (int i = 0; i < 2; i++)
+            if (target != null)
             {
-                if (target != null)
+                Vector3 new_direction = target.position - transform.position;
+
+                range = getDistance();
+                if (range == 1)
                 {
-                    Vector3 new_direction = target.position - transform.position;
-
-                    range = getDistance();
-                    if (range == 1)
-                    {
-                        new_direction = -new_direction; // Enemy runs from player
-                    }
-                    else if (range == 2)
-                    {
-                        int randomValue = Random.Range(1, 7);
-                        if (randomValue == 1) new_direction = -new_direction;
-                        else if (randomValue <= 3) new_direction = new Vector3(-new_direction.y, new_direction.x, 0);
-                        else if (randomValue <= 5) new_direction = new Vector3(new_direction.y, -new_direction.x, 0);
-                    }
-                    // Long range or random value of 6: no further updates needed
-
-                    new_direction.Normalize(); // Normalize the direction to get a unit vector
-                    direction = new_direction;
+                    new_direction = -new_direction; // Enemy runs from player
                 }
+                else if (range == 2)
+                {
+                    int randomValue = Random.Range(1, 7);
+                    if (randomValue == 1) new_direction = -new_direction;
+                    else if (randomValue <= 3) new_direction = new Vector3(-new_direction.y, new_direction.x, 0);
+                    else if (randomValue <= 5) new_direction = new Vector3(new_direction.y, -new_direction.x, 0);
+                }
+                // Long range or random value of 6: no further updates needed
 
-                yield return new WaitForSeconds(Random.Range(updateInterval*0.5f, updateInterval*1.2f)); // Wait for about 1 interval before updating again
+                new_direction.Normalize(); // Normalize the direction to get a unit vector
+                direction = new_direction;
             }
 
-            //Every two intervals, fire a bullet if close enough
+            yield return new WaitForSeconds(Random.Range(updateInterval*0.5f, updateInterval*1.2f)); // Wait for about 1 interval before updating again
+            
+            //Fire a bullet at each step
             if (range <= 3) Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
         }
     }
