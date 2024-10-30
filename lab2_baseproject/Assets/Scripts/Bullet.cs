@@ -8,10 +8,10 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    public float bulletSpeed = 20f;
+    public float bulletSpeed = 18f;
     private float lifeTime = 1.5f;
 
-    public float bulletDamage = 33.4f;
+    public float bulletDamage = 20f;
 
     private Camera mainCamera;
     private Vector3 mousePointer;
