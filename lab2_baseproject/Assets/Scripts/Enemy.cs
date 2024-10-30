@@ -14,6 +14,7 @@ public class Enemy : AnimatedEntity
     public float avoidanceRadius = 1.5f; // radius to avoid other enemy
 
     public GameObject bulletEnemyPrefab;
+    public Transform enemyBulletPos;
 
     public LayerMask SolidObjectsLayer;
     public LayerMask EnemyLayer;
@@ -25,13 +26,18 @@ public class Enemy : AnimatedEntity
     public List<Sprite> FrontSpriteList;
     public List<Sprite> IdleSpriteList;
 
+    public Material flashMaterial; //Colour for the enemy to flash when taking damage
+    private Material originalMaterial;
+    private SpriteRenderer flashSpriteRenderer;
+    private Coroutine flashroutine;
+
 
     public List<Sprite> InterruptedCycle;
     private List<Sprite> currentSpriteCycle;
     bool isMoving = false;
 
     private Vector3 direction; // Store the current direction
-    private float updateInterval = 0.8f; // Update direction every second
+    private float updateInterval = 0.75f; // Update direction every interval
 
 
     // Start is called before the first frame update
@@ -41,16 +47,22 @@ public class Enemy : AnimatedEntity
         AnimationSetup();
         target = null;
         StartCoroutine(UpdateDirection()); // Start the direction update coroutine
+
+        //Set up the sprite renderer for flash effects
+        flashSpriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = flashSpriteRenderer.material;
     }
 
     //Finds the distance between the player and the enemy
     int getDistance()
     {
         float dist = Vector3.Distance(target.position, transform.position);
-        //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range.
+        //Returns 1 if the enemy is in close range, 2 if in medium range, 3 or 4 if in long range, 5 if outside of range.
         if (dist < 3.2f) return 1;
         else if (dist < 6f) return 2;
-        else return 3;
+        else if (dist < 8f) return 3;
+        else if (dist < 10f) return 4;
+        else return 5;
     }
 
     // Coroutine to update direction every interval
@@ -58,13 +70,15 @@ public class Enemy : AnimatedEntity
     {
         while (true)
         {
+            int range = 5;
+
             for (int i = 0; i < 2; i++)
             {
                 if (target != null)
                 {
                     Vector3 new_direction = target.position - transform.position;
 
-                    int range = getDistance();
+                    range = getDistance();
                     if (range == 1)
                     {
                         new_direction = -new_direction; // Enemy runs from player
@@ -82,11 +96,11 @@ public class Enemy : AnimatedEntity
                     direction = new_direction;
                 }
 
-                yield return new WaitForSeconds(Random.Range(updateInterval*0.5f, updateInterval*1.3f)); // Wait for about 1 interval before updating again
+                yield return new WaitForSeconds(Random.Range(updateInterval*0.5f, updateInterval*1.2f)); // Wait for about 1 interval before updating again
             }
 
-            //Every two intervals, fire a bullet
-            //Instantiate(bulletEnemyPrefab);
+            //Every two intervals, fire a bullet if close enough
+            if (range <= 3) Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
         }
     }
 
@@ -185,6 +199,7 @@ public class Enemy : AnimatedEntity
     {
         EnemyHealth -= damage;
         Debug.Log("Enemy Health is now " + EnemyHealth);
+        EnemyFlash();
 
         if (EnemyHealth <= 0) { Destroy(gameObject); }
     }
@@ -200,6 +215,27 @@ public class Enemy : AnimatedEntity
     {
         target = null;
         Debug.Log("Now I stop!");
+    }
+
+
+    public void EnemyFlash()
+    {
+        //Call the flash, if it is not currently playing
+        if (flashroutine != null)
+        {
+            StopCoroutine(flashroutine);
+        }
+
+        flashroutine = StartCoroutine(hitFlash());
+    }
+
+    public IEnumerator hitFlash()
+    {
+        //Flash when taking damage
+        flashSpriteRenderer.material = flashMaterial;
+        yield return new WaitForSeconds(0.12f);
+        flashSpriteRenderer.material = originalMaterial;
+        flashroutine = null;
     }
 
 }

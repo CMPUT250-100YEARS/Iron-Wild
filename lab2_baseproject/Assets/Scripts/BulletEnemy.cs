@@ -10,14 +10,16 @@ public class BulletEnemy : MonoBehaviour
     public float enemyBulletSpeed = 10f;
     private float lifeTime = 1.5f;
 
-    private Transform target;
+    private GameObject player;
+
     private Rigidbody2D bullet;
 
     void Start()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
+        player = GameObject.FindGameObjectWithTag("Player");
         bullet = GetComponent<Rigidbody2D>();
 
+        Vector3 direction = (player.transform.position - transform.position).normalized;
         bullet.velocity = new Vector3(direction.x, direction.y).normalized * enemyBulletSpeed;
 
         Destroy(gameObject, lifeTime);
@@ -29,12 +31,15 @@ public class BulletEnemy : MonoBehaviour
         //transform.position = Vector3.one * Time.deltaTime;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Player player = other.GetComponent<Player>();
-        if (player != null)
+        if (other.gameObject.CompareTag("Player"))
         {
-            //LoseLife();
+            Debug.Log("Trigger!");
+            
+            FindObjectOfType<Player>().PlayerFlash();
+            GameOverManager gameOver = FindObjectOfType<GameOverManager>();
+            FindObjectOfType<Heart>().TakeDamage();
             Destroy(gameObject);
         }
     }

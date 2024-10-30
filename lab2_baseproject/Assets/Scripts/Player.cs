@@ -52,6 +52,11 @@ public class Player : AnimatedEntity
 
     private Vector2 dashDirection;
 
+    public Material flashMaterial; //Colour for the player to flash when taking damage
+    private Material originalMaterial;
+    private SpriteRenderer flashSpriteRenderer;
+    private Coroutine flashroutine;
+
     // for sound in FOOD AND WATER
     //public AudioClip foodSound;
     public AudioClip waterSound;
@@ -141,6 +146,10 @@ public class Player : AnimatedEntity
         text_message = "Move around using the arrow keys";
         StartCoroutine(AnimateSpeech(text_message));
         StartCoroutine(Pause(5f));
+
+        //Set up the sprite renderer for flash effects
+        flashSpriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = flashSpriteRenderer.material;
     }
 
     // Update is called once per frame
@@ -553,6 +562,7 @@ public class Player : AnimatedEntity
 
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
             FindObjectOfType<Heart>().TakeDamage();
+            PlayerFlash();
         }
 
 
@@ -715,6 +725,26 @@ public class Player : AnimatedEntity
     public float getSpeed()
     {
         return Speed;
+    }
+
+    public void PlayerFlash()
+    {
+        //Call the flash, if it is not currently playing
+        if (flashroutine != null)
+        {
+            StopCoroutine(flashroutine);
+        }
+
+        flashroutine = StartCoroutine(damageFlash());
+    }
+
+    public IEnumerator damageFlash()
+    {
+        //Flash when taking damage
+        flashSpriteRenderer.material = flashMaterial;
+        yield return new WaitForSeconds(0.12f);
+        flashSpriteRenderer.material = originalMaterial;
+        flashroutine = null;
     }
 
     //void Dash()

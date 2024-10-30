@@ -249,6 +249,7 @@ MonoBehaviour:
   currScene: 
   currDialog: 
   startPosition: {x: 0, y: 0, z: 0}
+  flashMaterial: {fileID: 2100000, guid: bf569473e42de4d48aa830bf14ee44b4, type: 2}
   waterSound: {fileID: 8300000, guid: 649b09136f7829b4e999883e68816d33, type: 3}
   shootSound: {fileID: 8300000, guid: 2ef0906473d8947ffa274809c73222fd, type: 3}
   BackSpriteList:

@@ -104,6 +104,7 @@ MonoBehaviour:
   avoidanceRadius: 5
   bulletEnemyPrefab: {fileID: 4628185361730926903, guid: daad0c88166ef034c94feca56e3e93b0,
     type: 3}
+  enemyBulletPos: {fileID: 0}
   SolidObjectsLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -132,6 +133,7 @@ MonoBehaviour:
   - {fileID: -2760536601800124, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
   IdleSpriteList:
   - {fileID: 1976690480719741105, guid: f6b1a7215d0a7a74595f70d28a140071, type: 3}
+  flashMaterial: {fileID: 2100000, guid: 9fdfa10eaeaf5404484de2a29b04166e, type: 2}
   InterruptedCycle: []
 --- !u!61 &2326124504846993969
 BoxCollider2D:
