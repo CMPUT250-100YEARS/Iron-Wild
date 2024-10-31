@@ -20,6 +20,12 @@ public class Player : AnimatedEntity
 
     public List<Sprite> InterruptedCycle;
 
+    // footprint's init ----------------------------------------------------------
+    public GameObject footprintPrefab;
+    private float footprintDelay = 0.5f;
+    private float footprintTimer = 0.0f;
+
+    // -------------------------------------------------------------------------
 
     public GameObject bulletPrefab;
     private float fireRate = 0.4f;
@@ -316,6 +322,15 @@ public class Player : AnimatedEntity
                     //Debug.Log("Player Update isMoving" + PlayerPrefs.GetInt("numHearts"));
                     Vector3 targetPos = transform.position + (inputDirection.normalized * Time.deltaTime * Speed);
                     //Vector3 targerPos = rb.position + inputDirection * Time.deltaTime * Speed; //inputDirection Vector2.up/down/...
+
+                    // finding the footprint rotation on z-axis only --------------------------------------------------------------------
+                    // 1. Calculate the angle in the XY plane (z-axis rotation) relative to the world up vector
+                    // 2. Apply only the Z rotation, keeping x and y as they are
+
+                    float targetAngle = Mathf.Atan2(inputDirection.normalized.y, inputDirection.normalized.x) * Mathf.Rad2Deg;
+                    Quaternion footRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, targetAngle);
+
+                    // ------------------------------------------------------------------------------------------------------------------
                     if (!IsCollidingWith(targetPos))
                     {
 
@@ -325,7 +340,21 @@ public class Player : AnimatedEntity
                             //Debug.Log("HEREEEEE!!! speed increased to True");
                             transform.position += inputDirection.normalized * Time.deltaTime * dashSpeed;
                         }
-                        else { transform.position += inputDirection.normalized * Time.deltaTime * Speed; }
+                        else
+                        {
+                            transform.position += inputDirection.normalized * Time.deltaTime * Speed;
+
+                            // code to implement footprints; delay added to prevent update on every frame. --------------------------------------
+                            if (footprintTimer >= footprintDelay){
+                                Instantiate(footprintPrefab, transform.position + new Vector3(0, 0, -1), footRotation);
+                                footprintTimer = 0.0f;
+                            }
+                            else{
+                                footprintTimer += Time.deltaTime;
+                            }
+                            // ------------------------------------------------------------------------------------------------------------------
+
+                        }
                     }
                 }
 
