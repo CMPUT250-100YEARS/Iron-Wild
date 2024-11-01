@@ -55891,7 +55891,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 90, y: -500}
-  m_SizeDelta: {x: 1500, y: 200}
+  m_SizeDelta: {x: 1500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &558029060
 MonoBehaviour:
@@ -55912,7 +55912,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1840321293548208415, guid: 1228a3d33e13e4157b8517f8484695d4,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -63480,15 +63481,15 @@ RectTransform:
   m_GameObject: {fileID: 1212340398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children: []
   m_Father: {fileID: 425063363}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -800, y: -500}
-  m_SizeDelta: {x: 308, y: 523}
+  m_AnchoredPosition: {x: -505, y: -490}
+  m_SizeDelta: {x: 247, y: 414}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1212340400
 MonoBehaviour:
@@ -63509,7 +63510,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 691a730294cd0419e96f1f9a409faa1f, type: 3}
+  m_Sprite: {fileID: 6796656825888281025, guid: f7dd23608c9e045f39e9658be6f3a374,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -63775,8 +63777,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: -525}
-  m_SizeDelta: {x: 745, y: 190}
+  m_AnchoredPosition: {x: 220, y: -550}
+  m_SizeDelta: {x: 1100, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1302875280
 MonoBehaviour:
@@ -63798,11 +63800,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
