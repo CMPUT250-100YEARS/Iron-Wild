@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: 9042904015051547486
     second: heart_new
+  - first:
+      213: 6214176299853668865
+    second: water_bar
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -118,6 +121,27 @@ TextureImporter:
       bones: []
       spriteID: e53e9135a49de7d70800000000000000
       internalID: 9042904015051547486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water_bar
+      rect:
+        serializedVersion: 2
+        x: 2404
+        y: 3180
+        width: 1240
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 102ed6cab603d3650800000000000000
+      internalID: 6214176299853668865
       vertices: []
       indices: 
       edges: []
