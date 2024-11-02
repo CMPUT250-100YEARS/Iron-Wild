@@ -346,7 +346,7 @@ public class Player : AnimatedEntity
 
                             // code to implement footprints; delay added to prevent update on every frame. --------------------------------------
                             if (footprintTimer >= footprintDelay){
-                                Instantiate(footprintPrefab, transform.position + new Vector3(0, 0, -1), footRotation);
+                                Instantiate(footprintPrefab, transform.position + new Vector3(0, -0.75f, -1), footRotation);
                                 footprintTimer = 0.0f;
                             }
                             else{
