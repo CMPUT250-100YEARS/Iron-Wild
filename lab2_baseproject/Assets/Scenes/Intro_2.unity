@@ -239,8 +239,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 12, y: 66.677}
-  m_SizeDelta: {x: 743.67267, y: 133.35368}
+  m_AnchoredPosition: {x: 8, y: 117.20001}
+  m_SizeDelta: {x: 929.76544, y: 234.42451}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &520601941
 MonoBehaviour:
@@ -598,8 +598,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 66.677}
-  m_SizeDelta: {x: 649.93176, y: 70.60186}
+  m_AnchoredPosition: {x: 0.00000023842, y: 117.21}
+  m_SizeDelta: {x: 807.70557, y: 131.24438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869817851
 MonoBehaviour:
@@ -626,14 +626,15 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "Cities stand as monuments to the hubris of the technological God-Kings
+    who hammered the final nail in organic life\u2019s coffin."
 --- !u!222 &1869817852
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -654,7 +655,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 'Hello! Opens with fish mom '
+  input: "It has been years since the Last Autumn--- the fall of everything. Cities
+    stand as monuments to the hubris of the technological God-Kings who hammered
+    the final nail in organic life\u2019s coffin. Artificial life reigns supreme
+    and mankind will never recover\u2026"
   delay: 0.2
 --- !u!1 &1924953060
 GameObject:
