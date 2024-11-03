@@ -345,15 +345,22 @@ public class Player : AnimatedEntity
                         else
                         {
                             transform.position += inputDirection.normalized * Time.deltaTime * Speed;
+                            Scene currentScene = SceneManager.GetActiveScene();
+                            if (currentScene.name == "CITY")
+                            {
+                                //transform.position += inputDirection.normalized * Time.deltaTime * Speed;
 
-                            // code to implement footprints; delay added to prevent update on every frame. --------------------------------------
-                            //if (footprintTimer >= footprintDelay){
-                            //    Instantiate(footprintPrefab, transform.position + new Vector3(0, -0.75f, -1), footRotation);
-                            //    footprintTimer = 0.0f;
-                            //}
-                            //else{
-                            //    footprintTimer += Time.deltaTime;
-                            //}
+                                // code to implement footprints; delay added to prevent update on every frame. --------------------------------------
+                                if (footprintTimer >= footprintDelay)
+                                {
+                                    Instantiate(footprintPrefab, transform.position + new Vector3(0, -0.75f, -1), footRotation);
+                                    footprintTimer = 0.0f;
+                                }
+                                else
+                                {
+                                    footprintTimer += Time.deltaTime;
+                                }
+                            }
                             // ------------------------------------------------------------------------------------------------------------------
 
                         }
