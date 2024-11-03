@@ -64265,6 +64265,26 @@ PrefabInstance:
       propertyPath: m_UpdateMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8447123474801615808, guid: 57a92a4ffae65884c96abc7ee8c893c2,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447123474801615808, guid: 57a92a4ffae65884c96abc7ee8c893c2,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447123474801615808, guid: 57a92a4ffae65884c96abc7ee8c893c2,
+        type: 3}
+      propertyPath: BypassEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447123474801615808, guid: 57a92a4ffae65884c96abc7ee8c893c2,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.128
+      objectReference: {fileID: 0}
     - target: {fileID: 8447123474801615868, guid: 57a92a4ffae65884c96abc7ee8c893c2,
         type: 3}
       propertyPath: m_RootOrder
@@ -64373,7 +64393,7 @@ PrefabInstance:
         type: 3}
       propertyPath: shootSound
       value: 
-      objectReference: {fileID: 8300000, guid: 2ef0906473d8947ffa274809c73222fd, type: 3}
+      objectReference: {fileID: 8300000, guid: 5bb7404b71d496548a7227f07e4e72ce, type: 3}
     - target: {fileID: 8447123474801615869, guid: 57a92a4ffae65884c96abc7ee8c893c2,
         type: 3}
       propertyPath: cinematicControlled
@@ -65649,8 +65669,23 @@ PrefabInstance:
     - target: {fileID: 7423328147255320553, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
         type: 3}
       propertyPath: m_Volume
-      value: 0.3
+      value: 0.55
       objectReference: {fileID: 0}
+    - target: {fileID: 7423328147255320553, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423328147255320553, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
+        type: 3}
+      propertyPath: BypassListenerEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423328147255320554, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
+        type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 8300000, guid: 570854559a7ddce4e964ae878702d944, type: 3}
     - target: {fileID: 7423328147255320555, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
         type: 3}
       propertyPath: m_Name

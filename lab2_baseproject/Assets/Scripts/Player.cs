@@ -28,7 +28,7 @@ public class Player : AnimatedEntity
     // -------------------------------------------------------------------------
 
     public GameObject bulletPrefab;
-    private float fireRate = 0.4f;
+    private float fireRate = 0.5f;
     public float cooldown;
 
     private Camera mainCamera;
@@ -64,10 +64,12 @@ public class Player : AnimatedEntity
     private Coroutine flashroutine;
 
     // for sound in FOOD AND WATER
-    //public AudioClip foodSound;
+    public AudioClip foodSound;
     public AudioClip waterSound;
-    //public AudioSource playerDead;
     public AudioClip shootSound;
+    public AudioClip dashSound;
+    public AudioClip damageSound;
+    public AudioClip interactSound;
 
     //Sprite list based on mouse direction
     public List<Sprite> BackSpriteList;
@@ -345,13 +347,13 @@ public class Player : AnimatedEntity
                             transform.position += inputDirection.normalized * Time.deltaTime * Speed;
 
                             // code to implement footprints; delay added to prevent update on every frame. --------------------------------------
-                            if (footprintTimer >= footprintDelay){
-                                Instantiate(footprintPrefab, transform.position + new Vector3(0, 0, -1), footRotation);
-                                footprintTimer = 0.0f;
-                            }
-                            else{
-                                footprintTimer += Time.deltaTime;
-                            }
+                            //if (footprintTimer >= footprintDelay){
+                            //    Instantiate(footprintPrefab, transform.position + new Vector3(0, 0, -1), footRotation);
+                            //    footprintTimer = 0.0f;
+                            //}
+                            //else{
+                            //    footprintTimer += Time.deltaTime;
+                            //}
                             // ------------------------------------------------------------------------------------------------------------------
 
                         }
@@ -404,6 +406,7 @@ public class Player : AnimatedEntity
         if (Input.GetKey(KeyCode.Mouse0) && cooldown <= 0.0f)
         {
             cooldown = fireRate;
+            audioSource.PlayOneShot(shootSound);
             Shoot();
         }
         else
@@ -421,6 +424,7 @@ public class Player : AnimatedEntity
         //}
         if (!isDashing && Input.GetKeyDown(KeyCode.Space) && hasAbility_Dash)
         {
+            audioSource.PlayOneShot(dashSound);
             isDashing = true;
             dashTime = dashDuration;
         }
@@ -562,7 +566,7 @@ public class Player : AnimatedEntity
             Interrupt(InterruptedCycle);
             if (audioSource != null)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(interactSound);
             }
 
             if (!tutorialMutation)
@@ -628,6 +632,7 @@ public class Player : AnimatedEntity
         {
             foodCount++;
             FindObjectOfType<FoodImage>().FoundFoods();
+            audioSource.PlayOneShot(foodSound);
             Destroy(food.gameObject);
 
             if (!tutorialFood)
@@ -769,6 +774,8 @@ public class Player : AnimatedEntity
 
     public IEnumerator damageFlash()
     {
+        audioSource.PlayOneShot(damageSound);
+
         //Flash when taking damage
         flashSpriteRenderer.material = flashMaterial;
         yield return new WaitForSeconds(0.12f);

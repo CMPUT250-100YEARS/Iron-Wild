@@ -239,6 +239,7 @@ MonoBehaviour:
   Speed: 5
   InterruptedCycle:
   - {fileID: 6796656825888281025, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
+  footprintPrefab: {fileID: 0}
   bulletPrefab: {fileID: 4628185361730926903, guid: 06ab7979b43764bbf88332e1f33df0aa,
     type: 3}
   cooldown: 0
@@ -250,8 +251,12 @@ MonoBehaviour:
   currDialog: 
   startPosition: {x: 0, y: 0, z: 0}
   flashMaterial: {fileID: 2100000, guid: fe48c5648710ff843be99fbe42d8364c, type: 2}
+  foodSound: {fileID: 8300000, guid: 21ae936dd6a953545b9f788ebcd90985, type: 3}
   waterSound: {fileID: 8300000, guid: 649b09136f7829b4e999883e68816d33, type: 3}
-  shootSound: {fileID: 8300000, guid: 2ef0906473d8947ffa274809c73222fd, type: 3}
+  shootSound: {fileID: 8300000, guid: 5bb7404b71d496548a7227f07e4e72ce, type: 3}
+  dashSound: {fileID: 0}
+  damageSound: {fileID: 8300000, guid: b1daabfc3ec5d4958881545cf9f75ec9, type: 3}
+  interactSound: {fileID: 8300000, guid: 9fb8138ad81f6431e88c5612278a789c, type: 3}
   BackSpriteList:
   - {fileID: -7175654633569329918, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
   - {fileID: 847368544200324870, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
@@ -300,7 +305,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 9fb8138ad81f6431e88c5612278a789c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 3
+  m_Pitch: 1.05
   Loop: 0
   Mute: 0
   Spatialize: 0

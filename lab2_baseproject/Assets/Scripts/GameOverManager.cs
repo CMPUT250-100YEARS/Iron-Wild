@@ -11,7 +11,9 @@ public class GameOverManager : MonoBehaviour
     public bool isGameOver = false;
     public Player player;
     public WaterManager water;
-    //public AudioSource audioSource;
+
+    public AudioSource audioSource;
+    public AudioClip deadSound;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,7 @@ public class GameOverManager : MonoBehaviour
 
         Debug.Log("GameOver GameOverFunc " + PlayerPrefs.GetInt("numHearts"));
         isGameOver = true;
+        audioSource.PlayOneShot(deadSound);
         Time.timeScale = 0f; // Pause the game: freezes player and water after ran out of water
         gameOverPanel.SetActive(true);
         restartButton.gameObject.SetActive(true);

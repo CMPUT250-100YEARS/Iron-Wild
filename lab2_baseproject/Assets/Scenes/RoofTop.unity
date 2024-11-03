@@ -503,6 +503,8 @@ MonoBehaviour:
   isGameOver: 0
   player: {fileID: 0}
   water: {fileID: 0}
+  audioSource: {fileID: 0}
+  deadSound: {fileID: 0}
 --- !u!4 &371146831
 Transform:
   m_ObjectHideFlags: 0
@@ -55260,6 +55262,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7423328147255320553, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e0c171c8ddaf1774f8efeb388751837f, type: 3}
+    - target: {fileID: 7423328147255320554, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
+        type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 8300000, guid: e0c171c8ddaf1774f8efeb388751837f, type: 3}
     - target: {fileID: 7423328147255320555, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
         type: 3}
       propertyPath: m_Name
