@@ -64373,11 +64373,6 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8447123474801615869, guid: 57a92a4ffae65884c96abc7ee8c893c2,
         type: 3}
-      propertyPath: shootSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 2ef0906473d8947ffa274809c73222fd, type: 3}
-    - target: {fileID: 8447123474801615869, guid: 57a92a4ffae65884c96abc7ee8c893c2,
-        type: 3}
       propertyPath: cinematicControlled
       value: 0
       objectReference: {fileID: 0}
@@ -65878,14 +65873,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7423328147255320553, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
         type: 3}
-      propertyPath: m_Pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7423328147255320553, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.3
-      objectReference: {fileID: 0}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b527e144ccd554942a8ff470228bc482, type: 3}
     - target: {fileID: 7423328147255320555, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
         type: 3}
       propertyPath: m_Name

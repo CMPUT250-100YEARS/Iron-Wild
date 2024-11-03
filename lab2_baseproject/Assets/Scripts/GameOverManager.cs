@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip deadSound;
+
     public GameObject gameOverPanel;
     public Button restartButton;
     public bool isGameOver = false;
@@ -39,6 +42,7 @@ public class GameOverManager : MonoBehaviour
 
         Debug.Log("GameOver GameOverFunc " + PlayerPrefs.GetInt("numHearts"));
         isGameOver = true;
+        audioSource.PlayOneShot(deadSound);
         Time.timeScale = 0f; // Pause the game: freezes player and water after ran out of water
         gameOverPanel.SetActive(true);
         restartButton.gameObject.SetActive(true);

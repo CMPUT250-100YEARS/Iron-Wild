@@ -7,6 +7,7 @@ public class Enemy : AnimatedEntity
 
     //private float RangeX = 4, RangeY = 4;
     private float EnemyHealth = 100.0f;
+    public AudioSource audioSource;
 
     private Transform detectionZone;
     private Transform target;
@@ -18,6 +19,16 @@ public class Enemy : AnimatedEntity
 
     public LayerMask SolidObjectsLayer;
     public LayerMask EnemyLayer;
+
+    //Sound Effects
+    public AudioClip hit1;
+    public AudioClip hit2;
+    public AudioClip hit3;
+    public AudioClip dead;
+    public AudioClip shoot1;
+    public AudioClip shoot2;
+    public AudioClip alert;
+
 
     //Sprite list based on direction
     public List<Sprite> BackSpriteList;
@@ -35,6 +46,7 @@ public class Enemy : AnimatedEntity
     public List<Sprite> InterruptedCycle;
     private List<Sprite> currentSpriteCycle;
     bool isMoving = false;
+    bool alive = true;
 
     private Vector3 direction; // Store the current direction
     private float updateInterval = 0.75f; // Update direction every interval
