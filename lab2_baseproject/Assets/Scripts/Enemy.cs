@@ -6,7 +6,7 @@ public class Enemy : AnimatedEntity
 {
 
     //private float RangeX = 4, RangeY = 4;
-    private float EnemyHealth = 100.0f;
+    private float EnemyHealth = 120.0f;
     public AudioSource audioSource;
 
     private Transform detectionZone;
@@ -21,14 +21,13 @@ public class Enemy : AnimatedEntity
     public LayerMask EnemyLayer;
 
     //Sound Effects
-    public AudioClip hit1;
-    public AudioClip hit2;
-    public AudioClip hit3;
+    public AudioClip clunk1;
+    public AudioClip clunk2;
+    public AudioClip clunk3;
     public AudioClip dead;
     public AudioClip shoot1;
     public AudioClip shoot2;
     public AudioClip alert;
-
 
     //Sprite list based on direction
     public List<Sprite> BackSpriteList;
@@ -45,11 +44,13 @@ public class Enemy : AnimatedEntity
 
     public List<Sprite> InterruptedCycle;
     private List<Sprite> currentSpriteCycle;
-    bool isMoving = false;
-    bool alive = true;
+    private bool isMoving = false;
+    private bool alive = true;
 
+    private int range = 4;
     private Vector3 direction; // Store the current direction
     private float updateInterval = 0.75f; // Update direction every interval
+    private bool seesplayer = false; //0 means the enemy doesn't see the player yet, 1 means they've noticed you
 
 
     // Start is called before the first frame update
@@ -81,8 +82,6 @@ public class Enemy : AnimatedEntity
     {
         while (true)
         {
-            int range = 5;
-
             if (target != null)
             {
                 Vector3 new_direction = target.position - transform.position;
@@ -98,8 +97,13 @@ public class Enemy : AnimatedEntity
                     if (randomValue == 1) new_direction = -new_direction;
                     else if (randomValue <= 3) new_direction = new Vector3(-new_direction.y, new_direction.x, 0);
                     else if (randomValue <= 5) new_direction = new Vector3(new_direction.y, -new_direction.x, 0);
+                    // random value of 6: no further updates needed
                 }
-                // Long range or random value of 6: no further updates needed
+                else if (range == 3 && seesplayer == false)
+                {
+                    audioSource.PlayOneShot(alert);
+                    seesplayer = true;
+                }
 
                 new_direction.Normalize(); // Normalize the direction to get a unit vector
                 direction = new_direction;
@@ -108,74 +112,86 @@ public class Enemy : AnimatedEntity
             yield return new WaitForSeconds(Random.Range(updateInterval*0.5f, updateInterval*1.2f)); // Wait for about 1 interval before updating again
             
             //Fire a bullet at each step
-            if (range <= 3) Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
+
+            if (range <= 3)
+            {
+                int random_sound = Random.Range(1, 3);
+                if (random_sound == 1) audioSource.PlayOneShot(shoot2);
+                else audioSource.PlayOneShot(shoot1);
+
+                Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
+            }
+            else seesplayer = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        AnimationUpdate();
-        if (target == null)
+        if (alive == true)
         {
-            isMoving = false;
-            //pass
-        }
-        else if (target != null)
-        {
-            isMoving = true;
-
-            //angle of enemy compared to player
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            if (angle < 0) { angle += 360f; }
-
-            //Determine SpriteList based on angle
-            if (angle > 45f && angle <= 135f)
+            AnimationUpdate();
+            if (target == null || range == 4)
             {
-                currentSpriteCycle = BackSpriteList; ;
+                isMoving = false;
+                //pass
             }
-
-            else if (angle > 135f && angle <= 225f)
-            {
-                currentSpriteCycle = RightSpriteList;
-            }
-
-            else if (angle > 225f && angle <= 315f)
-            {
-                currentSpriteCycle = FrontSpriteList;
-            }
-
-            else if (angle > 315f || angle <= 45f)
-            {
-                currentSpriteCycle = LeftSpriteList;
-            }
-
-
-
-
-            // Move the enemy towards the player
-            Vector3 targetPos = transform.position + direction * followSpeed * Time.deltaTime;
-
-            //transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
-
-            //transform.position = Vector3.Lerp(transform.position, target.position, followSpeed * Time.deltaTime);
-            //AvoidOtherEnemies(ref targetPos);
-
-            if (!IsCollidingWith(targetPos))
+            else if (target != null)
             {
                 isMoving = true;
-                transform.position = targetPos;
 
-            }
-            else
-            {
-                //isMoving = false;
-                //currentSpriteCycle = IdleSpriteList;
-                direction = -direction;
-            }
+                //angle of enemy compared to player
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                if (angle < 0) { angle += 360f; }
 
-            SetMovementDirection(isMoving);
-            SetCurrentAnimationCycle(currentSpriteCycle);
+                //Determine SpriteList based on angle
+                if (angle > 45f && angle <= 135f)
+                {
+                    currentSpriteCycle = BackSpriteList; ;
+                }
+
+                else if (angle > 135f && angle <= 225f)
+                {
+                    currentSpriteCycle = RightSpriteList;
+                }
+
+                else if (angle > 225f && angle <= 315f)
+                {
+                    currentSpriteCycle = FrontSpriteList;
+                }
+
+                else if (angle > 315f || angle <= 45f)
+                {
+                    currentSpriteCycle = LeftSpriteList;
+                }
+
+
+
+
+                // Move the enemy towards the player
+                Vector3 targetPos = transform.position + direction * followSpeed * Time.deltaTime;
+
+                //transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
+
+                //transform.position = Vector3.Lerp(transform.position, target.position, followSpeed * Time.deltaTime);
+                //AvoidOtherEnemies(ref targetPos);
+
+                if (!IsCollidingWith(targetPos))
+                {
+                    isMoving = true;
+                    transform.position = targetPos;
+
+                }
+                else
+                {
+                    //isMoving = false;
+                    //currentSpriteCycle = IdleSpriteList;
+                    direction = -direction;
+                }
+
+                SetMovementDirection(isMoving);
+                SetCurrentAnimationCycle(currentSpriteCycle);
+            }
         }
         //transform.position += new Vector3(Random.Range(-1 * RangeX, RangeX), Random.Range(-1 * RangeY, RangeY)) * Time.deltaTime;
     }
@@ -206,10 +222,30 @@ public class Enemy : AnimatedEntity
     public void takeDamage(float damage)
     {
         EnemyHealth -= damage;
+
         Debug.Log("Enemy Health is now " + EnemyHealth);
         EnemyFlash();
 
-        if (EnemyHealth <= 0) { Destroy(gameObject); }
+        if (EnemyHealth <= 0)
+        {
+            alive = false;
+            StartCoroutine(Death());
+        }
+
+        else
+        {
+            int random_sound = Random.Range(1, 4);
+            if (random_sound == 1) audioSource.PlayOneShot(clunk3);
+            else if (random_sound == 2) audioSource.PlayOneShot(clunk2);
+            else audioSource.PlayOneShot(clunk1);
+        }
+    }
+
+    private IEnumerator Death()
+    {
+        audioSource.PlayOneShot(dead);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 
     public void OnDetectionTriggerEnter(Collider2D other)
