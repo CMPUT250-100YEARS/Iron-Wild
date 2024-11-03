@@ -51,10 +51,22 @@ public class Bullet : MonoBehaviour
     {
         Debug.Log("Trigger!");
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        EnemyTurret enemyTurret = other.gameObject.GetComponent<EnemyTurret>();
+        EnemyJuggernaut enemyJuggernaut = other.gameObject.GetComponent<EnemyJuggernaut>();
 
         if (enemy != null)
         {
             enemy.takeDamage(bulletDamage);
+            Destroy(gameObject);
+        }
+        else if (enemyTurret != null)
+        {
+            enemyTurret.takeDamage(bulletDamage);
+            Destroy(gameObject);
+        }
+        else if (enemyJuggernaut != null)
+        {
+            enemyJuggernaut.takeDamage(bulletDamage);
             Destroy(gameObject);
         }
 

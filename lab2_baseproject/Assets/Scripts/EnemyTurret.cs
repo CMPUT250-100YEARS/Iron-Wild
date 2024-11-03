@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : AnimatedEntity
+public class EnemyTurret : AnimatedEntity
 {
 
     //private float RangeX = 4, RangeY = 4;
@@ -11,7 +11,7 @@ public class Enemy : AnimatedEntity
 
     private Transform detectionZone;
     private Transform target;
-    private float followSpeed = 3.5f;
+    private float followSpeed = 0f;
     public float avoidanceRadius = 1.5f; // radius to avoid other enemy
 
     public GameObject bulletEnemyPrefab;
@@ -49,7 +49,7 @@ public class Enemy : AnimatedEntity
 
     private int range;
     private Vector3 direction; // Store the current direction
-    private float updateInterval = 0.75f; // Update direction every interval
+    private float updateInterval = 0.6f; // Update direction every interval
     private bool seesplayer = false;
 
 
@@ -88,19 +88,7 @@ public class Enemy : AnimatedEntity
                 Vector3 new_direction = target.position - transform.position;
 
                 range = getDistance();
-                if (range == 1)
-                {
-                    new_direction = -new_direction; // Enemy runs from player
-                }
-                else if (range == 2)
-                {
-                    int randomValue = Random.Range(1, 7);
-                    if (randomValue == 1) new_direction = -new_direction;
-                    else if (randomValue <= 3) new_direction = new Vector3(-new_direction.y, new_direction.x, 0);
-                    else if (randomValue <= 5) new_direction = new Vector3(new_direction.y, -new_direction.x, 0);
-                    // random value of 6: no further updates needed
-                }
-                else if (range == 3 && seesplayer == false)
+                if (range == 3 && seesplayer == false)
                 {
                     audioSource.PlayOneShot(alert);
                     seesplayer = true;
@@ -110,7 +98,7 @@ public class Enemy : AnimatedEntity
                 direction = new_direction;
             }
 
-            yield return new WaitForSeconds(Random.Range(updateInterval*0.5f, updateInterval*1.2f)); // Wait for about 1 interval before updating again
+            yield return new WaitForSeconds(updateInterval); // Wait for about 1 interval before updating again
             
             //Fire a bullet at each step
 
