@@ -498,6 +498,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af3124b438b04115a1cf26f20673f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  deadSound: {fileID: 0}
   gameOverPanel: {fileID: 534336941}
   restartButton: {fileID: 1733185706}
   isGameOver: 0
@@ -55260,6 +55262,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7423328147255320553, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 32a35953a7f2f3c4688df355ad7aa5ab, type: 3}
     - target: {fileID: 7423328147255320555, guid: ddd8fd2cd995d41feb9d8c9cbe0bb292,
         type: 3}
       propertyPath: m_Name
