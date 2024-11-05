@@ -35,6 +35,7 @@ public class CameraF : MonoBehaviour
         minY = bottomLeftBoundary.position.y;
         maxY = topRightBoundary.position.y;
 
+        //to fix the camera size *******
         Camera.main.orthographicSize = normalSize;
     }
 
