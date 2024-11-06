@@ -659,12 +659,14 @@ public class Player : AnimatedEntity
         {
             Vector3 playerPosition = this.transform.position;
 
-            //if (foodCount < 2)
-            //{
-            //    FindObjectOfType<LevelEndTrigger>().OnLevelComplete("I need more food!");
-            //} else
-            //{
-            endDialogue = true;
+            if (foodCount < 5)
+            {
+                FindObjectOfType<LevelEndTrigger>().OnLevelComplete("I need more food!");
+            }
+            else
+            {
+                endDialogue = true;
+            }
 
 
 

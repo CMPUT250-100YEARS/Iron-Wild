@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FoodSlotImage : MonoBehaviour
 {
-    public int maxSlots = 2;
+    public int maxSlots = 5;
     public Image[] SlotImages;  // Array of Slot images
 
     // Start is called before the first frame update
