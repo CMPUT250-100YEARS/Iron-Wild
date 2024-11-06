@@ -53,6 +53,7 @@ public class Bullet : MonoBehaviour
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         EnemyTurret enemyTurret = other.gameObject.GetComponent<EnemyTurret>();
         EnemyJuggernaut enemyJuggernaut = other.gameObject.GetComponent<EnemyJuggernaut>();
+        MiniBoss miniBoss = other.gameObject.GetComponent<MiniBoss>();
 
         if (enemy != null)
         {
@@ -67,6 +68,11 @@ public class Bullet : MonoBehaviour
         else if (enemyJuggernaut != null)
         {
             enemyJuggernaut.takeDamage(bulletDamage);
+            Destroy(gameObject);
+        }
+        else if (miniBoss != null)
+        {
+            miniBoss.takeDamage(bulletDamage);
             Destroy(gameObject);
         }
 

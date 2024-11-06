@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniBoss : MonoBehaviour
+public class MiniBoss : AnimatedEntity
 {
 
     public Transform player;
 
+    [Header("Hover Settings")]
     private float hoverSpeed = 2f;
     private float diveSpeed = 10f;
     private float hoverHeight = 4f; // y-offset
@@ -15,15 +16,14 @@ public class MiniBoss : MonoBehaviour
     private float hoverTimer;
     private float hoverDuration = 15f;
 
-    private float warningTimer;
-    private float warningDuration = 4f;
-
     public bool isHovering;
     public bool canAttack;
-    public bool hasBeenWarned;
-
     private bool isHoveringToPos1;
+
+
+    [Header("Warning Settings")]
     private bool playerInWarningCircle;
+    public bool hasBeenWarned;
 
     private Vector3 warningCircleCenter;
 
@@ -34,6 +34,25 @@ public class MiniBoss : MonoBehaviour
     public GameObject warningCirclePrefab; // Assign a prefab with a SpriteRenderer (circle sprite)
     private GameObject warningCircleInstance;
 
+    private float warningTimer;
+    private float warningDuration = 4f;
+
+
+    [Header("Animation Settings")]
+    //public Sprite idleUp, idleRight, idleDown, idleLeft;
+    public List<Sprite> upWalkCycle, rightWalkCycle, downWalkCycle, leftWalkCycle;
+    private Vector3 _priorPosition;
+    private int _direction = -1;//0 is up, 1 is right, 2 is down, 3 is left
+    private float minDiff = 0.00001f;
+
+    private List<Sprite> currentSpriteCycle;
+
+
+    [Header("Miniboss Settings")]
+    public float minibossHealth = 400f; 
+
+
+
     private void Start()
     {
         canAttack = false;
@@ -43,7 +62,8 @@ public class MiniBoss : MonoBehaviour
         hoverTimer = hoverDuration;
 
         warningCircleInstance = null;
-
+        AnimationSetup();
+        _priorPosition = transform.position;
 
     }
 
@@ -136,6 +156,79 @@ public class MiniBoss : MonoBehaviour
             }
         }
 
+        //Animation Update based on movement
+        if ((transform.position.y - _priorPosition.y) > minDiff)
+        {
+            //Moving Up
+            if (_direction != 0)
+            {
+                _direction = 0;
+                currentSpriteCycle = upWalkCycle;
+            }
+        }
+        if ((_priorPosition.y - transform.position.y) > minDiff)
+        {
+            //Moving Down
+            if (_direction != 2)
+            {
+                _direction = 2;
+                currentSpriteCycle = downWalkCycle;
+            }
+        }
+
+        if ((transform.position.x - _priorPosition.x) > minDiff)
+        {
+            //Moving right
+            if (_direction != 1)
+            {
+                _direction = 1;
+                currentSpriteCycle = rightWalkCycle;
+            }
+        }
+        if ((_priorPosition.x - transform.position.x) > minDiff)
+        {
+            //Moving left
+            if (_direction != 3)
+            {
+                _direction = 3;
+                currentSpriteCycle = leftWalkCycle;
+            }
+        }
+
+        //Animation Handling!
+        if ((_priorPosition - transform.position).magnitude > minDiff)
+        {
+            
+            AnimationUpdate();//Animate if moving
+            SetCurrentAnimationCycle(currentSpriteCycle);
+
+        }
+
+        // this is for idle animation - probably won't need it.
+        //else
+        //{//Pick idle sprite if not moving
+        //    if (_direction == 0)
+        //    {
+        //        SpriteRenderer.sprite = idleUp;
+        //    }
+        //    else if (_direction == 1)
+        //    {
+        //        SpriteRenderer.sprite = idleRight;
+        //    }
+        //    else if (_direction == 2)
+        //    {
+        //        SpriteRenderer.sprite = idleDown;
+        //    }
+        //    else if (_direction == 3)
+        //    {
+        //        SpriteRenderer.sprite = idleLeft;
+        //    }
+
+        //}
+
+        //Grab the priorPosition
+        _priorPosition = transform.position;
+
 
 
     }
@@ -176,6 +269,11 @@ public class MiniBoss : MonoBehaviour
         }
     }
 
+    public void takeDamage(float damage)
+    {
+        minibossHealth -= damage;
+        if (minibossHealth <= 0) Destroy(gameObject);
+    }
 
 
 
