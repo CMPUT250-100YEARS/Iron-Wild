@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FoodImage : MonoBehaviour
 {
-    public int maxFoods = 2;
+    public int maxFoods = 5;
     public int currentFoods = 0;
     public Image[] FoodImages;  // Array of Food images
 
