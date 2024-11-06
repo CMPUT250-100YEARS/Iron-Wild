@@ -29,7 +29,7 @@ public class FoodImage : MonoBehaviour
     // Call this method to reduce a life
     public void FoundFoods()
     {
-        if (currentFoods < 2)
+        if (currentFoods < 5)
         {
             Debug.Log("Found foods!");
             currentFoods++;

@@ -310,7 +310,10 @@ MonoBehaviour:
   maxSlots: 5
   SlotImages:
   - {fileID: 1440238561}
+  - {fileID: 885232483}
+  - {fileID: 484815232}
   - {fileID: 48806093}
+  - {fileID: 619798278}
 --- !u!114 &48806093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77141,7 +77144,10 @@ MonoBehaviour:
   maxSlots: 5
   SlotImages:
   - {fileID: 1440238561}
+  - {fileID: 885232483}
   - {fileID: 484815232}
+  - {fileID: 48806093}
+  - {fileID: 619798278}
 --- !u!114 &484815232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77271,6 +77277,9 @@ MonoBehaviour:
   FoodImages:
   - {fileID: 1433855945}
   - {fileID: 506761650}
+  - {fileID: 550950452}
+  - {fileID: 1397479051}
+  - {fileID: 1299605612}
 --- !u!4 &531004765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8633223322690808465, guid: 09b7bc037d0efcc4a9879d13763db601,
@@ -77331,7 +77340,10 @@ MonoBehaviour:
   currentFoods: 0
   FoodImages:
   - {fileID: 1433855945}
+  - {fileID: 506761650}
   - {fileID: 550950452}
+  - {fileID: 1397479051}
+  - {fileID: 1299605612}
 --- !u!114 &550950452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93678,6 +93690,9 @@ MonoBehaviour:
   maxSlots: 5
   SlotImages:
   - {fileID: 1440238561}
+  - {fileID: 885232483}
+  - {fileID: 484815232}
+  - {fileID: 48806093}
   - {fileID: 619798278}
 --- !u!114 &619798278
 MonoBehaviour:
@@ -94194,6 +94209,9 @@ MonoBehaviour:
   SlotImages:
   - {fileID: 1440238561}
   - {fileID: 885232483}
+  - {fileID: 484815232}
+  - {fileID: 48806093}
+  - {fileID: 619798278}
 --- !u!114 &885232483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95356,6 +95374,9 @@ MonoBehaviour:
   currentFoods: 0
   FoodImages:
   - {fileID: 1433855945}
+  - {fileID: 506761650}
+  - {fileID: 550950452}
+  - {fileID: 1397479051}
   - {fileID: 1299605612}
 --- !u!114 &1299605612
 MonoBehaviour:
@@ -95526,7 +95547,10 @@ MonoBehaviour:
   currentFoods: 0
   FoodImages:
   - {fileID: 1433855945}
+  - {fileID: 506761650}
+  - {fileID: 550950452}
   - {fileID: 1397479051}
+  - {fileID: 1299605612}
 --- !u!114 &1397479051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95656,6 +95680,9 @@ MonoBehaviour:
   FoodImages:
   - {fileID: 1433855945}
   - {fileID: 506761650}
+  - {fileID: 550950452}
+  - {fileID: 1397479051}
+  - {fileID: 1299605612}
 --- !u!1001 &1434364457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95790,6 +95817,9 @@ MonoBehaviour:
   SlotImages:
   - {fileID: 1440238561}
   - {fileID: 885232483}
+  - {fileID: 484815232}
+  - {fileID: 48806093}
+  - {fileID: 619798278}
 --- !u!114 &1440238561
 MonoBehaviour:
   m_ObjectHideFlags: 0
