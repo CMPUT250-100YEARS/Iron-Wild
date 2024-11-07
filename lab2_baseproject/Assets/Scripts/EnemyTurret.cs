@@ -49,7 +49,7 @@ public class EnemyTurret : AnimatedEntity
 
     private int range;
     private Vector3 direction; // Store the current direction
-    private float updateInterval = 0.6f; // Update direction every interval
+    private float updateInterval = 1.0f; // Shoot every interval
     private bool seesplayer = false;
 
 
@@ -73,8 +73,8 @@ public class EnemyTurret : AnimatedEntity
         float dist = Vector3.Distance(target.position, transform.position);
         //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
         if (dist < 3.2f) return 1;
-        else if (dist < 6f) return 2;
-        else if (dist < 9.9f) return 3;
+        else if (dist < 7.5f) return 2;
+        else if (dist < 11.5f) return 3;
         else return 4;
     }
 
@@ -88,7 +88,7 @@ public class EnemyTurret : AnimatedEntity
                 Vector3 new_direction = target.position - transform.position;
 
                 range = getDistance();
-                if (range == 3 && seesplayer == false)
+                if (range <= 3 && seesplayer == false)
                 {
                     audioSource.PlayOneShot(alert);
                     seesplayer = true;
@@ -96,21 +96,23 @@ public class EnemyTurret : AnimatedEntity
 
                 new_direction.Normalize(); // Normalize the direction to get a unit vector
                 direction = new_direction;
-            }
 
-            yield return new WaitForSeconds(updateInterval); // Wait for about 1 interval before updating again
+
+
+                yield return new WaitForSeconds(updateInterval); // Wait for about 1 interval before updating again
             
-            //Fire a bullet at each step
+                //Fire a bullet at each step
 
-            if (range <= 3)
-            {
-                int random_sound = Random.Range(1, 3);
-                if (random_sound == 1) audioSource.PlayOneShot(shoot2);
-                else audioSource.PlayOneShot(shoot1);
+                if (range <= 3 && seesplayer == true)
+                {
+                    int random_sound = Random.Range(1, 3);
+                    if (random_sound == 1) audioSource.PlayOneShot(shoot2);
+                    else audioSource.PlayOneShot(shoot1);
 
-                Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
+                    Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
+                }
+                else seesplayer = false;
             }
-            else seesplayer = false;
         }
     }
 

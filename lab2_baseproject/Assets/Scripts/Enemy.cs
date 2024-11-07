@@ -6,12 +6,12 @@ public class Enemy : AnimatedEntity
 {
 
     //private float RangeX = 4, RangeY = 4;
-    private float EnemyHealth = 120.0f;
+    private float EnemyHealth = 100.0f;
     public AudioSource audioSource;
 
     private Transform detectionZone;
     private Transform target;
-    private float followSpeed = 3.5f;
+    private float followSpeed = 3.2f;
     public float avoidanceRadius = 1.5f; // radius to avoid other enemy
 
     public GameObject bulletEnemyPrefab;
@@ -49,7 +49,7 @@ public class Enemy : AnimatedEntity
 
     private int range;
     private Vector3 direction; // Store the current direction
-    private float updateInterval = 0.75f; // Update direction every interval
+    private float updateInterval = 0.73f; // Update direction every interval
     private bool seesplayer = false;
 
 
@@ -73,14 +73,15 @@ public class Enemy : AnimatedEntity
         float dist = Vector3.Distance(target.position, transform.position);
         //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
         if (dist < 3.2f) return 1;
-        else if (dist < 6f) return 2;
-        else if (dist < 9.9f) return 3;
+        else if (dist < 7.5f) return 2;
+        else if (dist < 11.5f) return 3;
         else return 4;
     }
 
     // Coroutine to update direction every interval
     private IEnumerator UpdateDirection()
     {
+        bool shooting = false;
         while (true)
         {
             if (target != null)
@@ -100,7 +101,7 @@ public class Enemy : AnimatedEntity
                     else if (randomValue <= 5) new_direction = new Vector3(new_direction.y, -new_direction.x, 0);
                     // random value of 6: no further updates needed
                 }
-                else if (range == 3 && seesplayer == false)
+                else if (range <= 3 && seesplayer == false)
                 {
                     audioSource.PlayOneShot(alert);
                     seesplayer = true;
@@ -108,21 +109,28 @@ public class Enemy : AnimatedEntity
 
                 new_direction.Normalize(); // Normalize the direction to get a unit vector
                 direction = new_direction;
-            }
-
-            yield return new WaitForSeconds(Random.Range(updateInterval*0.5f, updateInterval*1.2f)); // Wait for about 1 interval before updating again
             
-            //Fire a bullet at each step
+            
+            
+                yield return new WaitForSeconds(Random.Range(updateInterval*0.5f, updateInterval*1.2f)); // Wait for about 1 interval before updating again
+            
+                //Fire a bullet at every other step
 
-            if (range <= 3)
-            {
-                int random_sound = Random.Range(1, 3);
-                if (random_sound == 1) audioSource.PlayOneShot(shoot2);
-                else audioSource.PlayOneShot(shoot1);
+                if (range <= 3 && seesplayer == true)
+                {
+                    if (shooting == true)
+                    {
+                        int random_sound = Random.Range(1, 3);
+                        if (random_sound == 1) audioSource.PlayOneShot(shoot2);
+                        else audioSource.PlayOneShot(shoot1);
 
-                Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
+                        Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
+                        shooting = false;
+                    }
+                    else shooting = true;
+                }
+                else seesplayer = false;            
             }
-            else seesplayer = false;
         }
     }
 
