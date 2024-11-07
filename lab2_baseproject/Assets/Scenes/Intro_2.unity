@@ -487,6 +487,8 @@ PlayableDirector:
     value: {fileID: 1088422585}
   - key: {fileID: -3631627632545410975, guid: bdda6639cbb184a4cb37c91e5224d6c9, type: 2}
     value: {fileID: 1924953060}
+  - key: {fileID: -1270961497926475261, guid: bdda6639cbb184a4cb37c91e5224d6c9, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1657113240
@@ -659,7 +661,7 @@ MonoBehaviour:
     stand as monuments to the hubris of the technological God-Kings who hammered
     the final nail in organic life\u2019s coffin. Artificial life reigns supreme
     and mankind will never recover\u2026"
-  delay: 0.2
+  delay: 0.1
 --- !u!1 &1924953060
 GameObject:
   m_ObjectHideFlags: 0
