@@ -45,7 +45,7 @@ public class EnemyJuggernaut : AnimatedEntity
     public List<Sprite> InterruptedCycle;
     private List<Sprite> currentSpriteCycle;
     private bool isMoving = false;
-    private bool alive = true;
+    private bool issalive = true;
 
     private int range;
     private Vector3 sideVector; //used to swap side for bullet to spawn on
@@ -75,7 +75,7 @@ public class EnemyJuggernaut : AnimatedEntity
         //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
         if (dist < 3.2f) return 1;
         else if (dist < 6.5f) return 2;
-        else if (dist < 14f) return 3;
+        else if (dist < 16f) return 3;
         else return 4;
     }
 
@@ -134,7 +134,7 @@ public class EnemyJuggernaut : AnimatedEntity
     // Update is called once per frame
     void Update()
     {
-        if (alive == true)
+        if (true) //issalive
         {
             AnimationUpdate();
             if (target == null || !seesplayer)
@@ -234,7 +234,6 @@ public class EnemyJuggernaut : AnimatedEntity
 
         if (EnemyHealth <= 0)
         {
-            alive = false;
             StartCoroutine(Death());
         }
 
@@ -249,6 +248,7 @@ public class EnemyJuggernaut : AnimatedEntity
 
     private IEnumerator Death()
     {
+        issalive = false;
         audioSource.PlayOneShot(deadblast);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);

@@ -250,7 +250,7 @@ MonoBehaviour:
   currScene: 
   currDialog: 
   startPosition: {x: 0, y: 0, z: 0}
-  dashCooldown: 0.2
+  dashCooldown: 0
   flashMaterial: {fileID: 2100000, guid: fe48c5648710ff843be99fbe42d8364c, type: 2}
   foodSound: {fileID: 8300000, guid: 36195078cac616645a09469a78f6d291, type: 3}
   waterSound: {fileID: 8300000, guid: 649b09136f7829b4e999883e68816d33, type: 3}

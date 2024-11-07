@@ -74,7 +74,7 @@ public class EnemyTurret : AnimatedEntity
         //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
         if (dist < 3.2f) return 1;
         else if (dist < 7.5f) return 2;
-        else if (dist < 14f) return 3;
+        else if (dist < 16f) return 3;
         else return 4;
     }
 

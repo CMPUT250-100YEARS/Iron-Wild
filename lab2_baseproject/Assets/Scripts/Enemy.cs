@@ -11,7 +11,7 @@ public class Enemy : AnimatedEntity
 
     private Transform detectionZone;
     private Transform target;
-    private float followSpeed = 3.2f;
+    private float followSpeed = 3.35f;
     public float avoidanceRadius = 1.5f; // radius to avoid other enemy
 
     public GameObject bulletEnemyPrefab;
@@ -45,12 +45,13 @@ public class Enemy : AnimatedEntity
     public List<Sprite> InterruptedCycle;
     private List<Sprite> currentSpriteCycle;
     private bool isMoving = false;
-    private bool alive = true;
+    private bool isalive = true;
 
     private int range;
     private Vector3 direction; // Store the current direction
     private float updateInterval = 0.73f; // Update direction every interval
     private bool seesplayer = false;
+    private bool alertsounded = false;
 
 
     // Start is called before the first frame update
@@ -73,8 +74,8 @@ public class Enemy : AnimatedEntity
         float dist = Vector3.Distance(target.position, transform.position);
         //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
         if (dist < 3.2f) return 1;
-        else if (dist < 8f) return 2;
-        else if (dist < 14f) return 3;
+        else if (dist < 8.5f) return 2;
+        else if (dist < 16f) return 3;
         else return 4;
     }
 
@@ -101,12 +102,6 @@ public class Enemy : AnimatedEntity
                     else if (randomValue <= 5) new_direction = new Vector3(new_direction.y, -new_direction.x, 0);
                     // random value of 6: no further updates needed
                 }
-                else if (range <= 3 && seesplayer == false)
-                {
-                    audioSource.PlayOneShot(alert);
-                    yield return new WaitForSeconds(0.5f);
-                    seesplayer = true;
-                }
 
                 new_direction.Normalize(); // Normalize the direction to get a unit vector
                 direction = new_direction;
@@ -130,19 +125,20 @@ public class Enemy : AnimatedEntity
                 else seesplayer = false; 
             }
             
-            yield return new WaitForSeconds(Random.Range(updateInterval*0.5f, updateInterval*1.2f)); // Wait for about 1 interval before updating again           
+            yield return new WaitForSeconds(Random.Range(updateInterval*0.5f, updateInterval*1.2f)); // Wait for about 1 interval before updating again
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (alive == true)
+        if (true) //isalive
         {
             AnimationUpdate();
             if (target == null || !seesplayer)
             {
                 isMoving = false;
+                if (!alertsounded) StartCoroutine(spotPlayer());
                 //pass
             }
             else if (target != null)
@@ -237,7 +233,6 @@ public class Enemy : AnimatedEntity
 
         if (EnemyHealth <= 0)
         {
-            alive = false;
             StartCoroutine(Death());
         }
 
@@ -252,6 +247,7 @@ public class Enemy : AnimatedEntity
 
     private IEnumerator Death()
     {
+        isalive = false;
         audioSource.PlayOneShot(deadblast);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
@@ -289,6 +285,19 @@ public class Enemy : AnimatedEntity
         yield return new WaitForSeconds(0.12f);
         flashSpriteRenderer.material = originalMaterial;
         flashroutine = null;
+    }
+
+    public IEnumerator spotPlayer()
+    {
+        //looks to see if the player is in range
+        if (Vector3.Distance(target.position, transform.position) < 16f && !seesplayer)
+            {
+                alertsounded = true;
+                audioSource.PlayOneShot(alert);
+                yield return new WaitForSeconds(0.5f);
+                seesplayer = true;
+                alertsounded = false;
+            }
     }
 
 }
