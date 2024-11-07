@@ -6,7 +6,7 @@ public class EnemyJuggernaut : AnimatedEntity
 {
 
     //private float RangeX = 4, RangeY = 4;
-    private float EnemyHealth = 240.0f;
+    private float EnemyHealth = 180.0f;
     public AudioSource audioSource;
 
     private Transform detectionZone;
@@ -24,7 +24,7 @@ public class EnemyJuggernaut : AnimatedEntity
     public AudioClip clunk1;
     public AudioClip clunk2;
     public AudioClip clunk3;
-    public AudioClip dead;
+    public AudioClip deadblast;
     public AudioClip shoot1;
     public AudioClip shoot2;
     public AudioClip alert;
@@ -45,11 +45,12 @@ public class EnemyJuggernaut : AnimatedEntity
     public List<Sprite> InterruptedCycle;
     private List<Sprite> currentSpriteCycle;
     private bool isMoving = false;
-    private bool alive = true;
+    private bool issalive = true;
 
     private int range;
+    private Vector3 sideVector; //used to swap side for bullet to spawn on
     private Vector3 direction; // Store the current direction
-    private float updateInterval = 0.65f; // Update direction every interval
+    private float updateInterval = 0.75f; // Update direction every interval
     private bool seesplayer = false;
 
 
@@ -73,14 +74,15 @@ public class EnemyJuggernaut : AnimatedEntity
         float dist = Vector3.Distance(target.position, transform.position);
         //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
         if (dist < 3.2f) return 1;
-        else if (dist < 6f) return 2;
-        else if (dist < 9.9f) return 3;
+        else if (dist < 6.5f) return 2;
+        else if (dist < 16f) return 3;
         else return 4;
     }
 
     // Coroutine to update direction every interval
     private IEnumerator UpdateDirection()
     {
+        int bulletside = 1;
         while (true)
         {
             if (target != null)
@@ -88,39 +90,54 @@ public class EnemyJuggernaut : AnimatedEntity
                 Vector3 new_direction = target.position - transform.position;
 
                 range = getDistance();
-                if (range == 3 && seesplayer == false)
+                if (range <= 3 && seesplayer == false)
                 {
                     audioSource.PlayOneShot(alert);
+                    yield return new WaitForSeconds(0.5f);
                     seesplayer = true;
                 }
 
                 new_direction.Normalize(); // Normalize the direction to get a unit vector
                 direction = new_direction;
+
+
+                //Fire a bullet at each step
+
+                if (range <= 3 && seesplayer == true)
+                {
+                    int random_sound = Random.Range(1, 3);
+                    if (random_sound == 1) audioSource.PlayOneShot(shoot2);
+                    else audioSource.PlayOneShot(shoot1);
+
+                    //swap sides each time it fires
+                    if (bulletside == 1)
+                    {
+                        sideVector = new Vector3(-new_direction.y, new_direction.x, 0);
+                        bulletside = 2;
+                    }
+                    else
+                    {
+                        sideVector = new Vector3(new_direction.y, -new_direction.x, 0);
+                        bulletside = 1;
+                    }
+                    Vector3 spawnPosition = enemyBulletPos.position + sideVector * 0.85f;
+
+                    Instantiate(bulletEnemyPrefab, spawnPosition, Quaternion.identity);
+                }
+                else seesplayer = false;
             }
 
             yield return new WaitForSeconds(updateInterval); // Wait for about 1 interval before updating again
-            
-            //Fire a bullet at each step
-
-            if (range <= 3)
-            {
-                int random_sound = Random.Range(1, 3);
-                if (random_sound == 1) audioSource.PlayOneShot(shoot2);
-                else audioSource.PlayOneShot(shoot1);
-
-                Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
-            }
-            else seesplayer = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (alive == true)
+        if (true) //issalive
         {
             AnimationUpdate();
-            if (target == null || range == 4)
+            if (target == null || !seesplayer)
             {
                 isMoving = false;
                 //pass
@@ -217,7 +234,6 @@ public class EnemyJuggernaut : AnimatedEntity
 
         if (EnemyHealth <= 0)
         {
-            alive = false;
             StartCoroutine(Death());
         }
 
@@ -232,7 +248,8 @@ public class EnemyJuggernaut : AnimatedEntity
 
     private IEnumerator Death()
     {
-        audioSource.PlayOneShot(dead);
+        issalive = false;
+        audioSource.PlayOneShot(deadblast);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }

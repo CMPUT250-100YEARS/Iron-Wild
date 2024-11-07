@@ -24,7 +24,7 @@ public class EnemyTurret : AnimatedEntity
     public AudioClip clunk1;
     public AudioClip clunk2;
     public AudioClip clunk3;
-    public AudioClip dead;
+    public AudioClip deadblast;
     public AudioClip shoot1;
     public AudioClip shoot2;
     public AudioClip alert;
@@ -49,7 +49,7 @@ public class EnemyTurret : AnimatedEntity
 
     private int range;
     private Vector3 direction; // Store the current direction
-    private float updateInterval = 0.6f; // Update direction every interval
+    private float updateInterval = 1.0f; // Shoot every interval
     private bool seesplayer = false;
 
 
@@ -73,8 +73,8 @@ public class EnemyTurret : AnimatedEntity
         float dist = Vector3.Distance(target.position, transform.position);
         //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
         if (dist < 3.2f) return 1;
-        else if (dist < 6f) return 2;
-        else if (dist < 9.9f) return 3;
+        else if (dist < 7.5f) return 2;
+        else if (dist < 16f) return 3;
         else return 4;
     }
 
@@ -88,29 +88,32 @@ public class EnemyTurret : AnimatedEntity
                 Vector3 new_direction = target.position - transform.position;
 
                 range = getDistance();
-                if (range == 3 && seesplayer == false)
+                if (range <= 3 && seesplayer == false)
                 {
                     audioSource.PlayOneShot(alert);
+                    yield return new WaitForSeconds(0.5f);
                     seesplayer = true;
                 }
 
                 new_direction.Normalize(); // Normalize the direction to get a unit vector
                 direction = new_direction;
+
+
+
+                //Fire a bullet at each step
+
+                if (range <= 3 && seesplayer == true)
+                {
+                    int random_sound = Random.Range(1, 3);
+                    if (random_sound == 1) audioSource.PlayOneShot(shoot2);
+                    else audioSource.PlayOneShot(shoot1);
+
+                    Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
+                }
+                else seesplayer = false;
             }
 
             yield return new WaitForSeconds(updateInterval); // Wait for about 1 interval before updating again
-            
-            //Fire a bullet at each step
-
-            if (range <= 3)
-            {
-                int random_sound = Random.Range(1, 3);
-                if (random_sound == 1) audioSource.PlayOneShot(shoot2);
-                else audioSource.PlayOneShot(shoot1);
-
-                Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
-            }
-            else seesplayer = false;
         }
     }
 
@@ -120,7 +123,7 @@ public class EnemyTurret : AnimatedEntity
         if (alive == true)
         {
             AnimationUpdate();
-            if (target == null || range == 4)
+            if (target == null || !seesplayer)
             {
                 isMoving = false;
                 //pass
@@ -232,7 +235,7 @@ public class EnemyTurret : AnimatedEntity
 
     private IEnumerator Death()
     {
-        audioSource.PlayOneShot(dead);
+        audioSource.PlayOneShot(deadblast);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }

@@ -1277,6 +1277,7 @@ GameObject:
   - component: {fileID: 1717420668}
   - component: {fileID: 1717420667}
   - component: {fileID: 1717420670}
+  - component: {fileID: 1717420671}
   m_Layer: 0
   m_Name: Miniboss
   m_TagString: Untagged
@@ -1300,8 +1301,17 @@ MonoBehaviour:
   Framerate: 5
   SpriteRenderer: {fileID: 1717420668}
   player: {fileID: 1920993492}
+  audioSource: {fileID: 1717420671}
   isHovering: 0
   canAttack: 0
+  clunk1: {fileID: 8300000, guid: 05311421d56e84f4ab3b9dd07ef59ab2, type: 3}
+  clunk2: {fileID: 8300000, guid: 20815898c3bdfb848b9d0a501abbe208, type: 3}
+  clunk3: {fileID: 8300000, guid: f856f6d3d8a227747aefd1d865590dc0, type: 3}
+  deadblast: {fileID: 8300000, guid: ac162b48525612f47ae23c1acdc338c4, type: 3}
+  bird1: {fileID: 8300000, guid: d1007f9fb5902804daf9f9dabd17b461, type: 3}
+  bird2: {fileID: 8300000, guid: 041be52ba9ae0874faa22867ac64ccf2, type: 3}
+  bird3: {fileID: 8300000, guid: d2212db9b1c73a748ac27711140d4f34, type: 3}
+  bird4: {fileID: 8300000, guid: 02b0327f7dca7654f8b7adaea098bffe, type: 3}
   hasBeenWarned: 0
   warningCirclePrefab: {fileID: 7904901807216243883, guid: dd0cea7d7da0b47c8971ff21b165036e,
     type: 3}
@@ -1325,6 +1335,7 @@ MonoBehaviour:
   - {fileID: 9036255047264794817, guid: 97aee7e5937344e018898ae744170066, type: 3}
   - {fileID: 5495929817888945215, guid: 97aee7e5937344e018898ae744170066, type: 3}
   - {fileID: -4448453625059772532, guid: 97aee7e5937344e018898ae744170066, type: 3}
+  minibossHealth: 400
 --- !u!212 &1717420668
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1414,6 +1425,102 @@ EdgeCollider2D:
   - {x: 0.4606533, y: 0.6992178}
   - {x: -0.33532476, y: 0.67961645}
   - {x: -2.1969028, y: 1.2378197}
+--- !u!82 &1717420671
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717420666}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 05311421d56e84f4ab3b9dd07ef59ab2, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 0.8
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1.17
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1733185705
 GameObject:
   m_ObjectHideFlags: 0

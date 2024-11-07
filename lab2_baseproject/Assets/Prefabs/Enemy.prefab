@@ -116,7 +116,8 @@ MonoBehaviour:
   clunk1: {fileID: 8300000, guid: 05311421d56e84f4ab3b9dd07ef59ab2, type: 3}
   clunk2: {fileID: 8300000, guid: 20815898c3bdfb848b9d0a501abbe208, type: 3}
   clunk3: {fileID: 8300000, guid: f856f6d3d8a227747aefd1d865590dc0, type: 3}
-  dead: {fileID: 8300000, guid: ac162b48525612f47ae23c1acdc338c4, type: 3}
+  deadblast: {fileID: 8300000, guid: ac162b48525612f47ae23c1acdc338c4, type: 3}
+  deadcrumple: {fileID: 8300000, guid: 7c31742197fb9984ebc1ca6f4f5bb7f1, type: 3}
   shoot1: {fileID: 8300000, guid: 87e1f49701168314fab08e2811d799d2, type: 3}
   shoot2: {fileID: 8300000, guid: ea6e1aa7a0e62194cb4c4609a4e34477, type: 3}
   alert: {fileID: 8300000, guid: a673945630300aa4b83635ce980a9d0e, type: 3}

@@ -250,13 +250,27 @@ MonoBehaviour:
   currScene: 
   currDialog: 
   startPosition: {x: 0, y: 0, z: 0}
+  dashCooldown: 0
   flashMaterial: {fileID: 2100000, guid: fe48c5648710ff843be99fbe42d8364c, type: 2}
   foodSound: {fileID: 8300000, guid: 36195078cac616645a09469a78f6d291, type: 3}
   waterSound: {fileID: 8300000, guid: 649b09136f7829b4e999883e68816d33, type: 3}
   shootSound: {fileID: 8300000, guid: 18ea8df1fa51d4545b4c5bf29a50e3c4, type: 3}
-  dashSound: {fileID: 0}
+  dashSound1: {fileID: 8300000, guid: 397401faacf768a41844c4abf3d49740, type: 3}
+  dashSound2: {fileID: 8300000, guid: 32a56cb5d22cd4b43ae24521e6012095, type: 3}
+  dashSound3: {fileID: 8300000, guid: 780e927e3d628cc4085ed4be8b81cd1a, type: 3}
+  dashSound4: {fileID: 8300000, guid: 9b8e4af562159e8429f56158fafe7ba7, type: 3}
+  dashSound5: {fileID: 8300000, guid: 248876c739988294e8f40acd61ebc7b2, type: 3}
+  dashrecharged: {fileID: 0}
   damageSound: {fileID: 8300000, guid: b1daabfc3ec5d4958881545cf9f75ec9, type: 3}
   interactSound: {fileID: 8300000, guid: 9fb8138ad81f6431e88c5612278a789c, type: 3}
+  walkSound1: {fileID: 8300000, guid: 652635d9a818dab4da38c3d81510f47e, type: 3}
+  walkSound2: {fileID: 8300000, guid: 40f4936c52c46a744a7768607e3c1fa6, type: 3}
+  walkSound3: {fileID: 8300000, guid: 2b01feee8ff010e469505f7f8e47a224, type: 3}
+  walkSound4: {fileID: 8300000, guid: 6bcc92f21a5507842856b4bb2c8576ed, type: 3}
+  walkSound5: {fileID: 8300000, guid: a59096d7a2886a74d81c53d86bb4afad, type: 3}
+  walkSound6: {fileID: 8300000, guid: 156140f449fe69642aac02db8158ce1c, type: 3}
+  walkSound7: {fileID: 8300000, guid: eb833576efb14494dbc262716ed7a7ea, type: 3}
+  walkSound8: {fileID: 8300000, guid: 7a818e71dcf99f3488af9505457a87c4, type: 3}
   BackSpriteList:
   - {fileID: -7175654633569329918, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
   - {fileID: 847368544200324870, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}

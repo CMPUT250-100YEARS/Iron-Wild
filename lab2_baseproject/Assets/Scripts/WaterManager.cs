@@ -14,6 +14,10 @@ public class WaterManager : MonoBehaviour
     public float xPos;
     public float yPos;
 
+    //sounds
+    public AudioClip warning;
+    public AudioClip breathing;
+
     public float maxTime = 100f;
     //public float maxTime = 50f;
     public float timeLeft;
