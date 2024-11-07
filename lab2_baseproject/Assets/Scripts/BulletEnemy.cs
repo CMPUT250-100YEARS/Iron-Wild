@@ -14,12 +14,18 @@ public class BulletEnemy : MonoBehaviour
 
     private Rigidbody2D bullet;
 
+    private float rotate;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         bullet = GetComponent<Rigidbody2D>();
 
         Vector3 direction = (player.transform.position - transform.position).normalized;
+
+        rotate = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg; //update direction visuals
+        transform.rotation = Quaternion.Euler(0, 0, rotate + 90);
+
         bullet.velocity = new Vector3(direction.x, direction.y).normalized * enemyBulletSpeed;
 
         Destroy(gameObject, lifeTime);

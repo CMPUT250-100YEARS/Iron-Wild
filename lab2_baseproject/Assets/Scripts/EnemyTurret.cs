@@ -24,7 +24,7 @@ public class EnemyTurret : AnimatedEntity
     public AudioClip clunk1;
     public AudioClip clunk2;
     public AudioClip clunk3;
-    public AudioClip dead;
+    public AudioClip deadblast;
     public AudioClip shoot1;
     public AudioClip shoot2;
     public AudioClip alert;
@@ -74,7 +74,7 @@ public class EnemyTurret : AnimatedEntity
         //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
         if (dist < 3.2f) return 1;
         else if (dist < 7.5f) return 2;
-        else if (dist < 11.5f) return 3;
+        else if (dist < 14f) return 3;
         else return 4;
     }
 
@@ -91,6 +91,7 @@ public class EnemyTurret : AnimatedEntity
                 if (range <= 3 && seesplayer == false)
                 {
                     audioSource.PlayOneShot(alert);
+                    yield return new WaitForSeconds(0.5f);
                     seesplayer = true;
                 }
 
@@ -99,8 +100,6 @@ public class EnemyTurret : AnimatedEntity
 
 
 
-                yield return new WaitForSeconds(updateInterval); // Wait for about 1 interval before updating again
-            
                 //Fire a bullet at each step
 
                 if (range <= 3 && seesplayer == true)
@@ -113,6 +112,8 @@ public class EnemyTurret : AnimatedEntity
                 }
                 else seesplayer = false;
             }
+
+            yield return new WaitForSeconds(updateInterval); // Wait for about 1 interval before updating again
         }
     }
 
@@ -122,7 +123,7 @@ public class EnemyTurret : AnimatedEntity
         if (alive == true)
         {
             AnimationUpdate();
-            if (target == null || range == 4)
+            if (target == null || !seesplayer)
             {
                 isMoving = false;
                 //pass
@@ -234,7 +235,7 @@ public class EnemyTurret : AnimatedEntity
 
     private IEnumerator Death()
     {
-        audioSource.PlayOneShot(dead);
+        audioSource.PlayOneShot(deadblast);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }

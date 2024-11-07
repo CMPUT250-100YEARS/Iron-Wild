@@ -24,7 +24,7 @@ public class EnemyJuggernaut : AnimatedEntity
     public AudioClip clunk1;
     public AudioClip clunk2;
     public AudioClip clunk3;
-    public AudioClip dead;
+    public AudioClip deadblast;
     public AudioClip shoot1;
     public AudioClip shoot2;
     public AudioClip alert;
@@ -48,6 +48,7 @@ public class EnemyJuggernaut : AnimatedEntity
     private bool alive = true;
 
     private int range;
+    private Vector3 sideVector; //used to swap side for bullet to spawn on
     private Vector3 direction; // Store the current direction
     private float updateInterval = 0.75f; // Update direction every interval
     private bool seesplayer = false;
@@ -73,14 +74,15 @@ public class EnemyJuggernaut : AnimatedEntity
         float dist = Vector3.Distance(target.position, transform.position);
         //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
         if (dist < 3.2f) return 1;
-        else if (dist < 6f) return 2;
-        else if (dist < 9.9f) return 3;
+        else if (dist < 6.5f) return 2;
+        else if (dist < 14f) return 3;
         else return 4;
     }
 
     // Coroutine to update direction every interval
     private IEnumerator UpdateDirection()
     {
+        int bulletside = 1;
         while (true)
         {
             if (target != null)
@@ -91,6 +93,7 @@ public class EnemyJuggernaut : AnimatedEntity
                 if (range <= 3 && seesplayer == false)
                 {
                     audioSource.PlayOneShot(alert);
+                    yield return new WaitForSeconds(0.5f);
                     seesplayer = true;
                 }
 
@@ -98,9 +101,6 @@ public class EnemyJuggernaut : AnimatedEntity
                 direction = new_direction;
 
 
-
-                yield return new WaitForSeconds(updateInterval); // Wait for about 1 interval before updating again
-            
                 //Fire a bullet at each step
 
                 if (range <= 3 && seesplayer == true)
@@ -109,10 +109,25 @@ public class EnemyJuggernaut : AnimatedEntity
                     if (random_sound == 1) audioSource.PlayOneShot(shoot2);
                     else audioSource.PlayOneShot(shoot1);
 
-                    Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
+                    //swap sides each time it fires
+                    if (bulletside == 1)
+                    {
+                        sideVector = new Vector3(-new_direction.y, new_direction.x, 0);
+                        bulletside = 2;
+                    }
+                    else
+                    {
+                        sideVector = new Vector3(new_direction.y, -new_direction.x, 0);
+                        bulletside = 1;
+                    }
+                    Vector3 spawnPosition = enemyBulletPos.position + sideVector * 0.85f;
+
+                    Instantiate(bulletEnemyPrefab, spawnPosition, Quaternion.identity);
                 }
                 else seesplayer = false;
             }
+
+            yield return new WaitForSeconds(updateInterval); // Wait for about 1 interval before updating again
         }
     }
 
@@ -122,7 +137,7 @@ public class EnemyJuggernaut : AnimatedEntity
         if (alive == true)
         {
             AnimationUpdate();
-            if (target == null || range == 4)
+            if (target == null || !seesplayer)
             {
                 isMoving = false;
                 //pass
@@ -234,7 +249,7 @@ public class EnemyJuggernaut : AnimatedEntity
 
     private IEnumerator Death()
     {
-        audioSource.PlayOneShot(dead);
+        audioSource.PlayOneShot(deadblast);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }

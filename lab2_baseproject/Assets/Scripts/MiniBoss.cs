@@ -6,19 +6,34 @@ public class MiniBoss : AnimatedEntity
 {
 
     public Transform player;
+    public AudioSource audioSource;
 
     [Header("Hover Settings")]
-    private float hoverSpeed = 2f;
-    private float diveSpeed = 10f;
+    private float hoverSpeed = 3f;
+    private float diveSpeed = 12f;
     private float hoverHeight = 4f; // y-offset
     private float xOffset = 6f;
 
     private float hoverTimer;
-    private float hoverDuration = 15f;
+    private float hoverDuration = 7f;
 
     public bool isHovering;
     public bool canAttack;
     private bool isHoveringToPos1;
+    private bool isAlive = true;
+
+    //Sound Effects
+    public AudioClip clunk1;
+    public AudioClip clunk2;
+    public AudioClip clunk3;
+    public AudioClip deadblast;
+    public AudioClip bird1;
+    public AudioClip bird2;
+    public AudioClip bird3;
+    public AudioClip bird4;
+
+    private bool makesound = true;
+    private bool hitsound = true;
 
 
     [Header("Warning Settings")]
@@ -35,7 +50,7 @@ public class MiniBoss : AnimatedEntity
     private GameObject warningCircleInstance;
 
     private float warningTimer;
-    private float warningDuration = 4f;
+    private float warningDuration = 2f;
 
 
     [Header("Animation Settings")]
@@ -69,75 +84,78 @@ public class MiniBoss : AnimatedEntity
 
     private void Update()
     {
-        
-        if (canAttack && hasBeenWarned)
+        if (isAlive)
         {
-            if (CheckIfPlayerInCircle())
+            if (canAttack && hasBeenWarned)
             {
-                transform.position += diveSpeed * Time.deltaTime * (player.position - transform.position).normalized;
-                if ((player.position - transform.position).magnitude < 0.2f)
+                StartCoroutine(Attacksound());
+
+                if (CheckIfPlayerInCircle())
                 {
-                    Destroy(warningCircleInstance);
-                    FindObjectOfType<Heart>().TakeDamage();
-                    canAttack = false;
-                    hoverTimer = hoverDuration;
-                    isHovering = true;
+                    transform.position += diveSpeed * Time.deltaTime * (player.position - transform.position).normalized;
+                    if ((player.position - transform.position).magnitude < 0.2f)
+                    {
+                        Destroy(warningCircleInstance);
+                        FindObjectOfType<Heart>().TakeDamage();
+                        canAttack = false;
+                        hoverTimer = hoverDuration;
+                        isHovering = true;
+                    }
                 }
-            }
-            else
-            {
-                transform.position += diveSpeed * Time.deltaTime * (warningCircleCenter - transform.position).normalized;
-                if ((warningCircleCenter - transform.position).magnitude < 0.2f)
+                else
                 {
-                    Destroy(warningCircleInstance);
-                    canAttack = false;
-                    hoverTimer = hoverDuration;
-                    isHovering = true;
+                    transform.position += diveSpeed * Time.deltaTime * (warningCircleCenter - transform.position).normalized;
+                    if ((warningCircleCenter - transform.position).magnitude < 0.2f)
+                    {
+                        Destroy(warningCircleInstance);
+                        canAttack = false;
+                        hoverTimer = hoverDuration;
+                        isHovering = true;
+                    }
                 }
-            }
             //attack
             
             
             
 
-        }
-
-        if (isHovering)
-        {
-            if (hoverTimer > 0f) 
-            {
-                Vector2 hoverPosition1 = new Vector2(player.position.x - xOffset, player.position.y + hoverHeight);
-                Vector2 hoverPosition2 = new Vector2(player.position.x + xOffset, player.position.y + hoverHeight);
-
-                if (isHoveringToPos1)
-                {
-                    transform.position = Vector2.MoveTowards(transform.position, hoverPosition1, hoverSpeed * Time.deltaTime);
-                    if (Vector2.Distance(transform.position, hoverPosition1) < 0.1f)
-                    {
-                        isHoveringToPos1 = false;  // Start moving to hoverPosition2
-                    }
-                }
-                else 
-                {
-                    transform.position = Vector2.MoveTowards(transform.position, hoverPosition2, hoverSpeed * Time.deltaTime);
-                    if (Vector2.Distance(transform.position, hoverPosition2) < 0.1f)
-                    {
-                        isHoveringToPos1 = true;  // Start moving to hoverPosition1
-                    }
-                }
-                hoverTimer -= Time.deltaTime;
-                if (hoverTimer < warningDuration + 1f)
-                {
-                    Debug.Log("Call to ShowWarningCircle");
-                    ShowWarningCircle();
-                }
-            }
-            else
-            {
-                canAttack = true;
             }
 
-            
+            if (isHovering)
+            {
+                if (hoverTimer > 0f) 
+                {
+                    Vector2 hoverPosition1 = new Vector2(player.position.x - xOffset, player.position.y + hoverHeight);
+                    Vector2 hoverPosition2 = new Vector2(player.position.x + xOffset, player.position.y + hoverHeight);
+
+                    if (isHoveringToPos1)
+                    {
+                        transform.position = Vector2.MoveTowards(transform.position, hoverPosition1, hoverSpeed * Time.deltaTime);
+                        if (Vector2.Distance(transform.position, hoverPosition1) < 0.1f)
+                        {
+                            isHoveringToPos1 = false;  // Start moving to hoverPosition2
+                        }
+                    }
+                    else 
+                    {
+                        transform.position = Vector2.MoveTowards(transform.position, hoverPosition2, hoverSpeed * Time.deltaTime);
+                        if (Vector2.Distance(transform.position, hoverPosition2) < 0.1f)
+                        {
+                            isHoveringToPos1 = true;  // Start moving to hoverPosition1
+                        }
+                    }
+                    hoverTimer -= Time.deltaTime;
+                    if (hoverTimer < warningDuration + 1f)
+                    {
+                        Debug.Log("Call to ShowWarningCircle");
+                        ShowWarningCircle();
+                    }
+                }
+                else
+                {
+                    canAttack = true;
+                }
+
+            }
         }
 
         if (warningCircleInstance != null)
@@ -272,7 +290,57 @@ public class MiniBoss : AnimatedEntity
     public void takeDamage(float damage)
     {
         minibossHealth -= damage;
-        if (minibossHealth <= 0) Destroy(gameObject);
+        if (minibossHealth <= 0 && isAlive) StartCoroutine(Death());
+        else
+        {
+            int random_sound = Random.Range(1, 4);
+            if (random_sound == 1) audioSource.PlayOneShot(clunk3);
+            else if (random_sound == 2) audioSource.PlayOneShot(clunk2);
+            else audioSource.PlayOneShot(clunk1);
+            
+            StartCoroutine(BirdHitsound());
+        }
+    }
+
+    private IEnumerator Death()
+    {
+        isAlive = false;
+        for (int i = 0; i < 6; i++)
+        {
+            audioSource.PlayOneShot(deadblast);
+            yield return new WaitForSeconds(0.25f);
+        }
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
+    }
+
+    private IEnumerator Attacksound()
+    {
+        if (makesound)
+        {
+            int random_sound = Random.Range(1, 3); //play attack sound
+            if (random_sound == 1) audioSource.PlayOneShot(bird3);
+            else audioSource.PlayOneShot(bird4);
+
+            makesound = false;
+            yield return new WaitForSeconds(2f);
+            makesound = true;
+
+        }
+    }
+
+    private IEnumerator BirdHitsound()
+    {
+        if (hitsound && makesound)
+        {
+            int birdnoise = Random.Range(1, 12);
+            if (birdnoise == 1) audioSource.PlayOneShot(bird1);
+            else if (birdnoise == 2) audioSource.PlayOneShot(bird2);
+            
+            hitsound = false;
+            yield return new WaitForSeconds(3f);
+            hitsound = true;
+        }
     }
 
 

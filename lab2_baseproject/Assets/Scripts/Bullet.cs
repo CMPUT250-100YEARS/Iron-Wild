@@ -18,6 +18,8 @@ public class Bullet : MonoBehaviour
 
     private Rigidbody2D bullet;
 
+    private float rotate;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,8 @@ public class Bullet : MonoBehaviour
         mousePointer = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePointer - transform.position;
 
+        rotate = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg; //update direction visuals
+        transform.rotation = Quaternion.Euler(0, 0, rotate + 90);
         
         bullet.velocity = new Vector3(direction.x, direction.y).normalized * bulletSpeed;
 

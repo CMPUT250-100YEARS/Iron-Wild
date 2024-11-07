@@ -52,9 +52,11 @@ public class Player : AnimatedEntity
     private float dashSpeed;
 
     //public float dashSpeed = 20f; // Speed of the dash
-    private float dashDuration = 0.1f; // Duration of the dash
+    private float dashDuration = 0.13f; // Duration of the dash
     private bool isDashing = false;
+    private bool canDash = true;
     private float dashTime;
+    public float dashCooldown;
 
     private Vector2 dashDirection;
 
@@ -67,9 +69,28 @@ public class Player : AnimatedEntity
     public AudioClip foodSound;
     public AudioClip waterSound;
     public AudioClip shootSound;
-    public AudioClip dashSound;
+    public AudioClip dashSound1;
+    public AudioClip dashSound2;
+    public AudioClip dashSound3;
+    public AudioClip dashSound4;
+    public AudioClip dashSound5;
+    public AudioClip dashrecharged;
     public AudioClip damageSound;
     public AudioClip interactSound;
+    public AudioClip walkSound1;
+    public AudioClip walkSound2;
+    public AudioClip walkSound3;
+    public AudioClip walkSound4;
+    public AudioClip walkSound5;
+    public AudioClip walkSound6;
+    public AudioClip walkSound7;
+    public AudioClip walkSound8;
+
+    //Used with random sounds
+    private int dashsoundnum;
+    private int walksoundnum;
+    private int walkstep = 1;
+    private int walksoundtimer = 1;
 
     //Sprite list based on mouse direction
     public List<Sprite> BackSpriteList;
@@ -105,6 +126,7 @@ public class Player : AnimatedEntity
     private Vector3 _priorPosition;
     private int _direction = -1;//0 is up, 1 is right, 2 is down, 3 is left
     private float minDiff = 0.00001f;
+    private bool isMoving;
     // END ADDED
 
     public bool tutorialPuddle = false;
@@ -154,6 +176,7 @@ public class Player : AnimatedEntity
         text_message = "Move around using the arrow keys";
         StartCoroutine(AnimateSpeech(text_message));
         StartCoroutine(Pause(5f));
+        StartCoroutine(WalkSounds());
 
         //Set up the sprite renderer for flash effects
         flashSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -166,7 +189,7 @@ public class Player : AnimatedEntity
         AnimationUpdate();
 
         //Movement controls |start with player not moving
-        bool isMoving = false;
+        isMoving = false;
         Vector3 inputDirection = Vector3.zero;
 
         //Angle between the player and cursor to determine SpriteList
@@ -429,10 +452,19 @@ public class Player : AnimatedEntity
         //{
         //    Dash();
         //}
-        if (!isDashing && Input.GetKeyDown(KeyCode.Space) && hasAbility_Dash)
+        if (!isDashing && canDash && Input.GetKeyDown(KeyCode.Space) && hasAbility_Dash)
         {
             isDashing = true;
-            audioSource.PlayOneShot(dashSound);
+            canDash = false;
+            
+            dashsoundnum = Random.Range(1, 6);
+            if (dashsoundnum == 1) audioSource.PlayOneShot(dashSound1);
+            else if (dashsoundnum == 2) audioSource.PlayOneShot(dashSound2);
+            else if (dashsoundnum == 3) audioSource.PlayOneShot(dashSound3);
+            else if (dashsoundnum == 4) audioSource.PlayOneShot(dashSound4);
+            else audioSource.PlayOneShot(dashSound5);
+            walksoundtimer = 0;
+
             dashTime = dashDuration;
         }
 
@@ -441,7 +473,7 @@ public class Player : AnimatedEntity
             dashTime -= Time.deltaTime;
             if (dashTime <= 0)
             {
-                isDashing = false;
+                StartCoroutine(DashCooldown());
             }
         }
 
@@ -790,6 +822,44 @@ public class Player : AnimatedEntity
         yield return new WaitForSeconds(0.12f);
         flashSpriteRenderer.material = originalMaterial;
         flashroutine = null;
+    }
+
+    public IEnumerator WalkSounds()
+    {
+        while (true)
+        {
+            if (isMoving && walksoundtimer == 1)
+            {
+                //Play sound for walking
+                walksoundnum = Random.Range(1, 5);
+                if (walkstep == 1)
+                {
+                    if (walksoundnum == 1) audioSource.PlayOneShot(walkSound1);
+                    else if (walksoundnum == 2) audioSource.PlayOneShot(walkSound3);
+                    else if (walksoundnum == 3) audioSource.PlayOneShot(walkSound5);
+                    else audioSource.PlayOneShot(walkSound7);
+                    walkstep = 2;
+                }
+                else
+                {
+                    if (walksoundnum == 1) audioSource.PlayOneShot(walkSound2);
+                    else if (walksoundnum == 2) audioSource.PlayOneShot(walkSound4);
+                    else if (walksoundnum == 3) audioSource.PlayOneShot(walkSound6);
+                    else audioSource.PlayOneShot(walkSound8);
+                    walkstep = 1;
+                }
+            }
+            yield return new WaitForSeconds(0.6f);
+        }
+    }
+
+    public IEnumerator DashCooldown()
+    {
+        isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+        walksoundtimer = 1;
+        canDash = true;
+        audioSource.PlayOneShot(dashrecharged);
     }
 
     //void Dash()
