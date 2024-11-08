@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using DialogueSystem;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace DialogueSystem
 {
-    public class DialogueLine : DialogueBaseClass
+    public class NarrationLine : DialogueBaseClass
     {
         private Text textHolder;
 
@@ -17,15 +18,6 @@ namespace DialogueSystem
         [Header("Time parameters")]
         [SerializeField] private float delay;
         [SerializeField] private float delayBetweenLines;
-
-        //[Header("Character Image")]
-        //[SerializeField] private Sprite characterSprite;
-        //[SerializeField] private Image imageHolder;
-
-        //[Header("Background Settings")]
-        //[SerializeField] private Sprite backgroundSprite; // Background image for this line
-        //[SerializeField] private Image backgroundImageHolder; //UI image
-
 
         private void Awake()
         {
@@ -42,8 +34,7 @@ namespace DialogueSystem
             finished = false;
             StartCoroutine(WriteText(input, textHolder, delay, delayBetweenLines));
         }
-        
-       
+
+
     }
 }
-
