@@ -129,11 +129,18 @@ public class Player : AnimatedEntity
     private bool isMoving;
     // END ADDED
 
+    public static bool gunMoveable = true;
+
+    // tutorial variables
     public bool tutorialPuddle = false;
     public bool tutorialFood = false;
     public bool tutorialMutation = false;
     public string text_message;
     public bool showText = true;
+    public bool waterTextDone = false;
+    public bool foodTextDone = false;
+    public bool mutationsTextDone = false;
+    public bool enemyTextDone = false;
 
 
     void Start()
@@ -154,6 +161,7 @@ public class Player : AnimatedEntity
         dashSpeed = Speed * 4;
 
         foodCount = 0;
+        gunMoveable = true;
 
 
         Scene currentScene = SceneManager.GetActiveScene();
@@ -174,7 +182,7 @@ public class Player : AnimatedEntity
 
         uiCanvas.SetActive(true);
         text_message = "Move around using the arrow keys";
-        StartCoroutine(AnimateSpeech(text_message));
+        StartCoroutine(AnimateSpeech(text_message, "movement"));
         StartCoroutine(Pause(5f));
         StartCoroutine(WalkSounds());
 
@@ -486,8 +494,10 @@ public class Player : AnimatedEntity
     void AimGun(float angle)
     {
         Transform aimtransform = transform.Find("Aim");
-        if (aimtransform != null)
+        if ((aimtransform != null) && (gunMoveable))  // gun should only move if not paused or game over
         {
+            Debug.Log("Gun Movable: " + gunMoveable);
+
             mousePointer = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             Vector3 rotation = mousePointer - transform.position;
             float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
@@ -544,7 +554,7 @@ public class Player : AnimatedEntity
     {
         yield return new WaitForSeconds(time);
         text_message = "I need to find water so my water level doesn't run out";
-        StartCoroutine(AnimateSpeech(text_message));
+        StartCoroutine(AnimateSpeech(text_message, "water"));
     }
 
     public IEnumerator Pause2(float time)
@@ -576,7 +586,7 @@ public class Player : AnimatedEntity
     }
 
 
-    public IEnumerator AnimateSpeech(string message)
+    public IEnumerator AnimateSpeech(string message, string objectType)
     {
         uiCanvas.SetActive(true);
         text.text = "";
@@ -589,6 +599,19 @@ public class Player : AnimatedEntity
             yield return new WaitForSeconds(0.05f);
         }
 
+        if (objectType == "water")
+        {
+            waterTextDone = true;
+        } else if (objectType == "food")
+        {
+            foodTextDone = true;
+        } else if (objectType == "mutations")
+        {
+            mutationsTextDone = true;
+        } else if (objectType == "enemy")
+        {
+            enemyTextDone = true;
+        }
         //yield return new WaitForSeconds(2f);
     }
 
@@ -608,14 +631,14 @@ public class Player : AnimatedEntity
                 audioSource.PlayOneShot(interactSound);
             }
 
-            if (!tutorialMutation)
+            if (!tutorialMutation && mutationsTextDone)
             {
                 tutorialMutation = true;
                 showText = true;
                 //Debug.Log("found tutorial puddle!");
                 //uiCanvas.SetActive(true);
                 text_message = "Watch out for enemies. Aim and shoot with your mouse. Be careful, otherwise you may lose a heart!";
-                StartCoroutine(AnimateSpeech(text_message));
+                StartCoroutine(AnimateSpeech(text_message, "enemy"));
                 StartCoroutine(Pause2(10f));
             }
             //pickup.Reset();
@@ -653,14 +676,14 @@ public class Player : AnimatedEntity
                 audioSource.PlayOneShot(waterSound);
             }
 
-            if (!tutorialPuddle)
+            if (!tutorialPuddle && waterTextDone)
             {
                 tutorialPuddle = true;
                 showText = true;
                 //Debug.Log("found tutorial puddle!");
                 //uiCanvas.SetActive(true);
                 text_message = "Now it's time to find food";
-                StartCoroutine(AnimateSpeech(text_message));
+                StartCoroutine(AnimateSpeech(text_message, "food"));
             }
         }
 
@@ -674,14 +697,14 @@ public class Player : AnimatedEntity
             FindObjectOfType<FoodImage>().FoundFoods();
             Destroy(food.gameObject);
 
-            if (!tutorialFood)
+            if (!tutorialFood && foodTextDone)
             {
                 tutorialFood = true;
                 showText = true;
                 //Debug.Log("found tutorial puddle!");
                 //uiCanvas.SetActive(true);
                 text_message = "Mutations can make you run faster";
-                StartCoroutine(AnimateSpeech(text_message));
+                StartCoroutine(AnimateSpeech(text_message, "mutations"));
             }
         }
 
