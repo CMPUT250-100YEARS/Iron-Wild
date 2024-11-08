@@ -22,9 +22,9 @@ namespace DialogueSystem
         //[SerializeField] private Sprite characterSprite;
         //[SerializeField] private Image imageHolder;
 
-        //[Header("Background Settings")]
-        //[SerializeField] private Sprite backgroundSprite; // Background image for this line
-        //[SerializeField] private Image backgroundImageHolder; //UI image
+        [Header("Background Settings")]
+        [SerializeField] private Sprite backgroundSprite; // Background image for this line
+        [SerializeField] private Image backgroundImageHolder; //UI image
 
 
         private void Awake()
@@ -38,8 +38,18 @@ namespace DialogueSystem
 
         private void OnEnable()
         {
-            //**
+            
             finished = false;
+
+            //**
+            // Set the background image if specified
+            if (backgroundImageHolder != null && backgroundSprite != null)
+            {
+                backgroundImageHolder.sprite = backgroundSprite;
+                backgroundImageHolder.enabled = true; // Ensure the image is enabled
+            }
+            //**
+
             StartCoroutine(WriteText(input, textHolder, delay, delayBetweenLines));
         }
         
