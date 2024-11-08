@@ -8,7 +8,7 @@ using UnityEngine;
 public class BulletEnemy : MonoBehaviour
 {
     public float enemyBulletSpeed;
-    private float lifeTime = 1.5f;
+    private float lifeTime = 1f;
 
     private GameObject player;
 

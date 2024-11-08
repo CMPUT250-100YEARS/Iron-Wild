@@ -71,11 +71,15 @@ public class Enemy : AnimatedEntity
     //Finds the distance between the player and the enemy
     int getDistance()
     {
-        float dist = Vector3.Distance(target.position, transform.position);
-        //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
-        if (dist < 3.2f) return 1;
-        else if (dist < 8.5f) return 2;
-        else if (dist < 16f) return 3;
+        if (target != null)
+        {
+            float dist = Vector3.Distance(target.position, transform.position);
+            //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
+            if (dist < 3.2f) return 1;
+            else if (dist < 8.5f) return 2;
+            else if (dist < 16f) return 3;
+            else return 4;
+        }
         else return 4;
     }
 
@@ -89,7 +93,6 @@ public class Enemy : AnimatedEntity
             {
                 Vector3 new_direction = target.position - transform.position;
 
-                range = getDistance();
                 if (range == 1)
                 {
                     new_direction = -new_direction; // Enemy runs from player
@@ -134,6 +137,8 @@ public class Enemy : AnimatedEntity
     {
         if (true) //isalive
         {
+            range = getDistance();
+
             AnimationUpdate();
             if (target == null || !seesplayer)
             {
@@ -231,12 +236,12 @@ public class Enemy : AnimatedEntity
         Debug.Log("Enemy Health is now " + EnemyHealth);
         EnemyFlash();
 
-        if (EnemyHealth <= 0)
+        if (EnemyHealth <= 0 && isalive)
         {
             StartCoroutine(Death());
         }
 
-        else
+        else if (isalive)
         {
             int random_sound = Random.Range(1, 4);
             if (random_sound == 1) audioSource.PlayOneShot(clunk3);
@@ -290,7 +295,7 @@ public class Enemy : AnimatedEntity
     public IEnumerator spotPlayer()
     {
         //looks to see if the player is in range
-        if (Vector3.Distance(target.position, transform.position) < 16f && !seesplayer)
+        if (range <= 3 && !seesplayer)
             {
                 alertsounded = true;
                 audioSource.PlayOneShot(alert);
