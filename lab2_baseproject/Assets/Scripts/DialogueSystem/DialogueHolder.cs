@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace DialogueSystem
@@ -8,6 +9,8 @@ namespace DialogueSystem
     
     public class DialogueHolder : MonoBehaviour
     {
+        [SerializeField] private string nextSceneName; // The name of the scene to load next
+
         private void Awake()
         {
             StartCoroutine(dialogueSequence());
@@ -32,6 +35,8 @@ namespace DialogueSystem
                 //transform.GetChild(i).gameObject.SetActive(true);
                 //yield return new WaitUntil(() => transform.GetChild(i).GetComponent<DialogueLine>().finished);
             }
+            yield return new WaitUntil(() => Input.GetMouseButton(0));
+            SceneManager.LoadScene(nextSceneName);
         }
 
         private void DeactivateAllLines()
