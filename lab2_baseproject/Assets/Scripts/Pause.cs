@@ -8,6 +8,7 @@ public class Pause : MonoBehaviour
     public GameObject pause;
     public Button pauseButton;
     private bool isPaused = false;
+    //public Player player = GameObject.Find("Player").GetComponent<Player>();
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +38,13 @@ public class Pause : MonoBehaviour
     {
         isPaused = true;
         Time.timeScale = 0f;
+        Player.gunMoveable = false;
     }
 
     void ResumeGame()
     {
         isPaused = false;
         Time.timeScale = 1f;
+        Player.gunMoveable = true;
     }
 }
