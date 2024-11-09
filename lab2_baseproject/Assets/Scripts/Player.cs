@@ -44,7 +44,7 @@ public class Player : AnimatedEntity
 
     bool isFacingLeft;
     private SpriteRenderer gunSpriteRenderer;
-    Transform weaponend;
+    
     bool PrevShootRight = false;
     bool PrevShootLeft = false;
 
@@ -108,6 +108,8 @@ public class Player : AnimatedEntity
     private List<Sprite> currentSpriteCycle;
     private Animator shootAnimator;
     private Transform aimTransform;
+    private Transform gunTransform;
+    private Transform weaponend;
 
     public bool endDialogue;
 
@@ -150,7 +152,14 @@ public class Player : AnimatedEntity
         audioSource = gameObject.GetComponent<AudioSource>();
 
         aimTransform = transform.Find("Aim");
-        weaponend = aimTransform.Find("weaponend");
+        gunTransform = aimTransform.Find("Gun");
+        weaponend = gunTransform.Find("weaponend");
+
+        if (weaponend is null)
+        {
+            Debug.Log("weaponend null!");
+        }
+
         //Transform weaponend = aimTransform.Find("weaponend");
         shootAnimator = weaponend.GetComponent<Animator>();
 
@@ -779,8 +788,8 @@ public class Player : AnimatedEntity
             Transform guntransform = aimTransform.Find("Gun");
 
             Vector3 guntransformGun;
-            Vector3 bulletOffset = new Vector3(0, 0.2f, 0);     // Align bullets with gun
-            Vector3 weaponEndOffset = new Vector3(0, -0.3f, 0); // Align weapon end with gun
+            //Vector3 bulletOffset = new Vector3(0, 0.2f, 0);     // Align bullets with gun
+            //Vector3 weaponEndOffset = new Vector3(0, -0.3f, 0); // Align weapon end with gun
 
             if (guntransform != null)
             {
@@ -788,8 +797,8 @@ public class Player : AnimatedEntity
 
                 if (isFacingLeft)
                 {
-                    guntransformGun = guntransform.position + bulletOffset; // Position the stream of bullets
-                    weaponend.localPosition += weaponEndOffset; // Position the weapon end
+                    guntransformGun = guntransform.position; //+ bulletOffset; // Position the stream of bullets
+                    //weaponend.localPosition += weaponEndOffset; // Position the weapon end
                     shootAnimator.SetTrigger("Shoot");
                     //GameObject gunObject = guntransform.gameObject;
                     //Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
@@ -802,7 +811,7 @@ public class Player : AnimatedEntity
                     // If did not switch gun direction, then reset weapon end for next time
                     if (PrevShootLeft)
                     {
-                        weaponend.localPosition -= weaponEndOffset;
+                        //weaponend.localPosition -= weaponEndOffset;
 
                         //guntransformGun -= bulletOffset; //???oct 24 t e m p
                     }
@@ -815,7 +824,7 @@ public class Player : AnimatedEntity
                     // If switched gun direction, then reposition weapon end
                     if (PrevShootLeft)
                     {
-                        weaponend.localPosition -= weaponEndOffset;
+                        //weaponend.localPosition -= weaponEndOffset;
                         shootAnimator.SetTrigger("Shoot");
                         Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
 

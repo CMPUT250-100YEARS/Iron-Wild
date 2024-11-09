@@ -13,29 +13,50 @@ public class Bullet : MonoBehaviour
 
     public float bulletDamage = 20f;
 
-    private Camera mainCamera;
-    private Vector3 mousePointer;
+    //private Camera mainCamera;
+    //private Vector3 mousePointer;
 
     private Rigidbody2D bullet;
 
     private float rotate;
 
-    private Player player;
+    private GameObject player;
+    private Transform aim;
+    private Transform gunOrWeaponend;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        player = GetComponent<Player>();
+        //Version 1
+        //mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
+        // Version 2
+        player = GameObject.Find("Player");
+        aim = player.transform.Find("Aim");
+        gunOrWeaponend = aim.Find("Gun/weaponend");
+
+        // Version 3
+        //player = GameObject.Find("Player");
+        //aim = player.transform.Find("Aim");
+
+
 
         bullet = GetComponent<Rigidbody2D>();
 
-        mousePointer = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePointer - transform.position;
 
+        //V1
+        // mousePointer = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        //Vector3 direction = mousePointer - transform.position;
+
+        // v2
+        Vector3 direction = gunOrWeaponend.position - aim.position;
+
+        // v1 and v2
         rotate = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg; //update direction visuals
         transform.rotation = Quaternion.Euler(0, 0, rotate + 90);
+
+        //transform.rotation =  Quaternion.Euler(0, 0, aim.rotation.z+ 90);
         
         bullet.velocity = new Vector3(direction.x, direction.y).normalized * bulletSpeed;
 
