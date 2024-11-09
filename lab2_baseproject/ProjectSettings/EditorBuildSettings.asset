@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Intro.unity
     guid: 4886af809cb63ba4baebc2e61cf76f9c
   - enabled: 1
@@ -15,9 +15,21 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Forest End.unity
+    guid: b78e425b76ff2f8458aa43ccac82fa84
+  - enabled: 1
     path: Assets/Scenes/CITY.unity
     guid: 1c7d673132759cd4a80ccc74153de643
   - enabled: 1
+    path: Assets/Scenes/StairsCutScene.unity
+    guid: 737084e28d22f3e4fb0d37b0032cfb07
+  - enabled: 1
     path: Assets/Scenes/RoofTop.unity
     guid: 0a0aa590b8fb2d74f988b199bfc47f9f
+  - enabled: 1
+    path: Assets/Scenes/Final.unity
+    guid: 86661017dd4deb64894156e47fa3f064
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: f20548af73db32c44b7d35b72d40b214
   m_configObjects: {}
