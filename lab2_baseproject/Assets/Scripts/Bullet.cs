@@ -20,12 +20,14 @@ public class Bullet : MonoBehaviour
 
     private float rotate;
 
+    private Player player;
+
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-
+        player = GetComponent<Player>();
 
         bullet = GetComponent<Rigidbody2D>();
 
@@ -53,7 +55,8 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger!");
+        Debug.Log("Bullet collider entered with: " + other.gameObject.name);
+
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         EnemyTurret enemyTurret = other.gameObject.GetComponent<EnemyTurret>();
         EnemyJuggernaut enemyJuggernaut = other.gameObject.GetComponent<EnemyJuggernaut>();
@@ -77,6 +80,11 @@ public class Bullet : MonoBehaviour
         else if (miniBoss != null)
         {
             miniBoss.takeDamage(bulletDamage);
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.name == "SolidObjects")
+        {
+            // TODO: add animation on wall hit and add different sound maybe?
             Destroy(gameObject);
         }
 
