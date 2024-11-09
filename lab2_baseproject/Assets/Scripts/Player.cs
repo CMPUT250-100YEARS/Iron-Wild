@@ -618,7 +618,7 @@ public class Player : AnimatedEntity
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Player collider entered with: " + other.gameObject.name);
+        //Debug.Log("Player collider entered with: " + other.gameObject.name);
 
         Pickup pickup = other.gameObject.GetComponent<Pickup>();
         if (pickup != null)
