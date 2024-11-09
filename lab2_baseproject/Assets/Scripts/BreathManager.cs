@@ -6,15 +6,13 @@ public class BreathManager : MonoBehaviour
 {
     //sounds
     public AudioSource audioSource;
-    public AudioClip heavybreathing;
 
     public GameObject target;
 
     public SpriteRenderer visualeffect;
     private Color spriteColour;
 
-    private float volume;
-    public float amount; //amount to increase volume by with each step
+    private float vol = 0;
 
     private Vector3 increment;
     private Vector3 fullzoom;
@@ -28,14 +26,18 @@ public class BreathManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        volume = 0f;
         increment = new Vector3(0.0004025f, 0.000315f, 0f);
         fullzoom = new Vector3(2.3f, 1.8f, 1f);
         minzoom = new Vector3(1.15f, 0.9f, 1f);
         pulseOffset = new Vector3(0, 0, 0);
         currentzoom = fullzoom;
-        
+
         //StartCoroutine(Pulse());
+
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
 
     // Update is called once per frame
@@ -48,13 +50,13 @@ public class BreathManager : MonoBehaviour
             transform.position = newPosition;
         }
 
+        audioSource.volume = vol;
         //transform.localScale = currentzoom + pulseOffset;
     }
 
 
     public void IncreaseVolume() //breathing gets louder as water level decreases
     {
-        volume = Mathf.Clamp(volume + amount, 0, 1);
         if (transform.localScale.x >= minzoom.x)
         {
             transform.localScale -= increment;
@@ -64,12 +66,17 @@ public class BreathManager : MonoBehaviour
 
     public void DecreaseVolume(float refill) //breathing gets quieter when player collects a puddle. 20f
     {
-        volume = Mathf.Clamp(volume - refill, 0, 1);
         if (transform.localScale.x <= fullzoom.x)
         {
             transform.localScale += increment * refill * 100;
         }
         if (transform.localScale.x > fullzoom.x) transform.localScale = fullzoom;
+    }
+
+
+    public void SetVol(float value) //set the volume of the breathing
+    {
+        vol = value;
     }
 
 
@@ -90,7 +97,7 @@ public class BreathManager : MonoBehaviour
     public void Restart()
     {
         // Reset volume
-        volume = 0;
+        vol = 0;
     }
 
 

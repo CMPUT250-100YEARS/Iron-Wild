@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 2715082400245379979}
   - component: {fileID: -2734901569266657750}
   - component: {fileID: 7076226853278609315}
-  - component: {fileID: 2181681014502632649}
   - component: {fileID: 6146841896697622675}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BreathManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,10 +102,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 7076226853278609315}
-  heavybreathing: {fileID: 8300000, guid: d32ec952d3921ad41929c4a15537a193, type: 3}
   target: {fileID: 5828960568636404361, guid: 65968b4e5f1c0c34bba475f26c5b99fc, type: 3}
   visualeffect: {fileID: 2715082400245379979}
   amount: 0.1
+  pulseSpeed: 2
+  pulseAmplitude: 1
 --- !u!82 &7076226853278609315
 AudioSource:
   m_ObjectHideFlags: 0
@@ -118,10 +118,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d32ec952d3921ad41929c4a15537a193, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.75
+  m_PlayOnAwake: 1
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -203,23 +203,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2181681014502632649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811939983637722145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbcf53c41e010ff46ae74aa100913752, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 7076226853278609315}
-  heavybreathing: {fileID: 8300000, guid: d32ec952d3921ad41929c4a15537a193, type: 3}
-  target: {fileID: 0}
-  visualeffect: {fileID: 2715082400245379979}
-  amount: 0
 --- !u!222 &6146841896697622675
 CanvasRenderer:
   m_ObjectHideFlags: 0

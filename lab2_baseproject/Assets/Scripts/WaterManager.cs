@@ -27,7 +27,9 @@ public class WaterManager : MonoBehaviour
     //public float maxTime = 50f;
     public float timeLeft;
     public GameObject timesUpText;
+
     private BreathManager breathing;
+    private BreathExclamation exclaim;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,7 @@ public class WaterManager : MonoBehaviour
         yPos = (Screen.height / 2) - 100;
 
         breathing = FindObjectOfType<BreathManager>();
+        exclaim = FindObjectOfType<BreathExclamation>();
 
         timeLeft = maxTime;
         Debug.Log("WaterManager Start timeLeft !" + timeLeft);
@@ -123,9 +126,11 @@ public class WaterManager : MonoBehaviour
                 beloweighth = true;
                 belowquarter = true;
                 belowthird = true;
+                exclaim.up_level();
+                breathing.SetVol(0.8f);
             }
         }
-        else if (timeLeft <= 12f)
+        else if (timeLeft <= 15f)
         {
             if (!beloweighth)
             {
@@ -133,8 +138,14 @@ public class WaterManager : MonoBehaviour
                 beloweighth = true;
                 belowquarter = true;
                 belowthird = true;
+                exclaim.up_level();
             }
-            else belowsixteen = false;
+            else
+            {
+                if (belowsixteen) exclaim.down_level();
+                belowsixteen = false;
+            }
+            breathing.SetVol(0.5f);
         }
         else if (timeLeft <= 25f)
         {
@@ -143,26 +154,62 @@ public class WaterManager : MonoBehaviour
                 belowquarter = true;
                 belowthird = true;
             }
-            else beloweighth = false;
+            else
+            {
+                if (belowsixteen)
+                {
+                    exclaim.down_level();
+                    exclaim.down_level();
+                }
+                else if (beloweighth) exclaim.down_level();
+                beloweighth = false;
+                belowsixteen = false;
+            }
+            breathing.SetVol(0.25f);
         }
-        else if (timeLeft <= 38f)
+        else if (timeLeft <= 40f)
         {
             if (!belowthird)
             {
                 audioSource.PlayOneShot(warning);
                 belowthird = true;
+                exclaim.up_level();
             }
             else
             {
+                if (belowsixteen)
+                {
+                    exclaim.down_level();
+                    exclaim.down_level();
+                }
+                else if (beloweighth) exclaim.down_level();
+
+                belowsixteen = false;
                 beloweighth = false;
                 belowquarter = false;
             }
+            breathing.SetVol(0f);
         }
         else
         {
+            if (belowsixteen)
+            {
+                exclaim.down_level();
+                exclaim.down_level();
+                exclaim.down_level();
+            }
+            else if (beloweighth)
+            {
+                exclaim.down_level();
+                exclaim.down_level();
+            }
+            else if (belowthird) exclaim.down_level();
+
+            belowsixteen = false;
             beloweighth = false;
             belowquarter = false;
             belowthird = false;
+            breathing.SetVol(0f);
         }
     }
 
