@@ -6,7 +6,7 @@ public class EnemyTurret : AnimatedEntity
 {
 
     //private float RangeX = 4, RangeY = 4;
-    private float EnemyHealth = 120.0f;
+    private float EnemyHealth = 80.0f;
     public AudioSource audioSource;
 
     private Transform detectionZone;
