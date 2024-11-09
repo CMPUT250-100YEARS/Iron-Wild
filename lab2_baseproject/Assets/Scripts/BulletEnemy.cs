@@ -48,5 +48,11 @@ public class BulletEnemy : MonoBehaviour
             FindObjectOfType<Heart>().TakeDamage();
             Destroy(gameObject);
         }
+
+        else if (other.gameObject.name == "SolidObjects")
+        {
+            // TODO: add animation and sound effects maybe;
+            Destroy(gameObject);
+        }
     }
 }
