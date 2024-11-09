@@ -2981,7 +2981,7 @@ GameObject:
   - component: {fileID: 6751691698901286195}
   - component: {fileID: 6751691698901286194}
   m_Layer: 8
-  m_Name: Solid Objects
+  m_Name: SolidObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

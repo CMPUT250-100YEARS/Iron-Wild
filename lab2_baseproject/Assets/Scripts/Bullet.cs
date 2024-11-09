@@ -86,6 +86,7 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.name == "SolidObjects")
         {
             // TODO: add animation on wall hit and add different sound maybe?
+            Debug.Log("Enterring this loop!");
             Destroy(gameObject);
         }
 
