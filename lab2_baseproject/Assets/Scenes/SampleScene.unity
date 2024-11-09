@@ -98885,12 +98885,27 @@ PrefabInstance:
     - target: {fileID: 5289109921649301306, guid: e7f59ff86994e4c7d8f23b07ac19fa51,
         type: 3}
       propertyPath: m_RenderMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5289109921649301306, guid: e7f59ff86994e4c7d8f23b07ac19fa51,
         type: 3}
       propertyPath: m_SortingLayerID
       value: -855278151
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289109921649301307, guid: e7f59ff86994e4c7d8f23b07ac19fa51,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289109921649301307, guid: e7f59ff86994e4c7d8f23b07ac19fa51,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289109921649301307, guid: e7f59ff86994e4c7d8f23b07ac19fa51,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 768
       objectReference: {fileID: 0}
     - target: {fileID: 5289109921649301309, guid: e7f59ff86994e4c7d8f23b07ac19fa51,
         type: 3}
