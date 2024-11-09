@@ -82,7 +82,8 @@ public class Bullet : MonoBehaviour
             miniBoss.takeDamage(bulletDamage);
             Destroy(gameObject);
         }
-        else if (other.gameObject.name == "SolidObjects")
+
+        if (other.gameObject.name == "SolidObjects")
         {
             // TODO: add animation on wall hit and add different sound maybe?
             Destroy(gameObject);

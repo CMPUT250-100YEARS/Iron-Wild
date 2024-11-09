@@ -354,7 +354,7 @@ public class Player : AnimatedEntity
                 {
                     //Debug.Log("Player Update isMoving" + PlayerPrefs.GetInt("numHearts"));
                     Vector3 targetPos = transform.position + (inputDirection.normalized * Time.deltaTime * Speed);
-                    //Vector3 targerPos = rb.position + inputDirection * Time.deltaTime * Speed; //inputDirection Vector2.up/down/...
+
 
                     // finding the footprint rotation on z-axis only --------------------------------------------------------------------
                     // 1. Calculate the angle in the XY plane (z-axis rotation) relative to the world up vector
@@ -753,6 +753,21 @@ public class Player : AnimatedEntity
 
     void Shoot()
     {
+
+        // TEMP:
+        // finding the footprint rotation on z-axis only --------------------------------------------------------------------
+        // 1. Calculate the angle in the XY plane (z-axis rotation) relative to the world up vector
+        // 2. Apply only the Z rotation, keeping x and y as they are
+
+        //float targetAngle = Mathf.Atan2(inputDirection.normalized.y, inputDirection.normalized.x) * Mathf.Rad2Deg;
+        //Quaternion footRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, targetAngle);
+
+        //// Instantiating:
+        //Instantiate(footprintPrefab, transform.position + new Vector3(0, -0.75f, -1), footRotation);
+
+        //----------------------------------------------------------------------------------------------------------------------------------------
+
+
         if (aimTransform != null)
         {
             GameObject aimObject = aimTransform.gameObject;
