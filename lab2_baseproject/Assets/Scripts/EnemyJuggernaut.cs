@@ -6,7 +6,7 @@ public class EnemyJuggernaut : AnimatedEntity
 {
 
     //private float RangeX = 4, RangeY = 4;
-    private float EnemyHealth = 140.0f;
+    public float EnemyHealth;
     public AudioSource audioSource;
 
     private Transform detectionZone;
@@ -75,7 +75,7 @@ public class EnemyJuggernaut : AnimatedEntity
         //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
         if (dist < 3.2f) return 1;
         else if (dist < 6.5f) return 2;
-        else if (dist < 16f) return 3;
+        else if (dist < 15f) return 3;
         else return 4;
     }
 

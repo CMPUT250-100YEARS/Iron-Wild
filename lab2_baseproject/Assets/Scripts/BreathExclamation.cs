@@ -35,6 +35,7 @@ public class BreathExclamation : MonoBehaviour
         growZoom = new Vector3(0.085f, 0.085f, 1f);
         baseZoom = new Vector3(0.05f, 0.05f, 1f);
         regular = new Vector3(regular_inc, regular_inc, 1f);
+        //StartCoroutine(sizeup(regular_inc));
     }
 
     // Update is called once per frame
@@ -43,7 +44,7 @@ public class BreathExclamation : MonoBehaviour
         //center on the water bar
         if (target != null)
         {
-            Vector3 newPosition = new Vector3(target.transform.position.x + 6.17f, target.transform.position.y + 7.34f, 0f);
+            Vector3 newPosition = new Vector3(target.transform.position.x + 7.4f, target.transform.position.y + 9.25f, 0f);
             transform.position = newPosition;
         }
     }

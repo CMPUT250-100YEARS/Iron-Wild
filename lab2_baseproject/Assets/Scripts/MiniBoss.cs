@@ -15,7 +15,7 @@ public class MiniBoss : AnimatedEntity
     private float xOffset = 6f;
 
     private float hoverTimer;
-    private float hoverDuration = 7f;
+    private float hoverDuration = 5.5f;
 
     public bool isHovering;
     public bool canAttack;
@@ -50,7 +50,7 @@ public class MiniBoss : AnimatedEntity
     private GameObject warningCircleInstance;
 
     private float warningTimer;
-    private float warningDuration = 2f;
+    private float warningDuration = 0.7f;
 
 
     [Header("Animation Settings")]
@@ -62,9 +62,14 @@ public class MiniBoss : AnimatedEntity
 
     private List<Sprite> currentSpriteCycle;
 
+    public Material flashMaterial; //Colour for the enemy to flash when taking damage
+    private Material originalMaterial;
+    private SpriteRenderer flashSpriteRenderer;
+    private Coroutine flashroutine;
+
 
     [Header("Miniboss Settings")]
-    public float minibossHealth = 400f; 
+    public float minibossHealth; 
 
 
 
@@ -79,6 +84,10 @@ public class MiniBoss : AnimatedEntity
         warningCircleInstance = null;
         AnimationSetup();
         _priorPosition = transform.position;
+
+        //Set up the sprite renderer for flash effects
+        flashSpriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = flashSpriteRenderer.material;
 
     }
 
@@ -290,6 +299,7 @@ public class MiniBoss : AnimatedEntity
     public void takeDamage(float damage)
     {
         minibossHealth -= damage;
+        EnemyFlash();
         if (minibossHealth <= 0 && isAlive) StartCoroutine(Death());
         else
         {
@@ -341,6 +351,26 @@ public class MiniBoss : AnimatedEntity
             yield return new WaitForSeconds(3f);
             hitsound = true;
         }
+    }
+
+    public void EnemyFlash()
+    {
+        //Call the flash, if it is not currently playing
+        if (flashroutine != null)
+        {
+            StopCoroutine(flashroutine);
+        }
+
+        flashroutine = StartCoroutine(hitFlash());
+    }
+
+    public IEnumerator hitFlash()
+    {
+        //Flash when taking damage
+        flashSpriteRenderer.material = flashMaterial;
+        yield return new WaitForSeconds(0.12f);
+        flashSpriteRenderer.material = originalMaterial;
+        flashroutine = null;
     }
 
 

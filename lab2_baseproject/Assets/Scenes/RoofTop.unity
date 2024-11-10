@@ -2238,7 +2238,8 @@ MonoBehaviour:
   - {fileID: 9036255047264794817, guid: 97aee7e5937344e018898ae744170066, type: 3}
   - {fileID: 5495929817888945215, guid: 97aee7e5937344e018898ae744170066, type: 3}
   - {fileID: -4448453625059772532, guid: 97aee7e5937344e018898ae744170066, type: 3}
-  minibossHealth: 400
+  flashMaterial: {fileID: 2100000, guid: 64d9d7fc5859b8d49832a396a07b258d, type: 2}
+  minibossHealth: 720
 --- !u!212 &1717420668
 SpriteRenderer:
   m_ObjectHideFlags: 0
