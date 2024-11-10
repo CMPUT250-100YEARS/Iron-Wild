@@ -53,6 +53,6 @@ public class CineMCamShake : MonoBehaviour
 
         shakeTimer = time;
         shakeDuration = time;
-        startingIntensity = -intensity;
+        startingIntensity = intensity;
     }
 }
