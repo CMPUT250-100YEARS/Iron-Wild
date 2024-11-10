@@ -804,21 +804,6 @@ public class Player : AnimatedEntity
 
     void Shoot()
     {
-
-        // TEMP:
-        // finding the footprint rotation on z-axis only --------------------------------------------------------------------
-        // 1. Calculate the angle in the XY plane (z-axis rotation) relative to the world up vector
-        // 2. Apply only the Z rotation, keeping x and y as they are
-
-        //float targetAngle = Mathf.Atan2(inputDirection.normalized.y, inputDirection.normalized.x) * Mathf.Rad2Deg;
-        //Quaternion footRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, targetAngle);
-
-        //// Instantiating:
-        //Instantiate(footprintPrefab, transform.position + new Vector3(0, -0.75f, -1), footRotation);
-
-        //----------------------------------------------------------------------------------------------------------------------------------------
-
-
         if (aimTransform != null)
         {
             GameObject aimObject = aimTransform.gameObject;
@@ -842,21 +827,18 @@ public class Player : AnimatedEntity
                     guntransformGun = guntransform.position; //+ bulletOffset; // Position the stream of bullets
                     //weaponend.localPosition += weaponEndOffset; // Position the weapon end
                     shootAnimator.SetTrigger("Shoot");
-                    //GameObject gunObject = guntransform.gameObject;
-                    //Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
                     Instantiate(bulletPrefab, guntransformGun, Quaternion.identity);
 
-                    // TEMP COMMENTED OUT
-                    //CineMCamShake.Instance.ShakeCamera(5f, .1f);
+                    CineMCamShake.Instance.ShakeCamera(6f, .2f);
+
                     //audioSource.PlayOneShot(shootSound);
 
                     // If did not switch gun direction, then reset weapon end for next time
-                    if (PrevShootLeft)
-                    {
-                        //weaponend.localPosition -= weaponEndOffset;
-
-                        //guntransformGun -= bulletOffset; //???oct 24 t e m p
-                    }
+                    //if (PrevShootLeft)
+                    //{
+                    //    weaponend.localPosition -= weaponEndOffset;
+                    //    guntransformGun -= bulletOffset; //???oct 24 t e m p
+                    //}
 
                     PrevShootLeft = true;
                     PrevShootRight = false;
@@ -868,21 +850,20 @@ public class Player : AnimatedEntity
                     {
                         //weaponend.localPosition -= weaponEndOffset;
                         shootAnimator.SetTrigger("Shoot");
-                        Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
 
                         PrevShootRight = true;
                         PrevShootLeft = false;
 
+                        Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
                     }
                     else
                     {
                         shootAnimator.SetTrigger("Shoot");
                         Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
                     }
+                    CineMCamShake.Instance.ShakeCamera(6f, .2f);
                 }
-
             }
-            //GameObject.Instantiate(bulletPrefab, guntransform.position, guntransform.rotation, gunObject.transform);
         }
     }
 
