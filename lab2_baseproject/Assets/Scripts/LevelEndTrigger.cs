@@ -35,7 +35,7 @@ public class LevelEndTrigger : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
 
         speechBubble.SetActive(false);
     }

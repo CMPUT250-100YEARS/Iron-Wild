@@ -608,13 +608,16 @@ public class Player : AnimatedEntity
         // set images
         if (objectType == "water")
         {
+            tutorialImage.color = Color.cyan;  // change colour filter
+            //tutorialImage.color = new Color(10f, 231f, 212f, 1f);
             tutorialImage.sprite = waterImage.sprite;  // change image
-            rectTransform.sizeDelta = new Vector2(60f, 34f);  // change width and height of image
+            rectTransform.sizeDelta = new Vector2(55f, 30f);  // change width and height of image
         }
         else if (objectType == "food")
         {
+            tutorialImage.color = Color.white;  // change colour filter
             tutorialImage.sprite = foodImage.sprite;
-            rectTransform.sizeDelta = new Vector2(50f, 30f);  // change width and height of image
+            rectTransform.sizeDelta = new Vector2(50f, 30f);
         }
         else if (objectType == "enemy")
         {
@@ -747,7 +750,9 @@ public class Player : AnimatedEntity
 
             if (foodCount < 5)
             {
-                FindObjectOfType<LevelEndTrigger>().OnLevelComplete("I need more food!");
+                //FindObjectOfType<LevelEndTrigger>().OnLevelComplete("I need more food!");
+                currDialog = "I NEED MORE FOOD!";
+                FindObjectOfType<LevelEndTrigger>().OnLevelComplete(currDialog);
             }
             else
             {
@@ -755,20 +760,21 @@ public class Player : AnimatedEntity
             }
 
 
-
+            // only if player has enough food
             currScene = SceneManager.GetActiveScene().name;
-
-            if (currScene == "SampleScene")
-            {
-                currDialog = "ONTO THE CITY";
+            if (endDialogue) {
+                if (currScene == "SampleScene")
+                {
+                    currDialog = "ONTO THE CITY!";
+                }
+                else // if (currScene == "CITY")
+                {
+                    currDialog = "ONTO THE ROOFTOP!";
+                }
+                FindObjectOfType<LevelEndTrigger>().OnLevelComplete(currDialog);
+                StartCoroutine(LevelChangeWait(1.5f));
             }
-            else // if (currScene == "CITY")
-            {
-                currDialog = "ONTO THE ROOFTOP";
-            }
-            FindObjectOfType<LevelEndTrigger>().OnLevelComplete(currDialog);
-
-            StartCoroutine(LevelChangeWait(3f));
+            
             //SceneManager.LoadScene("CITY");
 
             //Heart heartScript = FindObjectOfType<Heart>();
