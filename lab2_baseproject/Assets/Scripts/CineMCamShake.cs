@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+
 public class CineMCamShake : MonoBehaviour
 {
     public static CineMCamShake Instance { get; private set; }
@@ -9,32 +10,49 @@ public class CineMCamShake : MonoBehaviour
     private float shakeTimer;
     private float startingIntensity;
     private float shakeDuration;
+
+    // Awake is called when the script instance is being loaded
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); // Prevent duplicate instances
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        Instance = this;
         cmvirtualcamera = GetComponent<CinemachineVirtualCamera>();
-
     }
+
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("function update called!");
         if (shakeTimer > 0)
         {
+            Debug.Log("In here!");
             shakeTimer -= Time.deltaTime;
             CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
-            cmvirtualcamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+                cmvirtualcamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             cinemachineBasicMultiChannelPerlin.m_AmplitudeGain =
-            Mathf.Lerp(startingIntensity, 0f, (1 - (shakeTimer / shakeDuration)));
+                Mathf.Lerp(startingIntensity, 0f, (1 - (shakeTimer / shakeDuration))*1.20f);
         }
     }
+
     public void ShakeCamera(float intensity, float time)
     {
-        Debug.Log("function called!");
-        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cmvirtualcamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        Debug.Log("Shake function called with " + intensity + " " + time);
+        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
+            cmvirtualcamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+
         shakeTimer = time;
         shakeDuration = time;
+        startingIntensity = intensity;
     }
 }

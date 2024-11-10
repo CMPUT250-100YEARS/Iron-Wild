@@ -909,7 +909,7 @@ public class Player : AnimatedEntity
                     shootAnimator.SetTrigger("Shoot");
                     Instantiate(bulletPrefab, guntransformGun, Quaternion.identity);
 
-                    CineMCamShake.Instance.ShakeCamera(6f, .2f);
+                    CineMCamShake.Instance.ShakeCamera(3f, .3f);
 
 
                     //audioSource.PlayOneShot(shootSound);
@@ -942,7 +942,7 @@ public class Player : AnimatedEntity
                         shootAnimator.SetTrigger("Shoot");
                         Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
                     }
-                    CineMCamShake.Instance.ShakeCamera(6f, .2f);
+                    CineMCamShake.Instance.ShakeCamera(3f, .3f);
                 }
             }
         }
