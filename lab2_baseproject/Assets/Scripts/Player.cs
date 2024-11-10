@@ -216,6 +216,9 @@ public class Player : AnimatedEntity
     // Update is called once per frame
     void Update()
     {
+        //Changing the sort layer
+        //UpdateSortingOrder();
+
         AnimationUpdate();
 
         //Movement controls |start with player not moving
@@ -565,7 +568,7 @@ public class Player : AnimatedEntity
 
     bool IsCollidingWith(Vector3 targetPos)
     {
-        if (Physics2D.OverlapCircle(targetPos, 0.1f, SolidObjectsLayer) != null)
+        if (Physics2D.OverlapCircle(targetPos, 0.5f, SolidObjectsLayer) != null)
         {
             return true; //player colliding with an object in foreground
         }
@@ -1046,6 +1049,23 @@ public class Player : AnimatedEntity
         //PlayerPrefs.SetInt("numHearts", 2); // set num hearts initially
         //PlayerPrefs.Save();
     }
+
+    //**
+    //ordering layer 
+    //void UpdateSortingOrder()
+    //{
+    //    // Access the player's SpriteRenderer
+    //    SpriteRenderer playerRenderer = GetComponent<SpriteRenderer>();
+    //    //int baseOrder = 1;
+
+    //    if (playerRenderer != null)
+    //    {
+    //        // Invert the player's Y position to set sorting order (adjust multiplier if needed)
+    //        playerRenderer.sortingLayerName = "Player";
+    //        playerRenderer.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100) + 1;
+    //    }
+    //}
+
 
 
 }
