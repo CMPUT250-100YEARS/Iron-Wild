@@ -831,6 +831,7 @@ public class Player : AnimatedEntity
 
                     CineMCamShake.Instance.ShakeCamera(6f, .2f);
 
+
                     //audioSource.PlayOneShot(shootSound);
 
                     // If did not switch gun direction, then reset weapon end for next time
