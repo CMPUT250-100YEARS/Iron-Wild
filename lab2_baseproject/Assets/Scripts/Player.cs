@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 [System.Serializable]
 public struct CinematicStep
@@ -203,7 +204,7 @@ public class Player : AnimatedEntity
         FindObjectOfType<Heart>().UpdateHearts();
 
         uiCanvas.SetActive(true);
-        text_message = "Move around using the arrow keys";
+        text_message = "Move around using the arrow keys or WASD keys.";
         StartCoroutine(AnimateSpeech(text_message, "movement"));
         StartCoroutine(Pause(5f));
         StartCoroutine(WalkSounds());
@@ -485,7 +486,7 @@ public class Player : AnimatedEntity
         //{
         //    Dash();
         //}
-        if (!isDashing && canDash && Input.GetKeyDown(KeyCode.Space) && hasAbility_Dash)
+        if (!isDashing && canDash && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && hasAbility_Dash)
         {
             isDashing = true;
             canDash = false;
@@ -499,6 +500,17 @@ public class Player : AnimatedEntity
             walksoundtimer = 0;
 
             dashTime = dashDuration;
+
+            if (!tutorialMutation && mutationsTextDone)
+            {
+                tutorialMutation = true;
+                showText = true;
+                //Debug.Log("found tutorial puddle!");
+                //uiCanvas.SetActive(true);
+                text_message = "Robots are your enemy! Point with the mouse to aim and left click on it to shoot.";
+                StartCoroutine(AnimateSpeech(text_message, "enemy"));
+                StartCoroutine(Pause2(10f));
+            }
         }
 
         if (isDashing)
@@ -643,9 +655,77 @@ public class Player : AnimatedEntity
         //speechBubble.transform.position += new Vector3(50f, 50f, 0);
         //uiCanvas.transform.position += new Vector3(100f, 100f, 0);
 
+        string newLetter;
+        int charCount = 1;
         foreach (char letter in message)
         {
-            text.text += letter;
+            if (objectType == "movement")  // 1-4, 23-27, 37-40
+            {
+                if (((charCount >= 1) && (charCount <= 4)) || ((charCount >= 23) && (charCount <= 27)) || ((charCount >= 37) && (charCount <= 40)))
+                {
+                    newLetter = "<b>" + letter + "</b>";
+                    text.text += newLetter;
+                }
+                else
+                {
+                    text.text += letter;
+                }
+            }
+
+            if (objectType == "water")  // 75-89 or 123-135
+            {
+                if (((charCount >= 75) && (charCount <= 89)) || ((charCount >= 123) && (charCount <= 135)))
+                {
+                    newLetter = "<b>" + letter + "</b>";
+                    text.text += newLetter;
+                }
+                else
+                {
+                    text.text += letter;
+                }
+            }
+
+            if (objectType == "food")  // 39 - 42 or 89 - 104
+            {
+                if (((charCount >= 39) && (charCount <= 42)) || ((charCount >= 89) && (charCount <= 104)))
+                {
+                    newLetter = "<b>" + letter + "</b>";
+                    text.text += newLetter;
+                }
+                else
+                {
+                    text.text += letter;
+                }
+            }
+
+            if (objectType == "mutations")  // 37-45, 50-57
+            {
+                if (((charCount >= 37) && (charCount <= 45)) || ((charCount >= 50) && (charCount <= 57)))
+                {
+                    newLetter = "<b>" + letter + "</b>";
+                    text.text += newLetter;
+                }
+                else
+                {
+                    text.text += letter;
+                }
+            }
+
+            if (objectType == "enemy")  // 17 - 21 or 39 - 43 or 56 - 65
+            {
+                if (((charCount >= 17) && (charCount <= 21)) || ((charCount >= 39) && (charCount <= 43)) || ((charCount >= 56) && (charCount <= 65)))
+                {
+                    newLetter = "<b>" + letter + "</b>";
+                    text.text += newLetter;
+                }
+                else
+                {
+                    text.text += letter;
+                }
+            }
+
+            charCount++;
+            //text.text += letter;  // OLD WITHOUT BOLD
             yield return new WaitForSeconds(0.05f);
         }
 
@@ -681,16 +761,16 @@ public class Player : AnimatedEntity
                 audioSource.PlayOneShot(interactSound);
             }
 
-            if (!tutorialMutation && mutationsTextDone)
-            {
-                tutorialMutation = true;
-                showText = true;
-                //Debug.Log("found tutorial puddle!");
-                //uiCanvas.SetActive(true);
-                text_message = "Robots are your enemy! Point with the mouse to aim and left click on it to shoot.";
-                StartCoroutine(AnimateSpeech(text_message, "enemy"));
-                StartCoroutine(Pause2(10f));
-            }
+            //if (!tutorialMutation && mutationsTextDone)
+            //{
+            //    tutorialMutation = true;
+            //    showText = true;
+            //    //Debug.Log("found tutorial puddle!");
+            //    //uiCanvas.SetActive(true);
+            //    text_message = "Robots are your enemy! Point with the mouse to aim and left click on it to shoot.";
+            //    StartCoroutine(AnimateSpeech(text_message, "enemy"));
+            //    StartCoroutine(Pause2(10f));
+            //}
             //pickup.Reset();
         }
 
@@ -751,7 +831,7 @@ public class Player : AnimatedEntity
                 showText = true;
                 //Debug.Log("found tutorial puddle!");
                 //uiCanvas.SetActive(true);
-                text_message = "By clicking spacebar, you can speed up for a short amount of time to dodge incoming attacks.";
+                text_message = "While you are walking, click either shift key to speed up for a short amount of time to dodge incoming attacks.";
                 StartCoroutine(AnimateSpeech(text_message, "mutations"));
             }
         }
