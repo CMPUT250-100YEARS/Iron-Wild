@@ -566,7 +566,7 @@ public class Player : AnimatedEntity
     public IEnumerator Pause(float time)
     {
         yield return new WaitForSeconds(time);
-        text_message = "I need to find water so my water level doesn't run out";
+        text_message = "Your mutation makes it so you can't go long without water. Make sure your hydration meter doesn't run out by walking into water puddles.";
         StartCoroutine(AnimateSpeech(text_message, "water"));
     }
 
@@ -585,13 +585,15 @@ public class Player : AnimatedEntity
 
         if (currScene == "SampleScene")
         {
-            Debug.Log("LevelChangeWait Load CITY scene");
-            SceneManager.LoadScene("CITY");
+            //Debug.Log("LevelChangeWait Load CITY scene");
+            //SceneManager.LoadScene("CITY"); //OLD
+            SceneManager.LoadScene("Forest End");
         }
         else // if (currScene == "CITY")
         {
             Debug.Log("LevelChangeWait Load RoofTop scene");
-            SceneManager.LoadScene("RoofTop");
+            //SceneManager.LoadScene("RoofTop"); //OLD
+            SceneManager.LoadScene("StairsCutScene");
         }
 
         //Time.timeScale = 1f;
@@ -673,7 +675,7 @@ public class Player : AnimatedEntity
                 showText = true;
                 //Debug.Log("found tutorial puddle!");
                 //uiCanvas.SetActive(true);
-                text_message = "Watch out for enemies. Aim and shoot with your mouse. Be careful, otherwise you may lose a heart!";
+                text_message = "Robots are your enemy! Point with the mouse to aim and left click on it to shoot.";
                 StartCoroutine(AnimateSpeech(text_message, "enemy"));
                 StartCoroutine(Pause2(10f));
             }
@@ -716,7 +718,7 @@ public class Player : AnimatedEntity
                 showText = true;
                 //Debug.Log("found tutorial puddle!");
                 //uiCanvas.SetActive(true);
-                text_message = "Now it's time to find food";
+                text_message = "To survive in the wild, you will need food. Make sure you collect as much as you can to finish the level.";
                 StartCoroutine(AnimateSpeech(text_message, "food"));
             }
         }
@@ -737,7 +739,7 @@ public class Player : AnimatedEntity
                 showText = true;
                 //Debug.Log("found tutorial puddle!");
                 //uiCanvas.SetActive(true);
-                text_message = "Mutations can make you run faster";
+                text_message = "By clicking spacebar, you can speed up for a short amount of time to dodge incoming attacks.";
                 StartCoroutine(AnimateSpeech(text_message, "mutations"));
             }
         }
@@ -748,7 +750,8 @@ public class Player : AnimatedEntity
         {
             Vector3 playerPosition = this.transform.position;
 
-            if (foodCount < 5)
+            currScene = SceneManager.GetActiveScene().name;
+            if ((foodCount < 5) && (currScene == "SampleScene"))
             {
                 //FindObjectOfType<LevelEndTrigger>().OnLevelComplete("I need more food!");
                 currDialog = "I NEED MORE FOOD!";
@@ -761,7 +764,6 @@ public class Player : AnimatedEntity
 
 
             // only if player has enough food
-            currScene = SceneManager.GetActiveScene().name;
             if (endDialogue) {
                 if (currScene == "SampleScene")
                 {
