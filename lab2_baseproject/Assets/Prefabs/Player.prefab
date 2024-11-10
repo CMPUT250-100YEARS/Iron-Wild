@@ -316,6 +316,10 @@ MonoBehaviour:
   foodTextDone: 0
   mutationsTextDone: 0
   enemyTextDone: 0
+  tutorialImage: {fileID: 0}
+  waterImage: {fileID: 0}
+  foodImage: {fileID: 0}
+  enemyImage: {fileID: 0}
 --- !u!82 &8447123474801615808
 AudioSource:
   m_ObjectHideFlags: 0
