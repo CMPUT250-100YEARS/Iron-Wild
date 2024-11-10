@@ -77044,7 +77044,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352130695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.6, y: 0.8, z: -10}
+  m_LocalPosition: {x: -15.6, y: 0.8, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 601569414}
@@ -96136,8 +96136,8 @@ GameObject:
   m_Component:
   - component: {fileID: 601569414}
   - component: {fileID: 601569417}
-  - component: {fileID: 601569416}
   - component: {fileID: 601569415}
+  - component: {fileID: 601569416}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -96175,7 +96175,7 @@ MonoBehaviour:
   m_PivotOffset: {x: 0, y: 0, z: 0}
   m_AmplitudeGain: 0
   m_FrequencyGain: 0
-  mNoiseOffsets: {x: 0, y: 0, z: 0}
+  mNoiseOffsets: {x: 886.708, y: -724.34424, z: 664.7844}
 --- !u!114 &601569416
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -96188,8 +96188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 0, z: -10}
+  m_BindingMode: 5
+  m_FollowOffset: {x: 0, y: 0, z: -5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -97543,7 +97543,7 @@ PrefabInstance:
     - target: {fileID: 5828960568636404341, guid: 65968b4e5f1c0c34bba475f26c5b99fc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 5828960568636404341, guid: 65968b4e5f1c0c34bba475f26c5b99fc,
         type: 3}
