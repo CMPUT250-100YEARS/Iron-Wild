@@ -143,6 +143,10 @@ public class Player : AnimatedEntity
     public bool foodTextDone = false;
     public bool mutationsTextDone = false;
     public bool enemyTextDone = false;
+    public Image tutorialImage;
+    public Image waterImage;
+    public Image foodImage;
+    public Image enemyImage;
 
 
     void Start()
@@ -599,6 +603,26 @@ public class Player : AnimatedEntity
     {
         uiCanvas.SetActive(true);
         text.text = "";
+
+        RectTransform rectTransform = tutorialImage.GetComponent<RectTransform>();  // for tutorial image
+        // set images
+        if (objectType == "water")
+        {
+            tutorialImage.sprite = waterImage.sprite;  // change image
+            rectTransform.sizeDelta = new Vector2(60f, 34f);  // change width and height of image
+        }
+        else if (objectType == "food")
+        {
+            tutorialImage.sprite = foodImage.sprite;
+            rectTransform.sizeDelta = new Vector2(50f, 30f);  // change width and height of image
+        }
+        else if (objectType == "enemy")
+        {
+            //tutorialImage.sprite = enemyImage.sprite;
+            //TODO: add enemy sprite
+        }
+
+
         //speechBubble.transform.position += new Vector3(50f, 50f, 0);
         //uiCanvas.transform.position += new Vector3(100f, 100f, 0);
 
@@ -668,8 +692,6 @@ public class Player : AnimatedEntity
             FindObjectOfType<Heart>().TakeDamage();
             PlayerFlash();
         }
-
-
 
 
         PuddleScript puddle = other.gameObject.GetComponent<PuddleScript>();
