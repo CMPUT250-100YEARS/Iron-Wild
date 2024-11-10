@@ -102,7 +102,7 @@ MonoBehaviour:
     type: 3}
   Framerate: 12
   SpriteRenderer: {fileID: 2326124504846993983}
-  EnemyHealth: 80
+  EnemyHealth: 60
   audioSource: {fileID: -1817534195575945337}
   avoidanceRadius: 5
   bulletEnemyPrefab: {fileID: 4628185361730926903, guid: cb2b12640f2013a409c692a6c89313e7,
