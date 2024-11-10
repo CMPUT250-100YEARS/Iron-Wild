@@ -35,7 +35,6 @@ public class CineMCamShake : MonoBehaviour
 
     public void ShakeCamera(float intensity, float time)
     {
-        Debug.Log("Camera Shake function is called with"+ " intensity: " + intensity+ " and time: "+ time);
         CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cmvirtualcamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
 
