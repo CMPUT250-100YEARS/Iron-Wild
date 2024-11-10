@@ -144,8 +144,8 @@ GameObject:
   - component: {fileID: 8447123474801615871}
   - component: {fileID: 8447123474801615869}
   - component: {fileID: 8447123474801615808}
-  - component: {fileID: 8447123474801615811}
   - component: {fileID: 8447123474801615810}
+  - component: {fileID: 4299314489674868350}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -249,7 +249,7 @@ MonoBehaviour:
   currScene: 
   currDialog: 
   startPosition: {x: 0, y: 0, z: 0}
-  dashCooldown: 0
+  dashCooldown: 1.5
   flashMaterial: {fileID: 2100000, guid: fe48c5648710ff843be99fbe42d8364c, type: 2}
   foodSound: {fileID: 8300000, guid: 36195078cac616645a09469a78f6d291, type: 3}
   waterSound: {fileID: 8300000, guid: 649b09136f7829b4e999883e68816d33, type: 3}
@@ -316,6 +316,10 @@ MonoBehaviour:
   foodTextDone: 0
   mutationsTextDone: 0
   enemyTextDone: 0
+  tutorialImage: {fileID: 0}
+  waterImage: {fileID: 0}
+  foodImage: {fileID: 0}
+  enemyImage: {fileID: 0}
 --- !u!82 &8447123474801615808
 AudioSource:
   m_ObjectHideFlags: 0
@@ -412,32 +416,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!61 &8447123474801615811
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8447123474801615870}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.06683743}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.1200001, y: 4.85}
-    newSize: {x: 19.2, y: 19.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.04, y: 4.8363247}
-  m_EdgeRadius: 0
 --- !u!50 &8447123474801615810
 Rigidbody2D:
   serializedVersion: 4
@@ -459,6 +437,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!68 &4299314489674868350
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8447123474801615870}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.74543077, y: 2.2822204}
+  - {x: -1.4450505, y: 1.2579558}
+  - {x: -1.4484519, y: 0.027943224}
+  - {x: -0.9985688, y: -0.5520203}
+  - {x: -0.95997465, y: -1.5710039}
+  - {x: -0.47905153, y: -2.1274338}
+  - {x: 0.33872214, y: -2.1298234}
+  - {x: 0.94344497, y: -1.4756825}
+  - {x: 0.944228, y: -1.4887781}
+  - {x: 0.9634128, y: -1.273522}
+  - {x: 1.0575764, y: -0.5900543}
+  - {x: 1.5474366, y: 0.15817517}
+  - {x: 1.528554, y: 1.2726078}
+  - {x: 0.71404916, y: 2.2705042}
+  - {x: -0.73752433, y: 2.2807555}
 --- !u!1 &8447123475873363233
 GameObject:
   m_ObjectHideFlags: 0
