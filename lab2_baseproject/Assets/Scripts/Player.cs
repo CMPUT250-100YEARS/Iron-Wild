@@ -187,16 +187,16 @@ public class Player : AnimatedEntity
 
 
         Scene currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name == "SampleScene")
-        {
-            PlayerPrefs.SetInt("numHearts", 6);  // set num hearts initially 
-            PlayerPrefs.Save();
-            Debug.Log("#2hearts" + PlayerPrefs.GetInt("numHearts"));
-        }
-        else
-        {
-            Debug.Log("#6hearts" + PlayerPrefs.GetInt("numHearts"));
-        }
+        //if (currentScene.name == "SampleScene")
+        //{
+        PlayerPrefs.SetInt("numHearts", 6);  // set num hearts initially 
+        PlayerPrefs.Save();
+        Debug.Log("#2hearts" + PlayerPrefs.GetInt("numHearts"));
+        //}
+        //else
+        //{
+        //    Debug.Log("#6hearts" + PlayerPrefs.GetInt("numHearts"));
+        //}
 
         Heart heartScript = FindObjectOfType<Heart>();
         heartScript.InitializeHearts();

@@ -36,9 +36,10 @@ public class Heart : MonoBehaviour
             Debug.Log("#13hearts after" + PlayerPrefs.GetInt("numHearts"));
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
             Debug.Log("#13hearts get gameover object" + PlayerPrefs.GetInt("numHearts"));
-            string sceneName = "SampleScene";
-            gameOver.PlayerLost(sceneName);
-            //gameOver.PlayerLost("SampleScene");
+            //string sceneName = "SampleScene";  // OLD
+            //gameOver.PlayerLost(sceneName);  // OLD
+            string nowScene = SceneManager.GetActiveScene().name;
+            gameOver.PlayerLost(nowScene);
             Debug.Log("#13hearts call player lost" + PlayerPrefs.GetInt("numHearts"));
         }
 

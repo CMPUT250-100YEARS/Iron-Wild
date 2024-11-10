@@ -61,9 +61,10 @@ public class GameOverManager : MonoBehaviour
 
         player.Restart(); // call the Restart method on the Player script
         water.Restart(); // call the Restart method on the WaterManager script
-
+        
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        SceneManager.LoadScene("SampleScene");
+        string curScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(curScene);
         //SceneManager.LoadScene(0);
         Player.gunMoveable = true;
 
