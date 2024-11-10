@@ -77,8 +77,12 @@ public class Enemy : AnimatedEntity
             //Returns 1 if the enemy is in close range, 2 if in medium range, 3 if in long range, 4 if outside of range.
             if (dist < 3.2f) return 1;
             else if (dist < 8.5f) return 2;
-            else if (dist < 16f) return 3;
-            else return 4;
+            else if (dist < 16.5f) return 3;
+            else
+            {
+                seesplayer = false; 
+                return 4;
+            }
         }
         else return 4;
     }
@@ -135,75 +139,39 @@ public class Enemy : AnimatedEntity
     // Update is called once per frame
     void Update()
     {
-        if (true) //isalive
+        if (isalive)
         {
             range = getDistance();
-
             AnimationUpdate();
             if (target == null || !seesplayer)
             {
                 isMoving = false;
+                currentSpriteCycle = IdleSpriteList;
                 if (!alertsounded) StartCoroutine(spotPlayer());
-                //pass
             }
-            else if (target != null)
-            {
-                isMoving = true;
+            else HandleMovementAndAnimation();
 
-                //angle of enemy compared to player
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                if (angle < 0) { angle += 360f; }
-
-                //Determine SpriteList based on angle
-                if (angle > 45f && angle <= 135f)
-                {
-                    currentSpriteCycle = BackSpriteList; ;
-                }
-
-                else if (angle > 135f && angle <= 225f)
-                {
-                    currentSpriteCycle = RightSpriteList;
-                }
-
-                else if (angle > 225f && angle <= 315f)
-                {
-                    currentSpriteCycle = FrontSpriteList;
-                }
-
-                else if (angle > 315f || angle <= 45f)
-                {
-                    currentSpriteCycle = LeftSpriteList;
-                }
-
-
-
-
-                // Move the enemy towards the player
-                Vector3 targetPos = transform.position + direction * followSpeed * Time.deltaTime;
-
-                //transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
-
-                //transform.position = Vector3.Lerp(transform.position, target.position, followSpeed * Time.deltaTime);
-                //AvoidOtherEnemies(ref targetPos);
-
-                if (!IsCollidingWith(targetPos))
-                {
-                    isMoving = true;
-                    transform.position = targetPos;
-
-                }
-                else
-                {
-                    //isMoving = false;
-                    //currentSpriteCycle = IdleSpriteList;
-                    direction = -direction;
-                }
-
-                SetMovementDirection(isMoving);
-                SetCurrentAnimationCycle(currentSpriteCycle);
-            }
+            SetMovementDirection(isMoving);
+            SetCurrentAnimationCycle(currentSpriteCycle);
         }
         //transform.position += new Vector3(Random.Range(-1 * RangeX, RangeX), Random.Range(-1 * RangeY, RangeY)) * Time.deltaTime;
+    }
+
+    void HandleMovementAndAnimation()
+    {
+        isMoving = true; // Angle of enemy compared to player
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (angle < 0) angle += 360f; // Determine SpriteList based on angle
+        if (angle > 45f && angle <= 135f) currentSpriteCycle = BackSpriteList;
+        else if (angle > 135f && angle <= 225f) currentSpriteCycle = RightSpriteList;
+        else if (angle > 225f && angle <= 315f) currentSpriteCycle = FrontSpriteList;
+        else if (angle > 315f || angle <= 45f) currentSpriteCycle = LeftSpriteList; 
+        
+        // Move the enemy towards the player
+        Vector3 targetPos = transform.position + direction * followSpeed * Time.deltaTime;
+        
+        if (!IsCollidingWith(targetPos)) transform.position = targetPos;
+        else direction = -direction;
     }
 
     //void AvoidOtherEnemies(ref Vector3 targetPos)
@@ -268,6 +236,9 @@ public class Enemy : AnimatedEntity
     public void OnDetectionTriggerExit(Collider2D other)
     {
         target = null;
+        seesplayer = false;
+        isMoving = false; // Reset moving flag
+        alertsounded = false; // Reset alert sounded flag
         Debug.Log("Now I stop!");
     }
 

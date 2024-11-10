@@ -52,6 +52,7 @@ public class EnemyJuggernaut : AnimatedEntity
     private Vector3 direction; // Store the current direction
     private float updateInterval = 0.75f; // Update direction every interval
     private bool seesplayer = false;
+    private bool alertsounded = false;
 
 
     // Start is called before the first frame update
@@ -76,7 +77,11 @@ public class EnemyJuggernaut : AnimatedEntity
         if (dist < 3.2f) return 1;
         else if (dist < 6.5f) return 2;
         else if (dist < 15f) return 3;
-        else return 4;
+        else
+        {
+            seesplayer = false; 
+            return 4;
+        }
     }
 
     // Coroutine to update direction every interval
@@ -88,14 +93,6 @@ public class EnemyJuggernaut : AnimatedEntity
             if (target != null)
             {
                 Vector3 new_direction = target.position - transform.position;
-
-                range = getDistance();
-                if (range <= 3 && seesplayer == false)
-                {
-                    audioSource.PlayOneShot(alert);
-                    yield return new WaitForSeconds(0.5f);
-                    seesplayer = true;
-                }
 
                 new_direction.Normalize(); // Normalize the direction to get a unit vector
                 direction = new_direction;
@@ -134,72 +131,39 @@ public class EnemyJuggernaut : AnimatedEntity
     // Update is called once per frame
     void Update()
     {
-        if (true) //issalive
+        if (issalive)
         {
+            range = getDistance();
             AnimationUpdate();
             if (target == null || !seesplayer)
             {
                 isMoving = false;
-                //pass
+                currentSpriteCycle = IdleSpriteList;
+                if (!alertsounded) StartCoroutine(spotPlayer());
             }
-            else if (target != null)
-            {
-                isMoving = true;
+            else HandleMovementAndAnimation();
 
-                //angle of enemy compared to player
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                if (angle < 0) { angle += 360f; }
-
-                //Determine SpriteList based on angle
-                if (angle > 45f && angle <= 135f)
-                {
-                    currentSpriteCycle = BackSpriteList; ;
-                }
-
-                else if (angle > 135f && angle <= 225f)
-                {
-                    currentSpriteCycle = RightSpriteList;
-                }
-
-                else if (angle > 225f && angle <= 315f)
-                {
-                    currentSpriteCycle = FrontSpriteList;
-                }
-
-                else if (angle > 315f || angle <= 45f)
-                {
-                    currentSpriteCycle = LeftSpriteList;
-                }
-
-
-
-
-                // Move the enemy towards the player
-                Vector3 targetPos = transform.position + direction * followSpeed * Time.deltaTime;
-
-                //transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
-
-                //transform.position = Vector3.Lerp(transform.position, target.position, followSpeed * Time.deltaTime);
-                //AvoidOtherEnemies(ref targetPos);
-
-                if (!IsCollidingWith(targetPos))
-                {
-                    isMoving = true;
-                    transform.position = targetPos;
-
-                }
-                else
-                {
-                    //isMoving = false;
-                    //currentSpriteCycle = IdleSpriteList;
-                    direction = -direction;
-                }
-
-                SetMovementDirection(isMoving);
-                SetCurrentAnimationCycle(currentSpriteCycle);
-            }
+            SetMovementDirection(isMoving);
+            SetCurrentAnimationCycle(currentSpriteCycle);
         }
         //transform.position += new Vector3(Random.Range(-1 * RangeX, RangeX), Random.Range(-1 * RangeY, RangeY)) * Time.deltaTime;
+    }
+
+    void HandleMovementAndAnimation()
+    {
+        isMoving = true; // Angle of enemy compared to player
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (angle < 0) angle += 360f; // Determine SpriteList based on angle
+        if (angle > 45f && angle <= 135f) currentSpriteCycle = BackSpriteList;
+        else if (angle > 135f && angle <= 225f) currentSpriteCycle = RightSpriteList;
+        else if (angle > 225f && angle <= 315f) currentSpriteCycle = FrontSpriteList;
+        else if (angle > 315f || angle <= 45f) currentSpriteCycle = LeftSpriteList; 
+        
+        // Move the enemy towards the player
+        Vector3 targetPos = transform.position + direction * followSpeed * Time.deltaTime;
+        
+        if (!IsCollidingWith(targetPos)) transform.position = targetPos;
+        else direction = -direction;
     }
 
     //void AvoidOtherEnemies(ref Vector3 targetPos)
@@ -264,6 +228,9 @@ public class EnemyJuggernaut : AnimatedEntity
     public void OnDetectionTriggerExit(Collider2D other)
     {
         target = null;
+        seesplayer = false;
+        isMoving = false; // Reset moving flag
+        alertsounded = false; // Reset alert sounded flag
         Debug.Log("Now I stop!");
     }
 
@@ -286,6 +253,19 @@ public class EnemyJuggernaut : AnimatedEntity
         yield return new WaitForSeconds(0.12f);
         flashSpriteRenderer.material = originalMaterial;
         flashroutine = null;
+    }
+
+    public IEnumerator spotPlayer()
+    {
+        //looks to see if the player is in range
+        if (range <= 3 && !seesplayer)
+            {
+                alertsounded = true;
+                audioSource.PlayOneShot(alert);
+                yield return new WaitForSeconds(0.5f);
+                seesplayer = true;
+                alertsounded = false;
+            }
     }
 
 }
