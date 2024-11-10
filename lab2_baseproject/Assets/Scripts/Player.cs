@@ -60,6 +60,11 @@ public class Player : AnimatedEntity
 
     private Vector2 dashDirection;
 
+    private Transform squishTransform;
+    private float originalHeight;
+    private Vector3 originalScale;
+    private Vector3 originalPosition;
+
     public Material flashMaterial; //Colour for the player to flash when taking damage
     private Material originalMaterial;
     private SpriteRenderer flashSpriteRenderer;
@@ -170,8 +175,12 @@ public class Player : AnimatedEntity
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
 
-        hasAbility_Dash = false;
+        hasAbility_Dash = true;
         dashSpeed = Speed * 4;
+
+        squishTransform = transform;
+        originalHeight = squishTransform.localScale.y;
+        originalScale = squishTransform.localScale;
 
         foodCount = 0;
         gunMoveable = true;
@@ -933,10 +942,62 @@ public class Player : AnimatedEntity
     public IEnumerator DashCooldown()
     {
         isDashing = false;
+        StartCoroutine(SquishDown(0.02f));
         yield return new WaitForSeconds(dashCooldown);
         walksoundtimer = 1;
         canDash = true;
         audioSource.PlayOneShot(dashrecharged);
+    }
+
+    public IEnumerator SquishDown(float duration)
+    {
+        Vector3 targetScale = new Vector3(originalScale.x, originalScale.y * 0.75f, originalScale.z);
+        float elapsedTime = 0;
+        originalPosition = squishTransform.position; // Store the original position
+
+        //Main Squish
+        while (elapsedTime < duration)
+        {
+            float lerpFactor = elapsedTime / duration;
+            Vector3 newScale = Vector3.Lerp(originalScale, targetScale, lerpFactor);
+
+            // Adjust the y position to keep the bottom of the sprite in place
+            //float heightDifference = newScale.y - targetScale.y;
+            //Vector3 newPosition = squishTransform.position;
+            //newPosition.y -= heightDifference / 2;
+            //squishTransform.position = newPosition;
+
+            squishTransform.localScale = newScale;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        squishTransform.localScale = targetScale;
+        StartCoroutine(SquishUp(0.1f));
+    }
+
+    public IEnumerator SquishUp(float duration)
+    {
+        Vector3 targetScale = new Vector3(originalScale.x, originalScale.y * 0.75f, originalScale.z);
+        float elapsedTime = 0;
+        originalPosition = squishTransform.position; // Store the original position
+
+        while (elapsedTime < duration)
+        {
+            float lerpFactor = elapsedTime / duration;
+            Vector3 newScale = Vector3.Lerp(targetScale, originalScale, lerpFactor);
+            
+            // Adjust the y position to keep the bottom of the sprite in place
+            //float heightDifference = originalHeight - newScale.y;
+            //Vector3 newPosition = squishTransform.position;
+            //newPosition.y += heightDifference / 2;
+            //squishTransform.position = newPosition;
+            
+            squishTransform.localScale = newScale;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        squishTransform.localScale = originalScale;
+        //squishTransform.position = originalPosition;
     }
 
     //void Dash()
