@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MiniBoss : AnimatedEntity
 {
@@ -322,6 +323,8 @@ public class MiniBoss : AnimatedEntity
         }
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
+
+        SceneManager.LoadScene("Final");
     }
 
     private IEnumerator Attacksound()
