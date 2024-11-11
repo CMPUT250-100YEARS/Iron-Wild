@@ -771,7 +771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &782224038
 RectTransform:
   m_ObjectHideFlags: 0
@@ -803,10 +803,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: ...
+  input: Year Later...
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &782224040
 MonoBehaviour:
@@ -829,18 +829,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
-    m_FontSize: 26
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ...
+  m_Text: Years Later...
 --- !u!222 &782224041
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -904,7 +904,7 @@ MonoBehaviour:
     that haunt their former habitats. '
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 619d8923f84780543a5310e620dd6695, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &807768710
 MonoBehaviour:
@@ -1004,7 +1004,7 @@ MonoBehaviour:
     to find other people. Molly insists that there has to be others, somewhere.
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 619d8923f84780543a5310e620dd6695, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &813477208
 MonoBehaviour:
@@ -1170,7 +1170,7 @@ MonoBehaviour:
     like a wound. '
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 03c91814e5eb9484d8d9111cf2ca0b3a, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &876498955
 MonoBehaviour:
@@ -1271,7 +1271,7 @@ MonoBehaviour:
     be off the table."
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &891668700
 MonoBehaviour:
@@ -1370,7 +1370,7 @@ MonoBehaviour:
   input: 'The Iron War turned humanity to ash and raised their creation to divinity. '
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: bd75833b3e47c284e8c0410ad82e7f2a, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 03c91814e5eb9484d8d9111cf2ca0b3a, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &1061412494
 MonoBehaviour:
@@ -1718,7 +1718,7 @@ MonoBehaviour:
     running out of options. "
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 619d8923f84780543a5310e620dd6695, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &1356207535
 MonoBehaviour:
@@ -1895,7 +1895,7 @@ MonoBehaviour:
     nail in organic life\u2019s coffin.  "
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 03c91814e5eb9484d8d9111cf2ca0b3a, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &1464740852
 MonoBehaviour:
@@ -2296,7 +2296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1876355221
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2333,7 +2333,7 @@ MonoBehaviour:
     the city, the Mother ready to face whatever comes her way to protect her daughter. '
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &1876355223
 MonoBehaviour:
