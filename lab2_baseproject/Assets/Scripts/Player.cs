@@ -704,9 +704,9 @@ public class Player : AnimatedEntity
                 }
             }
 
-            if (objectType == "mutations")  // 37-45, 50-57
+            if (objectType == "mutations")  // 30-38, 43-50
             {
-                if (((charCount >= 37) && (charCount <= 45)) || ((charCount >= 50) && (charCount <= 57)))
+                if (((charCount >= 30) && (charCount <= 38)) || ((charCount >= 43) && (charCount <= 50)))
                 {
                     newLetter = "<b>" + letter + "</b>";
                     text.text += newLetter;
@@ -837,7 +837,7 @@ public class Player : AnimatedEntity
                 showText = true;
                 //Debug.Log("found tutorial puddle!");
                 //uiCanvas.SetActive(true);
-                text_message = "While you are walking, click either shift key to speed up for a short amount of time to dodge incoming attacks.";
+                text_message = "While you are walking, click shift key to speed up for a short amount of time to dodge incoming bullets.";
                 StartCoroutine(AnimateSpeech(text_message, "mutations"));
             }
         }
