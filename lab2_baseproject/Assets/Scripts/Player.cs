@@ -866,13 +866,17 @@ public class Player : AnimatedEntity
                 if (currScene == "SampleScene")
                 {
                     currDialog = "ONTO THE CITY!";
+                    FindObjectOfType<LevelEndTrigger>().OnLevelComplete(currDialog);
+                    StartCoroutine(LevelChangeWait(1.5f));
                 }
                 else // if (currScene == "CITY")
                 {
                     currDialog = "ONTO THE ROOFTOP!";
+                    FindObjectOfType<LevelEndTrigger>().OnLevelComplete(currDialog);
+                    StartCoroutine(LevelChangeWait(2.2f));
                 }
-                FindObjectOfType<LevelEndTrigger>().OnLevelComplete(currDialog);
-                StartCoroutine(LevelChangeWait(1.5f));
+                //FindObjectOfType<LevelEndTrigger>().OnLevelComplete(currDialog);
+                //StartCoroutine(LevelChangeWait(1.5f));
             }
             
             //SceneManager.LoadScene("CITY");
