@@ -655,7 +655,9 @@ public class Player : AnimatedEntity
         else if (objectType == "enemy")
         {
             //tutorialImage.sprite = enemyImage.sprite;
-            //TODO: add enemy sprite
+            tutorialImage.color = Color.white;  // change colour filter
+            tutorialImage.sprite = enemyImage.sprite;
+            rectTransform.sizeDelta = new Vector2(45f, 30f);
         }
 
     //speechBubble.transform.position += new Vector3(50f, 50f, 0);
