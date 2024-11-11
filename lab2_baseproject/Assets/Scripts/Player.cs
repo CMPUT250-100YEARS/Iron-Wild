@@ -29,8 +29,8 @@ public class Player : AnimatedEntity
     // -------------------------------------------------------------------------
 
     public GameObject bulletPrefab;
-    private float fireRate = 0.5f;
-    public float cooldown;
+    private float fireRate = 0.25f;
+    private float cooldown;
 
     private Camera mainCamera;
     private Vector3 mousePointer;
