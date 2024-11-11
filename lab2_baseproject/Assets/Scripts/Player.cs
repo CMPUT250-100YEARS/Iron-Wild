@@ -618,7 +618,7 @@ public class Player : AnimatedEntity
         {
             Debug.Log("LevelChangeWait Load RoofTop scene");
             //SceneManager.LoadScene("RoofTop"); //OLD
-            SceneManager.LoadScene("StairsCutScene");
+            SceneManager.LoadScene("RoofTop");
         }
 
         //Time.timeScale = 1f;
