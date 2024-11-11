@@ -246,7 +246,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &253371915
 GameObject:
@@ -442,7 +442,12 @@ RectTransform:
   - {fileID: 1061412492}
   - {fileID: 1464740850}
   - {fileID: 876498953}
-  - {fileID: 1869817850}
+  - {fileID: 807768708}
+  - {fileID: 782224038}
+  - {fileID: 1356207533}
+  - {fileID: 813477206}
+  - {fileID: 891668698}
+  - {fileID: 1876355221}
   m_Father: {fileID: 1088422584}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -670,6 +675,302 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709046298}
   m_CullTransparentMesh: 0
+--- !u!1 &782224037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 782224038}
+  - component: {fileID: 782224041}
+  - component: {fileID: 782224040}
+  - component: {fileID: 782224039}
+  m_Layer: 5
+  m_Name: NarrationLine1 (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &782224038
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782224037}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 520601940}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 1.5, y: 82.40001}
+  m_SizeDelta: {x: 810.70557, y: 127.22623}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &782224039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782224037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: ...
+  delay: 0.07
+  delayBetweenLines: 1
+  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundImageHolder: {fileID: 1797698825}
+--- !u!114 &782224040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782224037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    m_FontSize: 26
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 50
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: ...
+--- !u!222 &782224041
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782224037}
+  m_CullTransparentMesh: 0
+--- !u!1 &807768707
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 807768708}
+  - component: {fileID: 807768711}
+  - component: {fileID: 807768710}
+  - component: {fileID: 807768709}
+  m_Layer: 5
+  m_Name: NarrationLine1 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &807768708
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807768707}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 520601940}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 1.5, y: 82.40001}
+  m_SizeDelta: {x: 810.70557, y: 127.22623}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &807768709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807768707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: 'Mutations brought on by the very bombs that were supposed to end the War
+    cover the few biological lifeforms left, turning them into irradiated monsters
+    that haunt their former habitats. '
+  delay: 0.07
+  delayBetweenLines: 1
+  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundImageHolder: {fileID: 1797698825}
+--- !u!114 &807768710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807768707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    m_FontSize: 26
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 50
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Mutations brought on by the very bombs that were supposed to end the War
+    cover the few biological lifeforms left, turning them into irradiated monsters
+    that haunt their former habitats. '
+--- !u!222 &807768711
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807768707}
+  m_CullTransparentMesh: 0
+--- !u!1 &813477205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 813477206}
+  - component: {fileID: 813477209}
+  - component: {fileID: 813477208}
+  - component: {fileID: 813477207}
+  m_Layer: 5
+  m_Name: NarrationLine1 (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &813477206
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813477205}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 520601940}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 1.5, y: 82.40001}
+  m_SizeDelta: {x: 810.70557, y: 127.22623}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &813477207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813477205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: The river no longer brings the food it once did and Molly insists on following
+    signals from an old radio, telling them to go to the highest tower in the city
+    to find other people. Molly insists that there has to be others, somewhere.
+  delay: 0.07
+  delayBetweenLines: 1
+  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundImageHolder: {fileID: 1797698825}
+--- !u!114 &813477208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813477205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    m_FontSize: 22
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 50
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: The river no longer brings the food it once did and Molly insists on following
+    signals from an old radio, telling them to go to the highest tower in the city
+    to find other people. Molly insists that there has to be others, somewhere.
+--- !u!222 &813477209
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813477205}
+  m_CullTransparentMesh: 0
 --- !u!1 &825860595
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +1055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &876498953
 RectTransform:
   m_ObjectHideFlags: 0
@@ -771,7 +1072,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1.5000076, y: 82.4}
+  m_AnchoredPosition: {x: 1.5, y: 82.40001}
   m_SizeDelta: {x: 810.70557, y: 127.22623}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &876498954
@@ -789,7 +1090,7 @@ MonoBehaviour:
   input: 'The artificial life that was made to serve man now reigns supreme while
     biological life waits for a return to a time that will never come, festering
     like a wound. '
-  delay: 0.1
+  delay: 0.07
   delayBetweenLines: 1
   backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
@@ -814,7 +1115,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
-    m_FontSize: 35
+    m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -825,7 +1126,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The artificial life that was made to serve man now reigns supreme.
+  m_Text: 'The artificial life that was made to serve man now reigns supreme while
+    biological life waits for a return to a time that will never come, festering
+    like a wound. '
 --- !u!222 &876498956
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -833,6 +1136,108 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876498952}
+  m_CullTransparentMesh: 0
+--- !u!1 &891668697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 891668698}
+  - component: {fileID: 891668701}
+  - component: {fileID: 891668700}
+  - component: {fileID: 891668699}
+  m_Layer: 5
+  m_Name: NarrationLine1 (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &891668698
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891668697}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 520601940}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 1.5, y: 82.40001}
+  m_SizeDelta: {x: 810.70557, y: 127.22623}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &891668699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891668697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: "The Mother won\u2019t listen to her daughter\u2019s pleas, she won\u2019t
+    even acknowledge how long it has been since they\u2019ve eaten. Instead, she
+    leaves to go fishing, insisting that when she comes back the conversation will
+    be off the table."
+  delay: 0.07
+  delayBetweenLines: 1
+  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundImageHolder: {fileID: 1797698825}
+--- !u!114 &891668700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891668697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    m_FontSize: 22
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 50
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "The Mother won\u2019t listen to her daughter\u2019s pleas, she won\u2019t
+    even acknowledge how long it has been since they\u2019ve eaten. Instead, she
+    leaves to go fishing, insisting that when she comes back the conversation will
+    be off the table."
+--- !u!222 &891668701
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891668697}
   m_CullTransparentMesh: 0
 --- !u!1 &1061412491
 GameObject:
@@ -852,7 +1257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1061412492
 RectTransform:
   m_ObjectHideFlags: 0
@@ -885,9 +1290,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: 'The Iron War turned humanity to ash and raised their creation to divinity. '
-  delay: 0.1
+  delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: 68e68f6a40e7c4b4d86bbd2cd1a10186, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: bd75833b3e47c284e8c0410ad82e7f2a, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &1061412494
 MonoBehaviour:
@@ -1177,6 +1582,106 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000061035156, y: 0.00018310547}
   m_SizeDelta: {x: 0, y: -0.00036621094}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1356207532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1356207533}
+  - component: {fileID: 1356207536}
+  - component: {fileID: 1356207535}
+  - component: {fileID: 1356207534}
+  m_Layer: 5
+  m_Name: NarrationLine1 (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1356207533
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356207532}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 520601940}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 1.5, y: 82.40001}
+  m_SizeDelta: {x: 810.70557, y: 127.22623}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1356207534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356207532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: "A mother and her daughter, Molly, live in the woods; away from the ruins
+    of the old world. Surviving off what little their river brings them. They\u2019re
+    running out of options. "
+  delay: 0.07
+  delayBetweenLines: 1
+  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundImageHolder: {fileID: 1797698825}
+--- !u!114 &1356207535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356207532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    m_FontSize: 26
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 50
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "A mother and her daughter, Molly, live in the woods; away from the ruins
+    of the old world. Surviving off what little their river brings them. They\u2019re
+    running out of options.\r"
+--- !u!222 &1356207536
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356207532}
+  m_CullTransparentMesh: 0
 --- !u!1 &1462001251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,7 +1778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1464740850
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1307,7 +1812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: "Cities are now monuments to the hubris of those who hammered the final
     nail in organic life\u2019s coffin.  "
-  delay: 0.1
+  delay: 0.07
   delayBetweenLines: 1
   backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
@@ -1621,17 +2126,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869817849}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 0.013020833, y: 0.013020833, z: 0.013020833}
   m_Children:
   - {fileID: 709046299}
-  m_Father: {fileID: 520601940}
+  m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 70.211, y: 86.723946}
+  m_AnchoredPosition: {x: -5243.783, y: -6845.8906}
   m_SizeDelta: {x: 673.28357, y: 118.57831}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869817851
@@ -1692,6 +2197,106 @@ MonoBehaviour:
   delayBetweenLines: 0
   backgroundSprite: {fileID: 21300000, guid: 68e68f6a40e7c4b4d86bbd2cd1a10186, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
+--- !u!1 &1876355220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1876355221}
+  - component: {fileID: 1876355224}
+  - component: {fileID: 1876355223}
+  - component: {fileID: 1876355222}
+  m_Layer: 5
+  m_Name: NarrationLine1 (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1876355221
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876355220}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 520601940}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 1.5, y: 82.40001}
+  m_SizeDelta: {x: 810.70557, y: 127.22623}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1876355222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876355220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: 'It takes a lot of convincing, but now knowing that she is running low on
+    time the Mother realizes there are no other options. The two of them take to
+    the city, the Mother ready to face whatever comes her way to protect her daughter. '
+  delay: 0.07
+  delayBetweenLines: 1
+  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundImageHolder: {fileID: 1797698825}
+--- !u!114 &1876355223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876355220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    m_FontSize: 22
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 50
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'It takes a lot of convincing, but now knowing that she is running low
+    on time the Mother realizes there are no other options. The two of them take
+    to the city, the Mother ready to face whatever comes her way to protect her daughter. '
+--- !u!222 &1876355224
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876355220}
+  m_CullTransparentMesh: 0
 --- !u!1 &1924953060
 GameObject:
   m_ObjectHideFlags: 0
