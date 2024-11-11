@@ -402,13 +402,91 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088422584}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -298, y: -199}
   m_SizeDelta: {x: 528.566, y: 32.27414}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &333724431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 333724432}
+  - component: {fileID: 333724434}
+  - component: {fileID: 333724433}
+  m_Layer: 5
+  m_Name: Text (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &333724432
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333724431}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1088422584}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -123.40006, y: 298.4}
+  m_SizeDelta: {x: 777.15985, y: 59.50409}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &333724433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333724431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8962264, g: 0.06763973, b: 0.06763973, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    m_FontSize: 40
+    m_FontStyle: 3
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: PLEASE PLAY WITH A FULL SCREEN
+--- !u!222 &333724434
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333724431}
+  m_CullTransparentMesh: 0
 --- !u!1 &520601939
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +527,7 @@ RectTransform:
   - {fileID: 891668698}
   - {fileID: 1876355221}
   m_Father: {fileID: 1088422584}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -693,7 +771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &782224038
 RectTransform:
   m_ObjectHideFlags: 0
@@ -725,10 +803,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: ...
+  input: Year Later...
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &782224040
 MonoBehaviour:
@@ -751,18 +829,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
-    m_FontSize: 26
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ...
+  m_Text: Years Later...
 --- !u!222 &782224041
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -826,7 +904,7 @@ MonoBehaviour:
     that haunt their former habitats. '
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 619d8923f84780543a5310e620dd6695, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &807768710
 MonoBehaviour:
@@ -926,7 +1004,7 @@ MonoBehaviour:
     to find other people. Molly insists that there has to be others, somewhere.
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 619d8923f84780543a5310e620dd6695, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &813477208
 MonoBehaviour:
@@ -1092,7 +1170,7 @@ MonoBehaviour:
     like a wound. '
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 03c91814e5eb9484d8d9111cf2ca0b3a, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &876498955
 MonoBehaviour:
@@ -1193,7 +1271,7 @@ MonoBehaviour:
     be off the table."
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &891668700
 MonoBehaviour:
@@ -1292,7 +1370,7 @@ MonoBehaviour:
   input: 'The Iron War turned humanity to ash and raised their creation to divinity. '
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: bd75833b3e47c284e8c0410ad82e7f2a, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 03c91814e5eb9484d8d9111cf2ca0b3a, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &1061412494
 MonoBehaviour:
@@ -1432,6 +1510,7 @@ RectTransform:
   - {fileID: 1262664002}
   - {fileID: 1571926234}
   - {fileID: 1797698827}
+  - {fileID: 333724432}
   - {fileID: 520601940}
   - {fileID: 1924953061}
   - {fileID: 1462001254}
@@ -1486,6 +1565,8 @@ PlayableDirector:
     value: {fileID: 1462001251}
   - key: {fileID: -326382582742196158, guid: bdda6639cbb184a4cb37c91e5224d6c9, type: 2}
     value: {fileID: 256072710}
+  - key: {fileID: -3863470715867482589, guid: bdda6639cbb184a4cb37c91e5224d6c9, type: 2}
+    value: {fileID: 333724431}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1262663998
@@ -1637,7 +1718,7 @@ MonoBehaviour:
     running out of options. "
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 619d8923f84780543a5310e620dd6695, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &1356207535
 MonoBehaviour:
@@ -1753,7 +1834,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088422584}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1814,7 +1895,7 @@ MonoBehaviour:
     nail in organic life\u2019s coffin.  "
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 03c91814e5eb9484d8d9111cf2ca0b3a, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &1464740852
 MonoBehaviour:
@@ -2215,7 +2296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1876355221
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2252,7 +2333,7 @@ MonoBehaviour:
     the city, the Mother ready to face whatever comes her way to protect her daughter. '
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &1876355223
 MonoBehaviour:
@@ -2328,7 +2409,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088422584}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
