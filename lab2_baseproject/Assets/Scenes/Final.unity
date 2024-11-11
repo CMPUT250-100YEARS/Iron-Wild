@@ -422,7 +422,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 678520173}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -431,7 +431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 2.6}
+  m_AnchoredPosition: {x: 5, y: 2.600006}
   m_SizeDelta: {x: 745.93085, y: 114.39226}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678520175
@@ -450,7 +450,7 @@ MonoBehaviour:
     running over in her mind what Molly would do without her. '
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
   backgroundImageHolder: {fileID: 299834876}
 --- !u!114 &678520176
 MonoBehaviour:
@@ -520,7 +520,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896783682}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -529,7 +529,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 2.6}
+  m_AnchoredPosition: {x: 5, y: 2.600006}
   m_SizeDelta: {x: 745.93085, y: 114.39226}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &896783684
@@ -549,7 +549,7 @@ MonoBehaviour:
     would be okay."
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: b41efb9bde43c6e4bb4e3866610215b5, type: 3}
   backgroundImageHolder: {fileID: 299834876}
 --- !u!114 &896783685
 MonoBehaviour:
@@ -816,7 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1691280a1480dbf439cbfef7acf2006e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: EndGame
+  nextSceneName: Start Menu
 --- !u!114 &1507894274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,7 +910,7 @@ MonoBehaviour:
     they were the only humans there. "
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
   backgroundImageHolder: {fileID: 299834876}
 --- !u!114 &1510735125
 MonoBehaviour:
@@ -1009,7 +1009,7 @@ MonoBehaviour:
     to be spoken, both of them knew at that moment that they needed each other.
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
   backgroundImageHolder: {fileID: 299834876}
 --- !u!114 &1616874265
 MonoBehaviour:
@@ -1333,7 +1333,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034609291}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1342,7 +1342,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 2.6}
+  m_AnchoredPosition: {x: 5, y: 2.600006}
   m_SizeDelta: {x: 745.93085, y: 114.39226}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2034609293
@@ -1362,7 +1362,7 @@ MonoBehaviour:
     crackling as it connected to a new signal."
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
   backgroundImageHolder: {fileID: 299834876}
 --- !u!114 &2034609294
 MonoBehaviour:

@@ -430,6 +430,8 @@ RectTransform:
   - {fileID: 1691004186}
   - {fileID: 1262414877}
   - {fileID: 1638151275}
+  - {fileID: 1290836488}
+  - {fileID: 1802508109}
   m_Father: {fileID: 947509980}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -794,7 +796,7 @@ MonoBehaviour:
     Mother did not buffer."
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
   backgroundImageHolder: {fileID: 514807646}
 --- !u!114 &1262414879
 MonoBehaviour:
@@ -839,6 +841,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262414876}
   m_CullTransparentMesh: 0
+--- !u!1 &1290836487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1290836488}
+  - component: {fileID: 1290836491}
+  - component: {fileID: 1290836490}
+  - component: {fileID: 1290836489}
+  m_Layer: 5
+  m_Name: NarrationLine (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1290836488
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290836487}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 899100653}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 5.7, y: 0.9}
+  m_SizeDelta: {x: 738.3209, y: 110.54047}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1290836489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290836487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: FIND YOUR DAUGHTER! SHE IS ON A ROOF TOP.
+  delay: 0.07
+  delayBetweenLines: 1
+  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
+  backgroundImageHolder: {fileID: 514807646}
+--- !u!114 &1290836490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290836487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 45
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: FIND YOUR DAUGHTER! SHE IS ON A ROOF TOP.
+--- !u!222 &1290836491
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290836487}
+  m_CullTransparentMesh: 0
 --- !u!1 &1638151274
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,7 +955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1638151275
 RectTransform:
   m_ObjectHideFlags: 0
@@ -894,7 +992,7 @@ MonoBehaviour:
     down from the sky. '
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
   backgroundImageHolder: {fileID: 514807646}
 --- !u!114 &1638151277
 MonoBehaviour:
@@ -993,7 +1091,7 @@ MonoBehaviour:
     the smallest rock to the biggest mountain, nothing was beyond their argumentation. '
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
   backgroundImageHolder: {fileID: 514807646}
 --- !u!114 &1691004188
 MonoBehaviour:
@@ -1091,7 +1189,7 @@ MonoBehaviour:
     few enemies, and fewer signs of humans.
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: c9a9e544b235c7b419c8332c04ff3daf, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
   backgroundImageHolder: {fileID: 514807646}
 --- !u!114 &1754802024
 MonoBehaviour:
@@ -1231,6 +1329,102 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778651315}
+  m_CullTransparentMesh: 0
+--- !u!1 &1802508108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1802508109}
+  - component: {fileID: 1802508112}
+  - component: {fileID: 1802508111}
+  - component: {fileID: 1802508110}
+  m_Layer: 5
+  m_Name: NarrationLine (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1802508109
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802508108}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 899100653}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 5.7, y: 0.9}
+  m_SizeDelta: {x: 738.3209, y: 110.54047}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1802508110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802508108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: You are the lower left, Your daughter is in the BLUE BUILDING at the top!
+  delay: 0.07
+  delayBetweenLines: 1
+  backgroundSprite: {fileID: 21300000, guid: f5ed4418aa5dd72499d6e6f4e22367e0, type: 3}
+  backgroundImageHolder: {fileID: 514807646}
+--- !u!114 &1802508111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802508108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 45
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: You are the lower left, Your daughter is in the BLUE BUILDING at the top!
+--- !u!222 &1802508112
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802508108}
   m_CullTransparentMesh: 0
 --- !u!1 &2055726965
 GameObject:
