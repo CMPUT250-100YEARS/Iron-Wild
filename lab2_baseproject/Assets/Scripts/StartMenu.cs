@@ -13,7 +13,7 @@ public class StartMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        level1Button.onClick.AddListener(() => LoadLevel("SampleScene"));
+        level1Button.onClick.AddListener(() => LoadLevel("Intro_2"));
         level2Button.onClick.AddListener(() => LoadLevel("CITY"));
         bossButton.onClick.AddListener(() => LoadLevel("RoofTop"));
     }
