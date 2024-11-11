@@ -11,11 +11,11 @@ public class MiniBoss : AnimatedEntity
     [Header("Hover Settings")]
     private float hoverSpeed = 3f;
     private float diveSpeed = 12f;
-    private float hoverHeight = 4f; // y-offset
-    private float xOffset = 6f;
+    private float hoverHeight = 8f; // y-offset
+    private float xOffset = 10f;
 
     private float hoverTimer;
-    private float hoverDuration = 5.5f;
+    private float hoverDuration = 10f;
 
     public bool isHovering;
     public bool canAttack;
@@ -43,8 +43,8 @@ public class MiniBoss : AnimatedEntity
     private Vector3 warningCircleCenter;
 
     private float pulseSpeed = .1f; // Speed of the pulsing effect
-    private float maxScale = .4f; // Maximum scale of the circle
-    private float minScale = .3f;   // Minimum scale of the circle
+    private float maxScale = .7f; // Maximum scale of the circle
+    private float minScale = .5f;   // Minimum scale of the circle
 
     public GameObject warningCirclePrefab; // Assign a prefab with a SpriteRenderer (circle sprite)
     private GameObject warningCircleInstance;
