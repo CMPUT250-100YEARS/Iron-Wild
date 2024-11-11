@@ -44,6 +44,9 @@ public class LevelEndTrigger : MonoBehaviour
         if (message == "I NEED MORE FOOD!")
         {
             yield return new WaitForSeconds(0.5f);
+        } else if (message == "ONTO THE ROOFTOP!")
+        {
+            yield return new WaitForSeconds(0.5f);
         }
 
         speechBubble.SetActive(false);
