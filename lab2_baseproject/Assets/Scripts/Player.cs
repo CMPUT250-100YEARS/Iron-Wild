@@ -153,6 +153,7 @@ public class Player : AnimatedEntity
     public Image waterImage;
     public Image foodImage;
     public Image enemyImage;
+    public Image mutationImage;
 
 
     void Start()
@@ -645,17 +646,22 @@ public class Player : AnimatedEntity
             tutorialImage.sprite = foodImage.sprite;
             rectTransform.sizeDelta = new Vector2(50f, 30f);
         }
+        else if (objectType == "mutations")
+        {
+            tutorialImage.color = Color.gray;  // change colour filter
+            tutorialImage.sprite = mutationImage.sprite;
+            rectTransform.sizeDelta = new Vector2(45f, 25f);
+        }
         else if (objectType == "enemy")
         {
             //tutorialImage.sprite = enemyImage.sprite;
             //TODO: add enemy sprite
         }
 
+    //speechBubble.transform.position += new Vector3(50f, 50f, 0);
+    //uiCanvas.transform.position += new Vector3(100f, 100f, 0);
 
-        //speechBubble.transform.position += new Vector3(50f, 50f, 0);
-        //uiCanvas.transform.position += new Vector3(100f, 100f, 0);
-
-        string newLetter;
+    string newLetter;
         int charCount = 1;
         foreach (char letter in message)
         {
