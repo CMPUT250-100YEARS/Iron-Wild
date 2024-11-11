@@ -1004,7 +1004,7 @@ MonoBehaviour:
     to find other people. Molly insists that there has to be others, somewhere.
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: 619d8923f84780543a5310e620dd6695, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &813477208
 MonoBehaviour:
@@ -1718,7 +1718,7 @@ MonoBehaviour:
     running out of options. "
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: 619d8923f84780543a5310e620dd6695, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
   backgroundImageHolder: {fileID: 1797698825}
 --- !u!114 &1356207535
 MonoBehaviour:
