@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2326124504846993980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.9, y: 13.2, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 2326124505376862478}
   m_Father: {fileID: 0}
@@ -148,41 +148,13 @@ MonoBehaviour:
   shoot2: {fileID: 8300000, guid: ea6e1aa7a0e62194cb4c4609a4e34477, type: 3}
   alert: {fileID: 8300000, guid: 904d97cb9a1700244b821069979ad50d, type: 3}
   BackSpriteList:
-  - {fileID: -4413463779743694060, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: -4413463779743694060, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: -4413463779743694060, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: -4413463779743694060, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: -4413463779743694060, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: -4413463779743694060, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: -4413463779743694060, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: -4413463779743694060, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
+  - {fileID: -5485953835212538903, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
   RightSpriteList:
-  - {fileID: 3726041415512287687, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: -566349167891623316, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: 6355903661407777132, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
   - {fileID: 1454214806428952348, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: 2026728633243797322, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: -3939048860977781384, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: 7779851412312452062, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
-  - {fileID: 9195065037092926680, guid: 3b2c3b10188254bb2b4acf85281e7df0, type: 3}
   LeftSpriteList:
-  - {fileID: -7596912669968769854, guid: 3f47bc7d195724a68a4f64a69fe4bf49, type: 3}
-  - {fileID: 6927096260311934810, guid: 3f47bc7d195724a68a4f64a69fe4bf49, type: 3}
-  - {fileID: 7446908052623847666, guid: 3f47bc7d195724a68a4f64a69fe4bf49, type: 3}
   - {fileID: 1708501809742770571, guid: 3f47bc7d195724a68a4f64a69fe4bf49, type: 3}
-  - {fileID: 715189817122208741, guid: 3f47bc7d195724a68a4f64a69fe4bf49, type: 3}
-  - {fileID: -3959400641230232809, guid: 3f47bc7d195724a68a4f64a69fe4bf49, type: 3}
-  - {fileID: 6627241657385222291, guid: 3f47bc7d195724a68a4f64a69fe4bf49, type: 3}
-  - {fileID: -3153452306365850830, guid: 3f47bc7d195724a68a4f64a69fe4bf49, type: 3}
   FrontSpriteList:
-  - {fileID: 1679442333499767696, guid: 1eb3d3ab431854d0692cd437a0a2bb42, type: 3}
-  - {fileID: -6257284293595187026, guid: 1eb3d3ab431854d0692cd437a0a2bb42, type: 3}
-  - {fileID: 7370119725360165426, guid: 1eb3d3ab431854d0692cd437a0a2bb42, type: 3}
   - {fileID: 2081704393744364436, guid: 1eb3d3ab431854d0692cd437a0a2bb42, type: 3}
-  - {fileID: -3881273368077599219, guid: 1eb3d3ab431854d0692cd437a0a2bb42, type: 3}
-  - {fileID: 1727846018070540111, guid: 1eb3d3ab431854d0692cd437a0a2bb42, type: 3}
-  - {fileID: -1888115792755142333, guid: 1eb3d3ab431854d0692cd437a0a2bb42, type: 3}
-  - {fileID: 8583069396956614673, guid: 1eb3d3ab431854d0692cd437a0a2bb42, type: 3}
   IdleSpriteList:
   - {fileID: 2081704393744364436, guid: 1eb3d3ab431854d0692cd437a0a2bb42, type: 3}
   flashMaterial: {fileID: 2100000, guid: 64d9d7fc5859b8d49832a396a07b258d, type: 2}
