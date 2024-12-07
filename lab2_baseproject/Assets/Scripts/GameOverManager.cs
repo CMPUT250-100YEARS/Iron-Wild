@@ -78,5 +78,7 @@ public class GameOverManager : MonoBehaviour
         gameManager.GameOverFunct();
         AudioManager audioManager = FindObjectOfType<AudioManager>();
         audioManager.GameOver();
+        AudioTransition audioTransition = FindObjectOfType<AudioTransition>();
+        if (audioTransition != null) audioTransition.GameOver();
     }
 }

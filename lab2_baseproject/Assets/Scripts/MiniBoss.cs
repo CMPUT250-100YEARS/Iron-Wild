@@ -28,6 +28,7 @@ public class MiniBoss : AnimatedEntity
     public AudioClip clunk2;
     public AudioClip clunk3;
     public AudioClip deadblast;
+    public AudioClip deadblast2;
     public AudioClip bird1;
     public AudioClip bird2;
     public AudioClip bird3;
@@ -316,12 +317,13 @@ public class MiniBoss : AnimatedEntity
     private IEnumerator Death()
     {
         isAlive = false;
-        for (int i = 0; i < 6; i++)
+        audioSource.PlayOneShot(deadblast2);
+        for (int i = 0; i < 7; i++)
         {
             audioSource.PlayOneShot(deadblast);
             yield return new WaitForSeconds(0.25f);
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(4.1f);
         Destroy(gameObject);
 
         SceneManager.LoadScene("Final");

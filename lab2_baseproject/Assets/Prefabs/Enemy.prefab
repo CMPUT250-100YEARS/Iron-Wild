@@ -102,7 +102,7 @@ MonoBehaviour:
     type: 3}
   Framerate: 12
   SpriteRenderer: {fileID: 2326124504846993983}
-  EnemyHealth: 60
+  EnemyHealth: 80
   audioSource: {fileID: -1817534195575945337}
   avoidanceRadius: 5
   bulletEnemyPrefab: {fileID: 4628185361730926903, guid: cb2b12640f2013a409c692a6c89313e7,
@@ -117,7 +117,7 @@ MonoBehaviour:
   clunk1: {fileID: 8300000, guid: 05311421d56e84f4ab3b9dd07ef59ab2, type: 3}
   clunk2: {fileID: 8300000, guid: 20815898c3bdfb848b9d0a501abbe208, type: 3}
   clunk3: {fileID: 8300000, guid: f856f6d3d8a227747aefd1d865590dc0, type: 3}
-  deadblast: {fileID: 8300000, guid: ac162b48525612f47ae23c1acdc338c4, type: 3}
+  deadblast: {fileID: 8300000, guid: 8abb34c4e72574242bdecf2ce1cd10f3, type: 3}
   shoot1: {fileID: 8300000, guid: 87e1f49701168314fab08e2811d799d2, type: 3}
   shoot2: {fileID: 8300000, guid: ea6e1aa7a0e62194cb4c4609a4e34477, type: 3}
   alert: {fileID: 8300000, guid: a673945630300aa4b83635ce980a9d0e, type: 3}
@@ -199,7 +199,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 05311421d56e84f4ab3b9dd07ef59ab2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.9
   m_Pitch: 1
   Loop: 0
   Mute: 0

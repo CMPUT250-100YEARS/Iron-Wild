@@ -118,7 +118,7 @@ public class Enemy : AnimatedEntity
 
                 if (range <= 3 && seesplayer == true)
                 {
-                    if (shooting == true)
+                    if (shooting == true && isalive)
                     {
                         int random_sound = Random.Range(1, 3);
                         if (random_sound == 1) audioSource.PlayOneShot(shoot2);
@@ -222,7 +222,7 @@ public class Enemy : AnimatedEntity
     {
         isalive = false;
         audioSource.PlayOneShot(deadblast);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         Destroy(gameObject);
     }
 

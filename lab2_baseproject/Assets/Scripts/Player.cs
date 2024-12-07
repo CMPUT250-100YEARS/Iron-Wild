@@ -29,7 +29,7 @@ public class Player : AnimatedEntity
     // -------------------------------------------------------------------------
 
     public GameObject bulletPrefab;
-    private float fireRate = 0.25f;
+    public float fireRate = 0.4f;
     private float cooldown;
 
     private Camera mainCamera;
@@ -74,7 +74,9 @@ public class Player : AnimatedEntity
     // for sound
     public AudioClip foodSound;
     public AudioClip waterSound;
-    public AudioClip shootSound;
+    public AudioClip waterSound2;
+    public AudioClip shootSound1;
+    public AudioClip shootSound2;
     public AudioClip dashSound1;
     public AudioClip dashSound2;
     public AudioClip dashSound3;
@@ -471,7 +473,8 @@ public class Player : AnimatedEntity
         if (Input.GetKey(KeyCode.Mouse0) && cooldown <= 0.0f)
         {
             cooldown = fireRate;
-            audioSource.PlayOneShot(shootSound);
+            if (Random.Range(1, 4) == 1) audioSource.PlayOneShot(shootSound2);
+            else audioSource.PlayOneShot(shootSound1);
             Shoot();
         }
         else
@@ -810,6 +813,7 @@ public class Player : AnimatedEntity
             if ((waterSound != null) && (audioSource != null))
             {
                 audioSource.PlayOneShot(waterSound);
+                audioSource.PlayOneShot(waterSound2);
             }
 
             if (!tutorialPuddle && waterTextDone)

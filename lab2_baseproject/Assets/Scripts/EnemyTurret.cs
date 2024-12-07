@@ -99,11 +99,14 @@ public class EnemyTurret : AnimatedEntity
 
                 if (range <= 3 && seesplayer == true)
                 {
-                    int random_sound = Random.Range(1, 3);
-                    if (random_sound == 1) audioSource.PlayOneShot(shoot2);
-                    else audioSource.PlayOneShot(shoot1);
+                    if (alive)
+                    {
+                        int random_sound = Random.Range(1, 3);
+                        if (random_sound == 1) audioSource.PlayOneShot(shoot2);
+                        else audioSource.PlayOneShot(shoot1);
 
-                    Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
+                        Instantiate(bulletEnemyPrefab, enemyBulletPos.position, Quaternion.identity);
+                    }
                 }
                 else seesplayer = false;
             }
@@ -194,7 +197,7 @@ public class EnemyTurret : AnimatedEntity
     private IEnumerator Death()
     {
         audioSource.PlayOneShot(deadblast);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         Destroy(gameObject);
     }
 

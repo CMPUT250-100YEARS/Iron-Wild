@@ -238,9 +238,11 @@ MonoBehaviour:
   Speed: 5
   InterruptedCycle:
   - {fileID: 6796656825888281025, guid: f7dd23608c9e045f39e9658be6f3a374, type: 3}
-  footprintPrefab: {fileID: 0}
+  footprintPrefab: {fileID: 7750380966563139166, guid: 9149dc92be5134a5fad581b6013c05db,
+    type: 3}
   bulletPrefab: {fileID: 4628185361730926903, guid: 06ab7979b43764bbf88332e1f33df0aa,
     type: 3}
+  fireRate: 0.45
   SolidObjectsLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -248,18 +250,20 @@ MonoBehaviour:
   currScene: 
   currDialog: 
   startPosition: {x: 0, y: 0, z: 0}
-  dashCooldown: 1.5
+  dashCooldown: 1
   flashMaterial: {fileID: 2100000, guid: fe48c5648710ff843be99fbe42d8364c, type: 2}
   foodSound: {fileID: 8300000, guid: 36195078cac616645a09469a78f6d291, type: 3}
   waterSound: {fileID: 8300000, guid: 649b09136f7829b4e999883e68816d33, type: 3}
-  shootSound: {fileID: 8300000, guid: 18ea8df1fa51d4545b4c5bf29a50e3c4, type: 3}
+  waterSound2: {fileID: 8300000, guid: 99583be888a217742b1962d224ffd017, type: 3}
+  shootSound1: {fileID: 8300000, guid: 18ea8df1fa51d4545b4c5bf29a50e3c4, type: 3}
+  shootSound2: {fileID: 8300000, guid: 18ea8df1fa51d4545b4c5bf29a50e3c4, type: 3}
   dashSound1: {fileID: 8300000, guid: 397401faacf768a41844c4abf3d49740, type: 3}
   dashSound2: {fileID: 8300000, guid: 32a56cb5d22cd4b43ae24521e6012095, type: 3}
   dashSound3: {fileID: 8300000, guid: 780e927e3d628cc4085ed4be8b81cd1a, type: 3}
   dashSound4: {fileID: 8300000, guid: 9b8e4af562159e8429f56158fafe7ba7, type: 3}
   dashSound5: {fileID: 8300000, guid: 248876c739988294e8f40acd61ebc7b2, type: 3}
-  dashrecharged: {fileID: 0}
-  damageSound: {fileID: 8300000, guid: b1daabfc3ec5d4958881545cf9f75ec9, type: 3}
+  dashrecharged: {fileID: 8300000, guid: 4bfa8fe8acb27de459db01e8e033b7bf, type: 3}
+  damageSound: {fileID: 8300000, guid: 63730c7bac7d96d41a5b338e7e92fb1c, type: 3}
   interactSound: {fileID: 8300000, guid: 9fb8138ad81f6431e88c5612278a789c, type: 3}
   walkSound1: {fileID: 8300000, guid: 652635d9a818dab4da38c3d81510f47e, type: 3}
   walkSound2: {fileID: 8300000, guid: 40f4936c52c46a744a7768607e3c1fa6, type: 3}
