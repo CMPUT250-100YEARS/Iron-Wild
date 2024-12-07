@@ -26,6 +26,21 @@ TextureImporter:
   - first:
       213: -5402336750066188725
     second: green_front_8
+  - first:
+      213: 4920038243836786751
+    second: green_death_1
+  - first:
+      213: -8110911282048145503
+    second: green_death_2
+  - first:
+      213: -874752725015444090
+    second: green_death_3
+  - first:
+      213: -606795857602538313
+    second: green_death_4
+  - first:
+      213: 8427576484177154913
+    second: green_death_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -131,7 +146,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,7 +167,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,7 +188,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -194,7 +209,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -215,7 +230,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -236,7 +251,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -257,7 +272,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -278,7 +293,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -286,6 +301,111 @@ TextureImporter:
       bones: []
       spriteID: b4e344f395b0705b0800000000000000
       internalID: -5402336750066188725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green_death_1
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 34
+        width: 102
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f387a3d17bc774440800000000000000
+      internalID: 4920038243836786751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green_death_2
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 33
+        width: 95
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a7efc49921407f80800000000000000
+      internalID: -8110911282048145503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green_death_3
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 44
+        width: 108
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 685462ff7014cd3f0800000000000000
+      internalID: -874752725015444090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green_death_4
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 46
+        width: 107
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b41c68e16a3497f0800000000000000
+      internalID: -606795857602538313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green_death_5
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 46
+        width: 95
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16390d04924c4f470800000000000000
+      internalID: 8427576484177154913
       vertices: []
       indices: 
       edges: []

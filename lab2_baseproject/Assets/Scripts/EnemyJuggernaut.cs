@@ -35,6 +35,7 @@ public class EnemyJuggernaut : AnimatedEntity
     public List<Sprite> LeftSpriteList;
     public List<Sprite> FrontSpriteList;
     public List<Sprite> IdleSpriteList;
+    public List<Sprite> DeathSpriteList;
 
     public Material flashMaterial; //Colour for the enemy to flash when taking damage
     private Material originalMaterial;
@@ -214,7 +215,12 @@ public class EnemyJuggernaut : AnimatedEntity
     {
         issalive = false;
         audioSource.PlayOneShot(deadblast);
-        yield return new WaitForSeconds(0.7f);
+        for (int i = 0; i < 5; i++)
+        {
+            SpriteRenderer.sprite = DeathSpriteList[i];
+            yield return new WaitForSeconds(0.1f);
+        }
+        //yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
 

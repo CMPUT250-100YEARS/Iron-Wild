@@ -26,6 +26,21 @@ TextureImporter:
   - first:
       213: 8583069396956614673
     second: gray_front_8
+  - first:
+      213: -334671017524904998
+    second: gray_death_1
+  - first:
+      213: -6746581865229032196
+    second: gray_death_2
+  - first:
+      213: -7434564366726218472
+    second: gray_death_3
+  - first:
+      213: 3268630576649689345
+    second: gray_death_4
+  - first:
+      213: -3793491636859615657
+    second: gray_death_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -131,7 +146,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,7 +167,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,7 +188,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -194,7 +209,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -215,7 +230,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -236,7 +251,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -257,7 +272,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -278,7 +293,7 @@ TextureImporter:
         width: 90
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -286,6 +301,111 @@ TextureImporter:
       bones: []
       spriteID: 110102834203d1770800000000000000
       internalID: 8583069396956614673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gray_death_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 38
+        width: 103
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adb3fc39b720b5bf0800000000000000
+      internalID: -334671017524904998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gray_death_2
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 36
+        width: 102
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf46eead9835f52a0800000000000000
+      internalID: -6746581865229032196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gray_death_3
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 49
+        width: 111
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81db185391f13d890800000000000000
+      internalID: -7434564366726218472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gray_death_4
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 50
+        width: 114
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1095f2701328c5d20800000000000000
+      internalID: 3268630576649689345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gray_death_5
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 44
+        width: 105
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 756419e747fca5bc0800000000000000
+      internalID: -3793491636859615657
       vertices: []
       indices: 
       edges: []

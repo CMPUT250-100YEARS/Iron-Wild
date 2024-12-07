@@ -159,6 +159,12 @@ MonoBehaviour:
   - {fileID: -5402336750066188725, guid: c76b541261f2243018570c047fd3be9d, type: 3}
   IdleSpriteList:
   - {fileID: -7305217590296299123, guid: c76b541261f2243018570c047fd3be9d, type: 3}
+  DeathSpriteList:
+  - {fileID: 4920038243836786751, guid: c76b541261f2243018570c047fd3be9d, type: 3}
+  - {fileID: -8110911282048145503, guid: c76b541261f2243018570c047fd3be9d, type: 3}
+  - {fileID: -874752725015444090, guid: c76b541261f2243018570c047fd3be9d, type: 3}
+  - {fileID: -606795857602538313, guid: c76b541261f2243018570c047fd3be9d, type: 3}
+  - {fileID: 8427576484177154913, guid: c76b541261f2243018570c047fd3be9d, type: 3}
   flashMaterial: {fileID: 2100000, guid: 64d9d7fc5859b8d49832a396a07b258d, type: 2}
   InterruptedCycle: []
 --- !u!61 &2326124504846993969
