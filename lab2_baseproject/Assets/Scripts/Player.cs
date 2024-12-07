@@ -404,8 +404,8 @@ public class Player : AnimatedEntity
                         {
                             transform.position += inputDirection.normalized * Time.deltaTime * Speed;
                             Scene currentScene = SceneManager.GetActiveScene();
-                            if (currentScene.name == "CITY")
-                            {
+                            //if (currentScene.name == "CITY")
+                            //{
                                 //transform.position += inputDirection.normalized * Time.deltaTime * Speed;
 
                                 // code to implement footprints; delay added to prevent update on every frame. --------------------------------------
@@ -418,7 +418,7 @@ public class Player : AnimatedEntity
                                 {
                                     footprintTimer += Time.deltaTime;
                                 }
-                            }
+                            //}
                             // ------------------------------------------------------------------------------------------------------------------
 
                         }
