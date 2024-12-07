@@ -18,16 +18,16 @@ public class AudioManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+
         Scene currentScene = SceneManager.GetActiveScene();
         
         if (currentScene.name == "SampleScene")
         {
             forestlevel = true;
-        }
-
-        if (audioSource != null)
-        {
-            audioSource.Play();
         }
     }
 

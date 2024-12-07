@@ -14,11 +14,12 @@ public class AudioTransition: MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        audioSource.volume = 0f;
         if (audioSource != null)
         {
             audioSource.Play();
         }
+        
+        audioSource.volume = 0f;
     }
 
     // Update is called once per frame

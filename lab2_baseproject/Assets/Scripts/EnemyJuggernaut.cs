@@ -119,7 +119,7 @@ public class EnemyJuggernaut : AnimatedEntity
                     }
                     Vector3 spawnPosition = enemyBulletPos.position + sideVector * 0.85f;
 
-                    Instantiate(bulletEnemyPrefab, spawnPosition, Quaternion.identity);
+                    if (issalive) Instantiate(bulletEnemyPrefab, spawnPosition, Quaternion.identity);
                 }
                 else seesplayer = false;
             }
@@ -214,7 +214,7 @@ public class EnemyJuggernaut : AnimatedEntity
     {
         issalive = false;
         audioSource.PlayOneShot(deadblast);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         Destroy(gameObject);
     }
 

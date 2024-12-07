@@ -123,6 +123,7 @@ MonoBehaviour:
   yPos: 0
   audioSource: {fileID: 3469613198867031242}
   warning: {fileID: 8300000, guid: df279a2aceb3f3243a6655cacded6b3d, type: 3}
+  dead: {fileID: 0}
   maxTime: 100
   timeLeft: 0
   timesUpText: {fileID: 0}

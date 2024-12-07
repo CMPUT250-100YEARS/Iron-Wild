@@ -45,15 +45,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterBar: {fileID: 0}
-  waterLevel: 100
+  waterLevel: 30
   timePassed: 0
   decreaseTime: 300
-  speed: 0.001
+  speed: 0.002
   xPos: 0
   yPos: 0
   audioSource: {fileID: 7076226853278609315}
   warning: {fileID: 8300000, guid: df279a2aceb3f3243a6655cacded6b3d, type: 3}
-  maxTime: 100
+  dead: {fileID: 8300000, guid: 63730c7bac7d96d41a5b338e7e92fb1c, type: 3}
+  maxTime: 30
   timeLeft: 0
   timesUpText: {fileID: 0}
 --- !u!82 &7076226853278609315

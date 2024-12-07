@@ -7,23 +7,24 @@ using UnityEngine.SceneManagement;
 public class WaterManager : MonoBehaviour
 {
     public Image waterBar;
-    public float waterLevel = 100f;
-    public float timePassed = 0f;
-    public float decreaseTime = 300f;
-    public float speed = 0.001f;
+    public float waterLevel;
+    public float timePassed;
+    public float decreaseTime;
+    public float speed;
     public float xPos;
     public float yPos;
 
     //sounds
     public AudioSource audioSource;
     public AudioClip warning;
+    public AudioClip dead;
 
     private bool belowthird = false;
     private bool belowquarter = false;
     private bool beloweighth = false;
     private bool belowsixteen = false;
 
-    public float maxTime = 100f;
+    public float maxTime;
     //public float maxTime = 50f;
     public float timeLeft;
     public GameObject timesUpText;
@@ -61,6 +62,7 @@ public class WaterManager : MonoBehaviour
             timeLeft = maxTime; //Prevents Infinite Loop
 
             GameOverManager gameOver = FindObjectOfType<GameOverManager>();
+            audioSource.PlayOneShot(dead);
 
             string sceneName = "SampleScene";
             gameOver.PlayerLost(sceneName);
