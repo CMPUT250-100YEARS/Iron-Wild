@@ -657,7 +657,7 @@ public class Player : AnimatedEntity
             //tutorialImage.sprite = enemyImage.sprite;
             tutorialImage.color = Color.white;  // change colour filter
             tutorialImage.sprite = enemyImage.sprite;
-            rectTransform.sizeDelta = new Vector2(45f, 30f);
+            rectTransform.sizeDelta = new Vector2(50f, 60f);
         }
 
     //speechBubble.transform.position += new Vector3(50f, 50f, 0);
