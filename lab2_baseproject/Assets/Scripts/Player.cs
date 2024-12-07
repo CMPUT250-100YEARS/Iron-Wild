@@ -147,15 +147,21 @@ public class Player : AnimatedEntity
     public bool tutorialMutation = false;
     public string text_message;
     public bool showText = true;
+    public bool movementTextDone = false;
     public bool waterTextDone = false;
     public bool foodTextDone = false;
     public bool mutationsTextDone = false;
     public bool enemyTextDone = false;
+    public bool tutorialFinished = false;
     public Image tutorialImage;
     public Image waterImage;
     public Image foodImage;
     public Image enemyImage;
     public Image mutationImage;
+    public bool waterStart = false;
+    public bool foodStart = false;
+    public bool mutationsStart = false;
+    public bool enemyStart = false;
 
 
     void Start()
@@ -207,9 +213,8 @@ public class Player : AnimatedEntity
         FindObjectOfType<Heart>().UpdateHearts();
 
         uiCanvas.SetActive(true);
-        text_message = "Move around using the arrow keys or WASD keys.";
+        text_message = "Move around using the arrow keys or WASD keys.                                        ";
         StartCoroutine(AnimateSpeech(text_message, "movement"));
-        StartCoroutine(Pause(5f));
         StartCoroutine(WalkSounds());
 
         //Set up the sprite renderer for flash effects
@@ -505,16 +510,16 @@ public class Player : AnimatedEntity
 
             dashTime = dashDuration;
 
-            if (!tutorialMutation && mutationsTextDone)
-            {
-                tutorialMutation = true;
-                showText = true;
-                //Debug.Log("found tutorial puddle!");
-                //uiCanvas.SetActive(true);
-                text_message = "Robots are your enemy! Point with the mouse to aim and left click on it to shoot.";
-                StartCoroutine(AnimateSpeech(text_message, "enemy"));
-                StartCoroutine(Pause2(10f));
-            }
+            //if (!tutorialMutation && mutationsTextDone)
+            //{
+            //    tutorialMutation = true;
+            //    showText = true;
+            //    //Debug.Log("found tutorial puddle!");
+            //    //uiCanvas.SetActive(true);
+            //    text_message = "Robots are your enemy! Point with the mouse to aim and left click on it to shoot.";
+            //    StartCoroutine(AnimateSpeech(text_message, "enemy"));
+            //    StartCoroutine(Pause2(10f));
+            //}
         }
 
         if (isDashing)
@@ -529,6 +534,30 @@ public class Player : AnimatedEntity
         if (!showText)  // tutorial text
         {
             uiCanvas.SetActive(false);
+        }
+
+        if (!tutorialFinished)
+        {
+           if (movementTextDone && waterTextDone && foodTextDone && mutationsTextDone && !enemyStart)
+           {
+                enemyStart = true;
+                StartCoroutine(AnimateSpeech("Robots are your enemy! Point with the mouse to aim and left click on it to shoot.                                        ", "enemy"));
+            } 
+           else if (movementTextDone && waterTextDone && foodTextDone && !mutationsStart)
+           {
+                mutationsStart = true;
+                StartCoroutine(AnimateSpeech("While you are walking, click shift key to speed up for a short amount of time to dodge incoming bullets.                                        ", "mutations"));
+            }
+           else if (movementTextDone && waterTextDone && !foodStart)
+           {
+                foodStart = true;
+                StartCoroutine(AnimateSpeech("To survive in the wild, you will need food. Make sure you collect as much as you can to finish the level.                                        ", "food"));
+            }
+           else if (movementTextDone && !waterStart)
+           {
+                waterStart = true;
+                StartCoroutine(AnimateSpeech("Your mutation makes it so you can't go long without water. Make sure your hydration meter doesn't run out by walking into water puddles.                                        ", "water"));
+            }
         }
     }
 
@@ -591,12 +620,12 @@ public class Player : AnimatedEntity
         return false; //no collision - player can move
     }
 
-    public IEnumerator Pause(float time)
-    {
-        yield return new WaitForSeconds(time);
-        text_message = "Your mutation makes it so you can't go long without water. Make sure your hydration meter doesn't run out by walking into water puddles.";
-        StartCoroutine(AnimateSpeech(text_message, "water"));
-    }
+    //public IEnumerator Pause(float time, string message, string objectType)
+    //{
+    //    yield return new WaitForSeconds(time);
+    //    text_message = "Your mutation makes it so you can't go long without water. Make sure your hydration meter doesn't run out by walking into water puddles.";
+    //    StartCoroutine(AnimateSpeech(message, "water"));
+    //}
 
     public IEnumerator Pause2(float time)
     {
@@ -740,7 +769,11 @@ public class Player : AnimatedEntity
             yield return new WaitForSeconds(0.05f);
         }
 
-        if (objectType == "water")
+
+        if (objectType == "movement")
+        {
+            movementTextDone = true;
+        } else if (objectType == "water")
         {
             waterTextDone = true;
         } else if (objectType == "food")
@@ -752,8 +785,10 @@ public class Player : AnimatedEntity
         } else if (objectType == "enemy")
         {
             enemyTextDone = true;
+            tutorialFinished = true;
+            uiCanvas.SetActive(false);
         }
-        //yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(10f);  // commented out
     }
 
 
@@ -816,15 +851,15 @@ public class Player : AnimatedEntity
                 audioSource.PlayOneShot(waterSound2);
             }
 
-            if (!tutorialPuddle && waterTextDone)
-            {
-                tutorialPuddle = true;
-                showText = true;
-                //Debug.Log("found tutorial puddle!");
-                //uiCanvas.SetActive(true);
-                text_message = "To survive in the wild, you will need food. Make sure you collect as much as you can to finish the level.";
-                StartCoroutine(AnimateSpeech(text_message, "food"));
-            }
+            //if (!tutorialPuddle && waterTextDone)
+            //{
+            //    tutorialPuddle = true;
+            //    showText = true;
+            //    //Debug.Log("found tutorial puddle!");
+            //    //uiCanvas.SetActive(true);
+            //    text_message = "To survive in the wild, you will need food. Make sure you collect as much as you can to finish the level.";
+            //    StartCoroutine(AnimateSpeech(text_message, "food"));
+            //}
         }
 
 
@@ -837,15 +872,15 @@ public class Player : AnimatedEntity
             FindObjectOfType<FoodImage>().FoundFoods();
             Destroy(food.gameObject);
 
-            if (!tutorialFood && foodTextDone)
-            {
-                tutorialFood = true;
-                showText = true;
-                //Debug.Log("found tutorial puddle!");
-                //uiCanvas.SetActive(true);
-                text_message = "While you are walking, click shift key to speed up for a short amount of time to dodge incoming bullets.";
-                StartCoroutine(AnimateSpeech(text_message, "mutations"));
-            }
+            //if (!tutorialFood && foodTextDone)
+            //{
+            //    tutorialFood = true;
+            //    showText = true;
+            //    //Debug.Log("found tutorial puddle!");
+            //    //uiCanvas.SetActive(true);
+            //    text_message = "While you are walking, click shift key to speed up for a short amount of time to dodge incoming bullets.";
+            //    StartCoroutine(AnimateSpeech(text_message, "mutations"));
+            //}
         }
 
         LevelEndTrigger levelEnd = other.gameObject.GetComponent<LevelEndTrigger>();
