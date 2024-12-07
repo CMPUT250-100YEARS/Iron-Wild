@@ -47,7 +47,7 @@ MonoBehaviour:
   waterBar: {fileID: 0}
   waterLevel: 30
   timePassed: 0
-  decreaseTime: 300
+  decreaseTime: 150
   speed: 0.002
   xPos: 0
   yPos: 0
