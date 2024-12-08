@@ -446,8 +446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 'The Mother knew in that dry city she would run out of water soon, she kept
-    running over in her mind what Molly would do without her. '
+  input: " It was a small vial and without even thinking the daughter  poured it
+    onto her mother\u2019s gills."
   delay: 0.07
   delayBetweenLines: 1
   backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
@@ -484,8 +484,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'The Mother knew in that dry city she would run out of water soon, she
-    kept running over in her mind what Molly would do without her. '
+  m_Text: " It was a small vial and without even thinking the daughter\r poured it
+    onto her mother\u2019s gills."
 --- !u!222 &678520177
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -544,9 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: "\u201CNEW HOME EAST!\u201D it cried, and in the smog of the city\u2019s
-    skyline, there pierced a single ray of sunlight and they both knew everything
-    would be okay."
+  input: To be continued...
   delay: 0.07
   delayBetweenLines: 1
   backgroundSprite: {fileID: 21300000, guid: b41efb9bde43c6e4bb4e3866610215b5, type: 3}
@@ -583,9 +581,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u201CNEW HOME EAST!\u201D it cried, and in the smog of the city\u2019s
-    skyline, there pierced a single ray of sunlight and they both knew everything
-    would be okay."
+  m_Text: To be continued...
 --- !u!222 &896783686
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -708,7 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1024, y: 768}
@@ -905,9 +901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: "They did not let go for some time, even as they realized the tower on which
-    they stood was the very one repeated in the radio\u2026 even as they realized
-    they were the only humans there. "
+  input: 'Asthey held one another, the daughter pointed out to her mother a shine
+    from the ruined heap of  what was once their flying enemy. '
   delay: 0.07
   delayBetweenLines: 1
   backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
@@ -944,9 +939,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "They did not let go for some time, even as they realized the tower on
-    which they stood was the very one repeated in the radio\u2026 even as they realized
-    they were the only humans there.\r"
+  m_Text: "Asthey held one another, the daughter pointed out to her mother a shine
+    from the ruined heap of\r\n what was once their flying enemy. "
 --- !u!222 &1510735126
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1005,8 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: After all the fighting she found her. Apologies were said but no words had
-    to be spoken, both of them knew at that moment that they needed each other.
+  input: The mother pulled her daughter free of the cage and the two embraced
   delay: 0.07
   delayBetweenLines: 1
   backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
@@ -1032,7 +1025,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
-    m_FontSize: 27
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1043,8 +1036,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: After all the fighting she found her. Apologies were said but no words
-    had to be spoken, both of them knew at that moment that they needed each other.
+  m_Text: The mother pulled her daughter free of the cage and the two embraced
 --- !u!222 &1616874266
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1357,9 +1349,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: "At that same moment, Molly worried for how she\u2019d survive with her
-    mother gone. But that was when they heard it, the szzkt and snap of the radio
-    crackling as it connected to a new signal."
+  input: "She yelped as she changed, her body morphing and shifting back into it\u2019s
+    old form. The two held  eachother closer then, as close as two people can be.
+    And as they stood up on the top of that tower  they saw it, signals of smoke
+    billowing up from a distant crater. They knew they could go back,  they knew
+    their little cabin would be their waiting with its many fish and its cozy beds.
+    But as  they looked one another in the eyes the answer was clear. Whether they
+    found man or machine,  the mother and daughter knew they could handle it as they
+    handled everything else, together."
   delay: 0.07
   delayBetweenLines: 1
   backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
@@ -1385,7 +1382,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
-    m_FontSize: 25
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1396,9 +1393,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "At that same moment, Molly worried for how she\u2019d survive with her
-    mother gone. But that was when they heard it, the szzkt and snap of the radio
-    crackling as it connected to a new signal."
+  m_Text: "She yelped as she changed, her body morphing and shifting back into it\u2019s
+    old form. The two held\r eachother closer then, as close as two people can be.
+    And as they stood up on the top of that tower\r they saw it, signals of smoke
+    billowing up from a distant crater. They knew they could go back,\r they knew
+    their little cabin would be their waiting with its many fish and its cozy beds.
+    But as\r they looked one another in the eyes the answer was clear. Whether they
+    found man or machine,\r the mother and daughter knew they could handle it as
+    they handled everything else, together."
 --- !u!222 &2034609295
 CanvasRenderer:
   m_ObjectHideFlags: 0
