@@ -388,7 +388,7 @@ public class Player : AnimatedEntity
                 {
                     //Debug.Log("Player Update isMoving" + PlayerPrefs.GetInt("numHearts"));
                     Vector3 targetPos = transform.position + (inputDirection.normalized * Time.deltaTime * Speed);
-
+                    Vector3 dashPos = transform.position + (inputDirection.normalized * Time.deltaTime * dashSpeed);
 
                     // finding the footprint rotation on z-axis only --------------------------------------------------------------------
                     // 1. Calculate the angle in the XY plane (z-axis rotation) relative to the world up vector
@@ -396,35 +396,36 @@ public class Player : AnimatedEntity
 
                     float targetAngle = Mathf.Atan2(inputDirection.normalized.y, inputDirection.normalized.x) * Mathf.Rad2Deg;
                     Quaternion footRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, targetAngle);
-
                     // ------------------------------------------------------------------------------------------------------------------
+
+
                     if (!IsCollidingWith(targetPos))
                     {
 
-                        if (isDashing)
+                        if ((isDashing) && (!IsCollidingWith(dashPos)))
                         {
-                            //Debug.Log("isDashing" + isDashing);
-                            //Debug.Log("HEREEEEE!!! speed increased to True");
                             transform.position += inputDirection.normalized * Time.deltaTime * dashSpeed;
                         }
-                        else
+                        else  // not dashing...just moving
                         {
                             transform.position += inputDirection.normalized * Time.deltaTime * Speed;
-                            Scene currentScene = SceneManager.GetActiveScene();
+                            if (footprintTimer >= footprintDelay)
+                            {
+                                Instantiate(footprintPrefab, transform.position + new Vector3(0, -0.75f, -1), footRotation);
+                                footprintTimer = 0.0f;
+                            }
+                            else
+                            {
+                                footprintTimer += Time.deltaTime;
+                            }
+
+                            // ------------------------------------------------------------------------------------------------------------------
+                            // COMMENTED OUT CODE TO MAKE FOOT TRACKS ONLY CITY LEVEL.
+                            //Scene currentScene = SceneManager.GetActiveScene();
                             //if (currentScene.name == "CITY")
                             //{
-                                //transform.position += inputDirection.normalized * Time.deltaTime * Speed;
-
-                                // code to implement footprints; delay added to prevent update on every frame. --------------------------------------
-                                if (footprintTimer >= footprintDelay)
-                                {
-                                    Instantiate(footprintPrefab, transform.position + new Vector3(0, -0.75f, -1), footRotation);
-                                    footprintTimer = 0.0f;
-                                }
-                                else
-                                {
-                                    footprintTimer += Time.deltaTime;
-                                }
+                            //transform.position += inputDirection.normalized * Time.deltaTime * Speed;
+                            // code to implement footprints; delay added to prevent update on every frame. 
                             //}
                             // ------------------------------------------------------------------------------------------------------------------
 
