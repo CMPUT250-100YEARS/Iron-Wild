@@ -14,8 +14,8 @@ public class StartMenu : MonoBehaviour
     void Start()
     {
         level1Button.onClick.AddListener(() => LoadLevel("Intro_2"));
-        level2Button.onClick.AddListener(() => LoadLevel("CITY"));
-        bossButton.onClick.AddListener(() => LoadLevel("RoofTop"));
+        level2Button.onClick.AddListener(() => LoadLevel("City1"));
+        bossButton.onClick.AddListener(() => LoadLevel("StairsCutScene"));
     }
 
     // Update is called once per frame
