@@ -121,6 +121,102 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &370650013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 370650014}
+  - component: {fileID: 370650017}
+  - component: {fileID: 370650016}
+  - component: {fileID: 370650015}
+  m_Layer: 5
+  m_Name: MAP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &370650014
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370650013}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 899100653}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 5.7, y: 0.9}
+  m_SizeDelta: {x: 738.3209, y: 110.54047}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &370650015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370650013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: MAP
+  delay: 0.07
+  delayBetweenLines: 1
+  backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
+  backgroundImageHolder: {fileID: 514807646}
+--- !u!114 &370650016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370650013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 45
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: MAP
+--- !u!222 &370650017
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370650013}
+  m_CullTransparentMesh: 0
 --- !u!1 &511336524
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,10 +376,10 @@ RectTransform:
   m_Father: {fileID: 947509980}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 84.100006}
-  m_SizeDelta: {x: 0.00012207031, y: -235.51276}
+  m_SizeDelta: {x: 1024.0001, y: 532.48724}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &514807646
 MonoBehaviour:
@@ -429,9 +525,8 @@ RectTransform:
   - {fileID: 1754802022}
   - {fileID: 1691004186}
   - {fileID: 1262414877}
-  - {fileID: 1638151275}
-  - {fileID: 1290836488}
-  - {fileID: 1802508109}
+  - {fileID: 1318817379}
+  - {fileID: 370650014}
   m_Father: {fileID: 947509980}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -539,7 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1024, y: 768}
@@ -759,7 +854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1262414877
 RectTransform:
   m_ObjectHideFlags: 0
@@ -791,9 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: "Molly insisted on wielding a weapon of her own, her Mother felt quite different.
-    Molly insisted again and again that she wasn\u2019t a kid but regardless her
-    Mother did not buffer."
+  input: To the highest building left standing in the city!
   delay: 0.07
   delayBetweenLines: 1
   backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
@@ -819,7 +912,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
-    m_FontSize: 25
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -830,9 +923,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Molly insisted on wielding a weapon of her own, her Mother felt quite
-    different. Molly insisted again and again that she wasn\u2019t a kid but regardless
-    her Mother did not buffer."
+  m_Text: 'To the highest building left standing in the city! '
 --- !u!222 &1262414880
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -841,7 +932,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262414876}
   m_CullTransparentMesh: 0
---- !u!1 &1290836487
+--- !u!1 &1318817378
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -849,106 +940,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1290836488}
-  - component: {fileID: 1290836491}
-  - component: {fileID: 1290836490}
-  - component: {fileID: 1290836489}
-  m_Layer: 5
-  m_Name: NarrationLine (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1290836488
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290836487}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 899100653}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.7, y: 0.9}
-  m_SizeDelta: {x: 738.3209, y: 110.54047}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1290836489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290836487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: FIND YOUR DAUGHTER! SHE IS ON A ROOF TOP.
-  delay: 0.07
-  delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
-  backgroundImageHolder: {fileID: 514807646}
---- !u!114 &1290836490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290836487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
-    m_FontSize: 25
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 45
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: FIND YOUR DAUGHTER! SHE IS ON A ROOF TOP.
---- !u!222 &1290836491
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290836487}
-  m_CullTransparentMesh: 0
---- !u!1 &1638151274
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1638151275}
-  - component: {fileID: 1638151278}
-  - component: {fileID: 1638151277}
-  - component: {fileID: 1638151276}
+  - component: {fileID: 1318817379}
+  - component: {fileID: 1318817382}
+  - component: {fileID: 1318817381}
+  - component: {fileID: 1318817380}
   m_Layer: 5
   m_Name: NarrationLine (3)
   m_TagString: Untagged
@@ -956,13 +951,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!224 &1638151275
+--- !u!224 &1318817379
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638151274}
+  m_GameObject: {fileID: 1318817378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -975,32 +970,30 @@ RectTransform:
   m_AnchoredPosition: {x: 5.7, y: 0.9}
   m_SizeDelta: {x: 738.3209, y: 110.54047}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1638151276
+--- !u!114 &1318817380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638151274}
+  m_GameObject: {fileID: 1318817378}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 'When they reached the city center, tensions were at an all time high; right
-    as Molly marched off to prove she could take care of herself, a steel beast dropped
-    down from the sky. '
+  input: The mother chased  after, her promise to her daughter ringing in her ears.
   delay: 0.07
   delayBetweenLines: 1
   backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
   backgroundImageHolder: {fileID: 514807646}
---- !u!114 &1638151277
+--- !u!114 &1318817381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638151274}
+  m_GameObject: {fileID: 1318817378}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -1015,7 +1008,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
-    m_FontSize: 25
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1026,16 +1019,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'When they reached the city center, tensions were at an all time high;
-    right as Molly marched off to prove she could take care of herself, a steel beast
-    dropped down from the sky. '
---- !u!222 &1638151278
+  m_Text: "The mother chased\r after, her promise to her daughter ringing in her
+    ears."
+--- !u!222 &1318817382
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638151274}
+  m_GameObject: {fileID: 1318817378}
   m_CullTransparentMesh: 0
 --- !u!1 &1691004185
 GameObject:
@@ -1087,8 +1079,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 'Even though they faced no monsters, they had many fights. Bickering over
-    the smallest rock to the biggest mountain, nothing was beyond their argumentation. '
+  input: A great robotic monster flew down from the sky  and carried the daughter
+    away.
   delay: 0.07
   delayBetweenLines: 1
   backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
@@ -1125,8 +1117,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Even though they faced no monsters, they had many fights. Bickering over
-    the smallest rock to the biggest mountain, nothing was beyond their argumentation.\r"
+  m_Text: "A great robotic monster flew down from the sky\r and carried the daughter
+    away."
 --- !u!222 &1691004189
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1185,8 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: The journey took many quiet days. After leaving the forest they encountered
-    few enemies, and fewer signs of humans.
+  input: 'When they reached the city, tragedy struck! '
   delay: 0.07
   delayBetweenLines: 1
   backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
@@ -1223,8 +1214,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The journey took many quiet days. After leaving the forest they encountered
-    few enemies, and fewer signs of humans.
+  m_Text: 'When they reached the city, tragedy struck! '
 --- !u!222 &1754802025
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1329,102 +1319,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778651315}
-  m_CullTransparentMesh: 0
---- !u!1 &1802508108
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1802508109}
-  - component: {fileID: 1802508112}
-  - component: {fileID: 1802508111}
-  - component: {fileID: 1802508110}
-  m_Layer: 5
-  m_Name: NarrationLine (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1802508109
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802508108}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 899100653}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.7, y: 0.9}
-  m_SizeDelta: {x: 738.3209, y: 110.54047}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1802508110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802508108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: You are the lower left, Your daughter is in the BLUE BUILDING at the top!
-  delay: 0.07
-  delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: f5ed4418aa5dd72499d6e6f4e22367e0, type: 3}
-  backgroundImageHolder: {fileID: 514807646}
---- !u!114 &1802508111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802508108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
-    m_FontSize: 25
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 45
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: You are the lower left, Your daughter is in the BLUE BUILDING at the top!
---- !u!222 &1802508112
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802508108}
   m_CullTransparentMesh: 0
 --- !u!1 &2055726965
 GameObject:
