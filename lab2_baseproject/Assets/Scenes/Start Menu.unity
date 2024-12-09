@@ -983,6 +983,7 @@ MonoBehaviour:
   level1Button: {fileID: 1135826297}
   level2Button: {fileID: 1703283006}
   bossButton: {fileID: 1014382722}
+  creditsButton: {fileID: 216343770}
 --- !u!4 &939128620
 Transform:
   m_ObjectHideFlags: 0
