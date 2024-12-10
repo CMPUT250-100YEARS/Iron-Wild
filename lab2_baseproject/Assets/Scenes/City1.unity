@@ -343,8 +343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: "The mother could sense her daughter\u2019s anxiousness, but her daughter
-    promised her it would all be alright so long as she had her mother. "
+  input: "The mother could sense her daughter\u2019s anxiousness, but the mother
+    promised her daughter that she wil always be with her."
   delay: 0.07
   delayBetweenLines: 1
   backgroundSprite: {fileID: 0}
@@ -381,8 +381,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "The mother could sense her daughter\u2019s anxiousness, but her daughter
-    promised her it would all be alright so long as she had her mother. "
+  m_Text: "The mother could sense her daughter\u2019s anxiousness, but the mother
+    promised her daughter that she wil always be with her."
 --- !u!222 &1118838385
 CanvasRenderer:
   m_ObjectHideFlags: 0
