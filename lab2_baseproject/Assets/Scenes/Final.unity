@@ -901,7 +901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5991b9d81cd6ff42af3b8bcdbdd8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 'Asthey held one another, the daughter pointed out to her mother a shine
+  input: 'As they held one another, the daughter pointed out to her mother a shine
     from the ruined heap of  what was once their flying enemy. '
   delay: 0.07
   delayBetweenLines: 1
@@ -939,7 +939,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Asthey held one another, the daughter pointed out to her mother a shine
+  m_Text: "As they held one another, the daughter pointed out to her mother a shine
     from the ruined heap of\r\n what was once their flying enemy. "
 --- !u!222 &1510735126
 CanvasRenderer:
@@ -1353,7 +1353,7 @@ MonoBehaviour:
     old form. The two held  eachother closer then, as close as two people can be.
     And as they stood up on the top of that tower  they saw it, signals of smoke
     billowing up from a distant crater. They knew they could go back,  they knew
-    their little cabin would be their waiting with its many fish and its cozy beds.
+    their little cabin would be there waiting with its many fish and its cozy beds.
     But as  they looked one another in the eyes the answer was clear. Whether they
     found man or machine,  the mother and daughter knew they could handle it as they
     handled everything else, together."
@@ -1397,7 +1397,7 @@ MonoBehaviour:
     old form. The two held\r eachother closer then, as close as two people can be.
     And as they stood up on the top of that tower\r they saw it, signals of smoke
     billowing up from a distant crater. They knew they could go back,\r they knew
-    their little cabin would be their waiting with its many fish and its cozy beds.
+    their little cabin would be there waiting with its many fish and its cozy beds.
     But as\r they looked one another in the eyes the answer was clear. Whether they
     found man or machine,\r the mother and daughter knew they could handle it as
     they handled everything else, together."
