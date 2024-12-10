@@ -217,7 +217,7 @@ MonoBehaviour:
     hard for them to feel fear  when each\u2019s world walked alongside them."
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 0}
+  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
   backgroundImageHolder: {fileID: 1306758014}
 --- !u!1 &1054190475
 GameObject:
@@ -347,7 +347,7 @@ MonoBehaviour:
     promised her daughter that she wil always be with her."
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 0}
+  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
   backgroundImageHolder: {fileID: 1306758014}
 --- !u!114 &1118838384
 MonoBehaviour:
