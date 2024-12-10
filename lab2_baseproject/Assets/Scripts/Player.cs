@@ -35,7 +35,6 @@ public class Player : AnimatedEntity
     private Camera mainCamera;
     private Vector3 mousePointer;
 
-    private Rigidbody2D rb;
     public LayerMask SolidObjectsLayer; //the foreground
 
     public float foodCount = 0;
@@ -45,8 +44,7 @@ public class Player : AnimatedEntity
 
     bool isFacingLeft;
     private SpriteRenderer gunSpriteRenderer;
-    
-    bool PrevShootRight = false;
+
     bool PrevShootLeft = false;
 
     private bool hasAbility_Dash;
@@ -183,7 +181,6 @@ public class Player : AnimatedEntity
         shootAnimator = weaponend.GetComponent<Animator>();
 
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        rb = GetComponent<Rigidbody2D>();
 
         hasAbility_Dash = true;
         dashSpeed = Speed * 4;
@@ -974,7 +971,6 @@ public class Player : AnimatedEntity
                     //}
 
                     PrevShootLeft = true;
-                    PrevShootRight = false;
                 }
                 else // Player is facing right
                 {
@@ -983,8 +979,6 @@ public class Player : AnimatedEntity
                     {
                         //weaponend.localPosition -= weaponEndOffset;
                         shootAnimator.SetTrigger("Shoot");
-
-                        PrevShootRight = true;
                         PrevShootLeft = false;
 
                         Instantiate(bulletPrefab, guntransform.position, Quaternion.identity);
@@ -1116,42 +1110,6 @@ public class Player : AnimatedEntity
         squishTransform.localScale = originalScale;
         //squishTransform.position = originalPosition;
     }
-
-    //void Dash()
-    //{
-    //    transform.position = Vector3.MoveTowards(transform.position, Vector3.right, 5);
-    //}
-
-    //    private void StartDash()
-    //    {
-    //        isDashing = true;
-    //        dashTime = dashDuration;
-
-    //        // Get the direction the player is currently moving or facing
-    //        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-
-    //        // If no input, default to dashing right
-    //        if (dashDirection == Vector2.zero)
-    //        {
-    //            dashDirection = Vector2.right; // Default direction
-    //        }
-
-    //        // Calculate the potential target position after dash
-    //        Vector2 targetPos = rb.position + dashDirection * dashSpeed * dashDuration;
-
-    //        // Check if the player would collide with a boundary
-    //        if (!IsCollidingWith(targetPos))
-    //        {
-    //            // Apply the dash velocity
-    //            rb.velocity = dashDirection * dashSpeed;
-    //        }
-    //    }
-
-    //    private void StopDash()
-    //    {
-    //        isDashing = false;
-    //        rb.velocity = Vector2.zero; // Stops movement after the dash ends
-    //    }
 
     public void Restart()
     {
