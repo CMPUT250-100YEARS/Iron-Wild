@@ -889,7 +889,7 @@ MonoBehaviour:
   input: To the highest building left standing in the city!
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 1cabed032476a2c408a04305aef3aee2, type: 3}
   backgroundImageHolder: {fileID: 514807646}
 --- !u!114 &1262414879
 MonoBehaviour:
@@ -985,7 +985,7 @@ MonoBehaviour:
   input: The mother chased  after, her promise to her daughter ringing in her ears.
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 1cabed032476a2c408a04305aef3aee2, type: 3}
   backgroundImageHolder: {fileID: 514807646}
 --- !u!114 &1318817381
 MonoBehaviour:
@@ -1083,7 +1083,7 @@ MonoBehaviour:
     away,
   delay: 0.07
   delayBetweenLines: 1
-  backgroundSprite: {fileID: 21300000, guid: 29c6566133a854a44a5ffc49e5b3300a, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 386e1963a4e6ada47b25a7b20f0c5ac9, type: 3}
   backgroundImageHolder: {fileID: 514807646}
 --- !u!114 &1691004188
 MonoBehaviour:
