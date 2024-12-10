@@ -645,7 +645,7 @@ public class Player : AnimatedEntity
         {
             //Debug.Log("LevelChangeWait Load CITY scene");
             //SceneManager.LoadScene("CITY"); //OLD
-            SceneManager.LoadScene("Forest End");
+            SceneManager.LoadScene("City1");
         }
         else // if (currScene == "CITY")
         {
